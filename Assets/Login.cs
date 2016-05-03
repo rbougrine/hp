@@ -8,16 +8,14 @@ public class Login : MonoBehaviour
     #region variables
 
     //Static Variables
-    public static string Name = "";
+    public static string Username = "";
     public static string Password = "";
   
     //Public Variables
     public string CurrentMenu = "Login";
-
+    
     //Private Variables
-     private string CreateAccountUrl = "";
-     private string LoginUrl = "";
-     private string CName = "";
+     private string CUsername = "";
      private string CPassword = "";
      private string ConfirmPassword = "";
 
@@ -54,22 +52,29 @@ public class Login : MonoBehaviour
     {
         GUI.Box(new Rect(235, 55, 225, 222), "Login");
 
+        GUI.Label(new Rect(253, 86, 170, 21), "Username:");
+        Username = GUI.TextField(new Rect(253, 106, 170, 21), Username);
+
+        GUI.Label(new Rect(252, 128, 170, 23), "Password:");
+        Password = GUI.TextField(new Rect(252, 151, 170, 23), Password);
+
+        if (GUI.Button(new Rect(357, 223, 90, 25), "Log in"))
+        {
+            string url = "http://localhost/LoginAccountT.php?";
+
+            WWWForm form = new WWWForm();
+            form.AddField("Username", Username);
+            form.AddField("Password", Password);
+            WWW www = new WWW(url, form);
+
+            StartCoroutine(LoginAccount(www));
+
+        }
+
         if (GUI.Button(new Rect(242, 223, 111, 25), "Create Account"))
         {
             CurrentMenu = "CreateAccount";
         }
-     
-
-        if (GUI.Button(new Rect(357, 223, 90, 25), "Log in"))
-        {
-           
-
-        }
-        GUI.Label(new Rect(253, 86, 170, 21), "Name:");
-        Name = GUI.TextField(new Rect(253, 106, 170, 21), "");
-
-        GUI.Label(new Rect(252, 128, 170, 23), "Password:");
-        Password = GUI.TextField(new Rect(252, 151, 170, 23), "");
     }//End LoginGUI method
 
     void CreateAccountGUI()
@@ -78,19 +83,31 @@ public class Login : MonoBehaviour
         GUI.Box(new Rect(235, 75, 225, 222), "Create Account");
 
         GUI.Label(new Rect(253, 86, 170, 21), "Name:");
-        CName = GUI.TextField(new Rect(253, 106, 170, 21), "");
+        CUsername = GUI.TextField(new Rect(253, 106, 170, 21), CUsername);
 
         GUI.Label(new Rect(252, 128, 170, 23), "Password:");
-        CPassword = GUI.TextField(new Rect(252, 151, 170, 23), "");
+        CPassword = GUI.TextField(new Rect(252, 151, 170, 23), CPassword);
 
         GUI.Label(new Rect(252, 181, 170, 23), "Confirm Password:");
-        ConfirmPassword = GUI.TextField(new Rect(252, 209, 170, 23), "");
+        ConfirmPassword = GUI.TextField(new Rect(252, 209, 170, 23), ConfirmPassword);
 
         if (GUI.Button(new Rect(242, 243, 111, 25),"Create Account"))
         {
             if (CPassword == ConfirmPassword)
             {
-                StartCoroutine(CreateAccount());
+                string url = "http://localhost/CreateAccountT.php?";
+
+                WWWForm form = new WWWForm();
+                form.AddField("Username", CUsername);
+                form.AddField("Password", CPassword);
+                WWW www = new WWW(url, form);
+
+                StartCoroutine(CreateAccount(www));
+                CurrentMenu = "Login";
+            }
+            else
+            {
+                Debug.Log("The password is not correctly entered");
             }
         }
 
@@ -104,27 +121,40 @@ public class Login : MonoBehaviour
 
     }//End CreateAccountGUI method
 
-    IEnumerator CreateAccount()
+    IEnumerator CreateAccount(WWW www)
     {
-        WWWForm Form = new WWWForm();
-        Form.AddField("Name",CName);
-        Form.AddField("Password", CPassword);
+        yield return www;
 
-        WWW CreateAccountWWW = new WWW(CreateAccountUrl, Form);
-
-        yield return CreateAccountWWW;
-
-        if (CreateAccountWWW.error != null)
+         // check for errors
+        if (www.error == null)
         {
-            Debug.LogError("Cannot connect to Account Creation");
+            Debug.Log(www.text);
+          
+
+
         }
-        else {
-            string CreateAccountReturn = CreateAccountWWW.text;
-            if (CreateAccountReturn == "Success")
-            {
-                Debug.Log("Success: Account created");
-                CurrentMenu = "Login";
-            }
+        else
+        {
+            Debug.Log("Error: " + www.error);
         }
-    }
+    }//End CreateAccount
+
+    IEnumerator LoginAccount(WWW www)
+    {
+        yield return www;
+
+        // check for errors
+        if (www.error == null)
+        {
+            Debug.Log(www.text);
+
+
+        }
+        else
+        {
+            Debug.Log("Error: " + www.error);
+        }
+
+    }//End LoginAccount
+
 }//End Class
