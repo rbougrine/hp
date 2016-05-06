@@ -27,8 +27,8 @@ public class SplashScript : MonoBehaviour
         }
         if (loadingBar.fillAmount == 1.0f)
         {
-			SceneManager.LoadScene ("Login");
-			Debug.Log ("splash done get to loginscreen");
+			SceneManager.LoadScene ("Game");
+			Debug.Log ("Splash done get to game");
         }
         percent.text = (loadingBar.fillAmount * 100).ToString("f0");
     }

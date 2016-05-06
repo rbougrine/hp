@@ -48,7 +48,7 @@ public class Login : MonoBehaviour
             // For testing purpose createAccountGui disabled
             // CreateAccountGUI();
            
-            SceneManager.LoadScene("Game");
+            SceneManager.LoadScene("Splash");
 
         }
 
