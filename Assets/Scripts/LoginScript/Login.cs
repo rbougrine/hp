@@ -15,18 +15,21 @@ public class Login : MonoBehaviour
   
     //Public Variables
     public string CurrentMenu = "Login";
-    
+    public Texture2D MessageBox = null;
+
     //Private Variables
      private string CUsername = "";
      private string CPassword = "";
      private string ConfirmPassword = "";
+     private string Feedback = null;
+     
 
     //GUI test section
     public float X;
     public float Y;
     public float Width;
     public float Height;
-
+   
     #endregion variables
 
     // Use this for initialization
@@ -37,25 +40,32 @@ public class Login : MonoBehaviour
 
     void OnGUI()
     {
+        GUI.skin.box.normal.background = MessageBox;
+
         if (CurrentMenu == "Login")
         {
             LoginGUI();
-
         }
         else if (CurrentMenu == "CreateAccount")
         {
+            CreateAccountGUI();     
+        }
+    //Feedback messages for the login system
+     if (Feedback != null)
+        {
+            GUI.skin.box.normal.background = MessageBox;
+            GUI.Box(new Rect(235, 103, 225, 111), Feedback);
 
-            // For testing purpose createAccountGui disabled
-            // CreateAccountGUI();
-           
-            SceneManager.LoadScene("Splash");
+           if (GUI.Button(new Rect(287, 164, 111, 25), "Okay"))
+             {
+                Feedback = null;
+             }
 
         }
-
+     
     }//End OnGUI method
 
-
-
+    
     void LoginGUI()
     {
         GUI.Box(new Rect(235, 55, 225, 222), "Login");
@@ -64,11 +74,11 @@ public class Login : MonoBehaviour
         Username = GUI.TextField(new Rect(253, 106, 170, 21), Username);
 
         GUI.Label(new Rect(252, 128, 170, 23), "Password:");
-        Password = GUI.TextField(new Rect(252, 151, 170, 23), Password);
-
+        Password = GUI.PasswordField(new Rect(252, 151, 170, 23), Password, "*"[0], 25);
+        
         if (GUI.Button(new Rect(357, 223, 90, 25), "Log in"))
         {
-            string url = "http://localhost/LoginAccountT.php?";
+            string url = "http://145.24.222.160/LoginAccountT.php";
 
             WWWForm form = new WWWForm();
             form.AddField("Username", Username);
@@ -81,7 +91,7 @@ public class Login : MonoBehaviour
 
         if (GUI.Button(new Rect(242, 223, 111, 25), "Create Account"))
         {
-            CurrentMenu = "CreateAccount";
+           CurrentMenu = "CreateAccount";
         }
     }//End LoginGUI method
 
@@ -94,16 +104,17 @@ public class Login : MonoBehaviour
         CUsername = GUI.TextField(new Rect(253, 106, 170, 21), CUsername);
 
         GUI.Label(new Rect(252, 128, 170, 23), "Password:");
-        CPassword = GUI.TextField(new Rect(252, 151, 170, 23), CPassword);
+        CPassword = GUI.PasswordField(new Rect(252, 151, 170, 23), CPassword,"*"[0], 25);
 
         GUI.Label(new Rect(252, 181, 170, 23), "Confirm Password:");
-        ConfirmPassword = GUI.TextField(new Rect(252, 209, 170, 23), ConfirmPassword);
+        ConfirmPassword = GUI.PasswordField(new Rect(252, 209, 170, 23), ConfirmPassword, "*"[0], 25);
+   
 
         if (GUI.Button(new Rect(242, 243, 111, 25),"Create Account"))
         {
             if (CPassword == ConfirmPassword)
             {
-                string url = "http://localhost/CreateAccountT.php?";
+                string url = "http://145.24.222.160/CreateAccountT.php";
 
                 WWWForm form = new WWWForm();
                 form.AddField("Username", CUsername);
@@ -111,7 +122,7 @@ public class Login : MonoBehaviour
                 WWW www = new WWW(url, form);
 
                 StartCoroutine(CreateAccount(www));
-                CurrentMenu = "Login";
+               
             }
             else
             {
@@ -136,14 +147,14 @@ public class Login : MonoBehaviour
          // check for errors
         if (www.error == null)
         {
-            Debug.Log(www.text);
-          
-
-
+            
+           Feedback = www.text;
+           
+         
         }
         else
         {
-            Debug.Log("Error: " + www.error);
+            Feedback = www.error;
         }
     }//End CreateAccount
 
@@ -154,13 +165,13 @@ public class Login : MonoBehaviour
         // check for errors
         if (www.error == null)
         {
-            Debug.Log(www.text);
-
-
+            Feedback = www.text;
+           
         }
         else
         {
-            Debug.Log("Error: " + www.error);
+            Feedback = www.error;
+            
         }
 
     }//End LoginAccount
