@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{86521985-A2DE-A946-7F1D-92BFB0E28311}</ProjectGuid>
+    <ProjectGuid>{BCF5FE11-9805-DC5E-6F39-F017AA799D3B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -45,6 +45,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Asset\Objects\Clock\Scripts\Clock.cs" />
      <Compile Include="Assets\Cardboard\Scripts\Audio\CardboardAudio.cs" />
      <Compile Include="Assets\Cardboard\Scripts\Audio\CardboardAudioListener.cs" />
      <Compile Include="Assets\Cardboard\Scripts\Audio\CardboardAudioRoom.cs" />
@@ -69,6 +70,7 @@
      <Compile Include="Assets\Cardboard\Scripts\VRDevices\CardboardAndroidDevice.cs" />
      <Compile Include="Assets\Cardboard\Scripts\VRDevices\CardboardiOSDevice.cs" />
      <Compile Include="Assets\Cardboard\Scripts\VRDevices\UnityEditorDevice.cs" />
+     <Compile Include="Assets\InfoToggler.cs" />
      <Compile Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\Antialiasing.cs" />
      <Compile Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\Bloom.cs" />
      <Compile Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\BloomAndFlares.cs" />
@@ -107,7 +109,7 @@
      <Compile Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\Twirl.cs" />
      <Compile Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\VignetteAndChromaticAberration.cs" />
      <Compile Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\Vortex.cs" />
-     <Compile Include="Assets\Objects\Clock\Scripts\Clock.cs" />
+     <Compile Include="Assets\Objects\Clock\Scripts\Timer.cs" />
      <Compile Include="Assets\Scripts\DoorScript\door.cs" />
      <Compile Include="Assets\Scripts\LoginScript\Login.cs" />
      <Compile Include="Assets\Scripts\SplashScript\SplashScript.cs" />

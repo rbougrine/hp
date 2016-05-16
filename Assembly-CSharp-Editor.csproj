@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{510C3E58-51B0-59AF-6F3B-8B1761E1D093}</ProjectGuid>
+    <ProjectGuid>{4273AE21-6E17-C974-DEE7-3C5014FAF490}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
@@ -185,7 +185,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{86521985-A2DE-A946-7F1D-92BFB0E28311}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
+      <Project>{BCF5FE11-9805-DC5E-6F39-F017AA799D3B}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
