@@ -149,8 +149,8 @@ public class Login : MonoBehaviour
         {
             
            Feedback = www.text;
-           
-         
+           CurrentMenu = "Login";
+
         }
         else
         {
@@ -166,7 +166,8 @@ public class Login : MonoBehaviour
         if (www.error == null)
         {
             Feedback = www.text;
-           
+            SceneManager.LoadScene("Splash");
+
         }
         else
         {
