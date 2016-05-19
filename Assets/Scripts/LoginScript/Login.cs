@@ -159,8 +159,8 @@ public class Login : MonoBehaviour
         {
             
            Feedback = www.text;
+           CurrentMenu = "Login";
 
-         
         }
         else
         {
