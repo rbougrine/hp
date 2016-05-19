@@ -9,13 +9,12 @@ public class Login : MonoBehaviour
 
     #region variables
 
-    //Static Variables
-    public static string Username = "";
-    public static string Password = "";
-  
-    //Public Variables
+     //Public Variables
     public string CurrentMenu = "Login";
     public Texture2D MessageBox = null;
+	public  string Username = "";
+	public string Password = "";
+
 
     //Private Variables
      private string CUsername = "";
@@ -32,10 +31,17 @@ public class Login : MonoBehaviour
    
     #endregion variables
 
-    // Use this for initialization
+	void Awake()
+	{
+		DontDestroyOnLoad (this);
+	}
+  
+
+	// Use this for initialization
     void Start()
     {
 
+		
     }//End Start method
 
     void OnGUI()
@@ -65,7 +71,9 @@ public class Login : MonoBehaviour
      
     }//End OnGUI method
 
-    
+
+
+
     void LoginGUI()
     {
         GUI.Box(new Rect(235, 55, 225, 222), "Login");
@@ -95,7 +103,7 @@ public class Login : MonoBehaviour
         }
     }//End LoginGUI method
 
-    void CreateAccountGUI()
+     void CreateAccountGUI()
     {
 
         GUI.Box(new Rect(235, 75, 225, 222), "Create Account");
@@ -140,6 +148,8 @@ public class Login : MonoBehaviour
 
     }//End CreateAccountGUI method
 
+
+
     IEnumerator CreateAccount(WWW www)
     {
         yield return www;
@@ -149,7 +159,7 @@ public class Login : MonoBehaviour
         {
             
            Feedback = www.text;
-           
+
          
         }
         else
@@ -166,6 +176,10 @@ public class Login : MonoBehaviour
         if (www.error == null)
         {
             Feedback = www.text;
+
+			SceneManager.LoadScene ("Game");
+			StatusBar StatusBar = GameObject.Find("InfoScreen").GetComponent<StatusBar>();
+			StatusBar.setUsername (Username);
            
         }
         else
@@ -177,3 +191,5 @@ public class Login : MonoBehaviour
     }//End LoginAccount
 
 }//End Class
+
+
