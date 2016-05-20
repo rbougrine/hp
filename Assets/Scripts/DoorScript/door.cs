@@ -20,6 +20,7 @@ public class door : MonoBehaviour
     {
    
         StartCoroutine(doorMovement());
+		Debug.Log ("binne");
 
 
     }

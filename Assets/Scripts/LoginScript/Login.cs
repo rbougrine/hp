@@ -15,6 +15,9 @@ public class Login : MonoBehaviour
 	public  string Username = "";
 	public string Password = "";
 
+	public GameObject camera1;
+	public GameObject camera2;
+
 
     //Private Variables
      private string CUsername = "";
@@ -22,6 +25,7 @@ public class Login : MonoBehaviour
      private string ConfirmPassword = "";
      private string Feedback = null;
      
+
 
     //GUI test section
     public float X;
@@ -33,16 +37,18 @@ public class Login : MonoBehaviour
 
 	void Awake()
 	{
-		DontDestroyOnLoad (this);
+		//DontDestroyOnLoad (this);
 	}
   
 
 	// Use this for initialization
     void Start()
     {
+		camera1.SetActive (true);
+		camera2.SetActive (false);
 
-		
-    }//End Start method
+    }
+	//End Start method
 
     void OnGUI()
     {
@@ -64,10 +70,14 @@ public class Login : MonoBehaviour
 
            if (GUI.Button(new Rect(287, 164, 111, 25), "Okay"))
              {
+
+				DontDestroyOnLoad (this);
                 Feedback = null;
              }
 
         }
+		// Information about the user displayed
+		GUI.Label(new Rect(235, 103, 225, 111), Username);
      
     }//End OnGUI method
 
@@ -176,10 +186,14 @@ public class Login : MonoBehaviour
         if (www.error == null)
         {
             Feedback = www.text;
+			camera1.SetActive (false);
+			camera2.SetActive (true);
+			Debug.Log (Username);
+			Debug.Log (Password);
 
-			SceneManager.LoadScene ("Game");
-			StatusBar StatusBar = GameObject.Find("InfoScreen").GetComponent<StatusBar>();
-			StatusBar.setUsername (Username);
+
+			//StatusBar StatusBar = GameObject.Find("InfoScreen").GetComponent<StatusBar>();
+			//StatusBar.setUsername (Username);
            
         }
         else

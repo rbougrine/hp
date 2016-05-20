@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
+/*
 public class StatusBar : MonoBehaviour {
 	public  static Login infoScript;
 	string username;
@@ -61,6 +62,6 @@ public class StatusBar : MonoBehaviour {
 	}
 
 }
-
+*/
 
 
