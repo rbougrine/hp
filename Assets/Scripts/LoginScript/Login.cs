@@ -14,7 +14,8 @@ public class Login : MonoBehaviour
     public Texture2D MessageBox = null;
 	public string Username = "";
 	public string Password = "";
-
+	public GameObject camera1;
+	public GameObject camera2;
 
     //Private Variables
      private string CUsername = "";
@@ -40,6 +41,8 @@ public class Login : MonoBehaviour
 	// Use this for initialization
     void Start()
     {
+		camera1.SetActive (true);
+		camera2.SetActive (false);
 
 		
     }//End Start method
@@ -193,10 +196,11 @@ public class Login : MonoBehaviour
             var result = www.text;
             switch (result)
             {
-                case "Login successful!":
-                    //switch scene to game
-                    //send info to StatusBar
-                    break;
+			case "Login successful!":
+				camera1.SetActive (false);
+				camera2.SetActive (true);
+		
+				break;
                 case "Invalid password":
                     Feedback = "Invalid password";
                     break;
@@ -208,9 +212,15 @@ public class Login : MonoBehaviour
                     break;
 
             }
+
         }
 
     }//End LoginAccount
+
+
+
+
+
 
 }//End Class
 
