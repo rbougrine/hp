@@ -114,6 +114,7 @@
      <Compile Include="Assets\Scripts\LoginScript\Login.cs" />
      <Compile Include="Assets\Scripts\SplashScript\SplashScript.cs" />
      <Compile Include="Assets\Scripts\Walk.cs" />
+     <Compile Include="Assets\StatusBar.cs" />
      <None Include="Assets\NatureStarterKit2\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
      <None Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderRGB.shader" />
