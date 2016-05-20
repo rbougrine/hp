@@ -12,7 +12,7 @@ public class Login : MonoBehaviour
      //Public Variables
     public string CurrentMenu = "Login";
     public Texture2D MessageBox = null;
-	public  string Username = "";
+	public string Username = "";
 	public string Password = "";
 
 
@@ -56,6 +56,7 @@ public class Login : MonoBehaviour
         {
             CreateAccountGUI();     
         }
+  
     //Feedback messages for the login system
      if (Feedback != null)
         {
@@ -134,7 +135,7 @@ public class Login : MonoBehaviour
             }
             else
             {
-                Debug.Log("The password is not correctly entered");
+               Feedback = "The password is not the same";
             }
         }
 
@@ -148,24 +149,34 @@ public class Login : MonoBehaviour
 
     }//End CreateAccountGUI method
 
-
-
+    
     IEnumerator CreateAccount(WWW www)
     {
         yield return www;
 
-         // check for errors
-        if (www.error == null)
-        {
-            
-           Feedback = www.text;
-           CurrentMenu = "Login";
-
-        }
-        else
+        // check for errors
+        if (www.error != null)
         {
             Feedback = www.error;
         }
+        else
+        {
+            var result = www.text;
+            switch (result)
+            {
+                case "Registration has been successful":
+                    Feedback = "Registration has been successful";
+                    CurrentMenu = "Login";
+                    break;
+                case "One or more field are still empty":
+                    Feedback = "One or more field are still empty";
+                    break;
+                case "Username is already used":
+                    Feedback = "Username is already used";
+                    break;
+            }
+        }
+
     }//End CreateAccount
 
     IEnumerator LoginAccount(WWW www)
@@ -173,19 +184,30 @@ public class Login : MonoBehaviour
         yield return www;
 
         // check for errors
-        if (www.error == null)
+        if (www.error != null)
         {
-            Feedback = www.text;
-
-			SceneManager.LoadScene ("Game");
-			StatusBar StatusBar = GameObject.Find("InfoScreen").GetComponent<StatusBar>();
-			StatusBar.setUsername (Username);
-           
+            Feedback = www.error;
         }
         else
         {
-            Feedback = www.error;
-            
+            var result = www.text;
+            switch (result)
+            {
+                case "Login successful!":
+                    //switch scene to game
+                    //send info to StatusBar
+                    break;
+                case "Invalid password":
+                    Feedback = "Invalid password";
+                    break;
+                case "Invalid username":
+                    Feedback = "Invalid username";
+                    break;
+                case "Not everything is filled in":
+                    Feedback = "Not everything is filled in";
+                    break;
+
+            }
         }
 
     }//End LoginAccount
