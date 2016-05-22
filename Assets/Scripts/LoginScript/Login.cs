@@ -38,14 +38,15 @@ public class Login : MonoBehaviour
 	}
   
 
-	// Use this for initialization
-    void Start()
+	void Start()
     {
 		camera1.SetActive (true);
 		camera2.SetActive (false);
 
 		
     }//End Start method
+
+
 
     void OnGUI()
     {
@@ -107,7 +108,8 @@ public class Login : MonoBehaviour
         }
     }//End LoginGUI method
 
-     void CreateAccountGUI()
+  
+    void CreateAccountGUI()
     {
 
         GUI.Box(new Rect(235, 75, 225, 222), "Create Account");
@@ -151,6 +153,7 @@ public class Login : MonoBehaviour
 
 
     }//End CreateAccountGUI method
+
 
     
     IEnumerator CreateAccount(WWW www)
@@ -198,8 +201,8 @@ public class Login : MonoBehaviour
             {
 			case "Login successful!":
 				camera1.SetActive (false);
-				camera2.SetActive (true);
-		
+                camera2.SetActive(true);
+                CurrentMenu = "";
 				break;
                 case "Invalid password":
                     Feedback = "Invalid password";

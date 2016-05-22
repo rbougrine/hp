@@ -3,44 +3,54 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class StatusBar : MonoBehaviour {
-	public  static Login infoScript;
-	string username;
 
 
-
-	// Use this for initialization
 	void Start ()
-	{  
-		
-	}
-
-	public string Username = infoScript.Username;
-
-	public void setUsername(string username )
 	{
-
-		this.username = username;
-		//Debug.Log(username);	
-	}
-
-
-		
-	void Awake(){
+        getInfo();
+    }
 	
-		DontDestroyOnLoad (this);
-	  
-	
-	}
-
-	// Update is called once per frame
 	void Update ()
 	{
-		Debug.Log(username);	
-	}
 	
+	}
 
+    void getInfo()
+    {
+        GameObject loginScreen = GameObject.Find("Login");
+        Login Login = loginScreen.GetComponent<Login>();
 
-	void onGUI()
+        if (Login.camera1 == true)
+            {
+                string url = "http://145.24.222.160/getInfo.php";
+                WWWForm form = new WWWForm();
+                form.AddField("Username", Login.Username);
+
+                WWW www = new WWW(url, form);
+
+                StartCoroutine(userInfo(www));
+            }
+        else
+            {
+                Debug.Log("Still logging in");
+            }
+    }
+
+    IEnumerator userInfo(WWW www)
+    {
+        yield return www;
+
+        if (www.error != null)
+        {
+            Debug.Log(www.error);
+        }
+        else
+        {
+            Debug.Log(www.text);
+        }
+    }
+    
+    void onGUI()
 	{
 		if (SceneManager.GetActiveScene ().name == "Game") 
 		{
@@ -56,11 +66,11 @@ public class StatusBar : MonoBehaviour {
 	void Bar()
 	{
 	
-		GUI.Box(new Rect(235, 55, 225, 222), "Login");
+		GUI.Box(new Rect(235, 55, 225, 222), "Status Bar");
 
 	}
 
-}
+}//End Class
 
 
 
