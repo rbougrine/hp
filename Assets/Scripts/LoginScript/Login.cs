@@ -7,218 +7,225 @@ using UnityEngine.SceneManagement;
 public class Login : MonoBehaviour
 {
 
-    #region variables
+	#region variables
 
-     //Public Variables
-    public string CurrentMenu = "Login";
-    public Texture2D MessageBox = null;
+	//Public Variables
+	public string CurrentMenu = "Login";
+	public Texture2D MessageBox = null;
 	public string Username = "";
 	public string Password = "";
 	public GameObject camera1;
 	public GameObject camera2;
 
-    //Private Variables
-     private string CUsername = "";
-     private string CPassword = "";
-     private string ConfirmPassword = "";
-     private string Feedback = null;
-     
 
-    //GUI test section
-    public float X;
-    public float Y;
-    public float Width;
-    public float Height;
-   
-    #endregion variables
+	//Private Variables
+	private string CUsername = "";
+	private string CPassword = "";
+	private string ConfirmPassword = "";
+	private string Feedback = null;
+
+
+	//GUI test section
+	public float X;
+	public float Y;
+	public float Width;
+	public float Height;
+
+	#endregion variables
 
 	void Awake()
 	{
 		DontDestroyOnLoad (this);
 	}
-  
+
 
 	// Use this for initialization
-    void Start()
-    {
+	void Start()
+	{
 		camera1.SetActive (true);
 		camera2.SetActive (false);
 
-		
-    }//End Start method
 
-    void OnGUI()
-    {
-        GUI.skin.box.normal.background = MessageBox;
+	}//End Start method
 
-        if (CurrentMenu == "Login")
-        {
-            LoginGUI();
-        }
-        else if (CurrentMenu == "CreateAccount")
-        {
-            CreateAccountGUI();     
-        }
-  
-    //Feedback messages for the login system
-     if (Feedback != null)
-        {
-            GUI.skin.box.normal.background = MessageBox;
-            GUI.Box(new Rect(235, 103, 225, 111), Feedback);
+	public string GetUsername(string username){
 
-           if (GUI.Button(new Rect(287, 164, 111, 25), "Okay"))
-             {
-                Feedback = null;
-             }
+		return this.Username;
 
-        }
-     
-    }//End OnGUI method
+	}
 
+	void OnGUI()
+	{
+		GUI.skin.box.normal.background = MessageBox;
 
+		if (CurrentMenu == "Login")
+		{
+			LoginGUI();
+		}
+		else if (CurrentMenu == "CreateAccount")
+		{
+			CreateAccountGUI();     
+		}
 
+		//Feedback messages for the login system
+		if (Feedback != null)
+		{
+			GUI.skin.box.normal.background = MessageBox;
+			GUI.Box(new Rect(235, 103, 225, 111), Feedback);
 
-    void LoginGUI()
-    {
-        GUI.Box(new Rect(235, 55, 225, 222), "Login");
+			if (GUI.Button(new Rect(287, 164, 111, 25), "Okay"))
+			{
+				Feedback = null;
+			}
 
-        GUI.Label(new Rect(253, 86, 170, 21), "Username:");
-        Username = GUI.TextField(new Rect(253, 106, 170, 21), Username);
+		}
 
-        GUI.Label(new Rect(252, 128, 170, 23), "Password:");
-        Password = GUI.PasswordField(new Rect(252, 151, 170, 23), Password, "*"[0], 25);
-        
-        if (GUI.Button(new Rect(357, 223, 90, 25), "Log in"))
-        {
-            string url = "http://145.24.222.160/LoginAccountT.php";
-
-            WWWForm form = new WWWForm();
-            form.AddField("Username", Username);
-            form.AddField("Password", Password);
-            WWW www = new WWW(url, form);
-
-            StartCoroutine(LoginAccount(www));
-
-        }
-
-        if (GUI.Button(new Rect(242, 223, 111, 25), "Create Account"))
-        {
-           CurrentMenu = "CreateAccount";
-        }
-    }//End LoginGUI method
-
-     void CreateAccountGUI()
-    {
-
-        GUI.Box(new Rect(235, 75, 225, 222), "Create Account");
-
-        GUI.Label(new Rect(253, 86, 170, 21), "Name:");
-        CUsername = GUI.TextField(new Rect(253, 106, 170, 21), CUsername);
-
-        GUI.Label(new Rect(252, 128, 170, 23), "Password:");
-        CPassword = GUI.PasswordField(new Rect(252, 151, 170, 23), CPassword,"*"[0], 25);
-
-        GUI.Label(new Rect(252, 181, 170, 23), "Confirm Password:");
-        ConfirmPassword = GUI.PasswordField(new Rect(252, 209, 170, 23), ConfirmPassword, "*"[0], 25);
-   
-
-        if (GUI.Button(new Rect(242, 243, 111, 25),"Create Account"))
-        {
-            if (CPassword == ConfirmPassword)
-            {
-                string url = "http://145.24.222.160/CreateAccountT.php";
-
-                WWWForm form = new WWWForm();
-                form.AddField("Username", CUsername);
-                form.AddField("Password", CPassword);
-                WWW www = new WWW(url, form);
-
-                StartCoroutine(CreateAccount(www));
-               
-            }
-            else
-            {
-               Feedback = "The password is not the same";
-            }
-        }
+	}//End OnGUI method
 
 
-        if (GUI.Button(new Rect(357, 243, 90, 25), "Back"))
-        {
-            CurrentMenu = "Login";
-
-        }
 
 
-    }//End CreateAccountGUI method
+	void LoginGUI()
+	{
+		GUI.Box(new Rect(235, 55, 225, 222), "Login");
 
-    
-    IEnumerator CreateAccount(WWW www)
-    {
-        yield return www;
+		GUI.Label(new Rect(253, 86, 170, 21), "Username:");
+		Username = GUI.TextField(new Rect(253, 106, 170, 21), Username);
 
-        // check for errors
-        if (www.error != null)
-        {
-            Feedback = www.error;
-        }
-        else
-        {
-            var result = www.text;
-            switch (result)
-            {
-                case "Registration has been successful":
-                    Feedback = "Registration has been successful";
-                    CurrentMenu = "Login";
-                    break;
-                case "One or more field are still empty":
-                    Feedback = "One or more field are still empty";
-                    break;
-                case "Username is already used":
-                    Feedback = "Username is already used";
-                    break;
-            }
-        }
+		GUI.Label(new Rect(252, 128, 170, 23), "Password:");
+		Password = GUI.PasswordField(new Rect(252, 151, 170, 23), Password, "*"[0], 25);
 
-    }//End CreateAccount
+		if (GUI.Button(new Rect(357, 223, 90, 25), "Log in"))
+		{
+			string url = "http://145.24.222.160/LoginAccountT.php";
 
-    IEnumerator LoginAccount(WWW www)
-    {
-        yield return www;
+			WWWForm form = new WWWForm();
+			form.AddField("Username", Username);
+			form.AddField("Password", Password);
+			WWW www = new WWW(url, form);
 
-        // check for errors
-        if (www.error != null)
-        {
-            Feedback = www.error;
-        }
-        else
-        {
-            var result = www.text;
-            switch (result)
-            {
+			StartCoroutine(LoginAccount(www));
+
+		}
+
+		if (GUI.Button(new Rect(242, 223, 111, 25), "Create Account"))
+		{
+			CurrentMenu = "CreateAccount";
+		}
+	}//End LoginGUI method
+
+	void CreateAccountGUI()
+	{
+
+		GUI.Box(new Rect(235, 75, 225, 222), "Create Account");
+
+		GUI.Label(new Rect(253, 86, 170, 21), "Name:");
+		CUsername = GUI.TextField(new Rect(253, 106, 170, 21), CUsername);
+
+		GUI.Label(new Rect(252, 128, 170, 23), "Password:");
+		CPassword = GUI.PasswordField(new Rect(252, 151, 170, 23), CPassword,"*"[0], 25);
+
+		GUI.Label(new Rect(252, 181, 170, 23), "Confirm Password:");
+		ConfirmPassword = GUI.PasswordField(new Rect(252, 209, 170, 23), ConfirmPassword, "*"[0], 25);
+
+
+		if (GUI.Button(new Rect(242, 243, 111, 25),"Create Account"))
+		{
+			if (CPassword == ConfirmPassword)
+			{
+				string url = "http://145.24.222.160/CreateAccountT.php";
+
+				WWWForm form = new WWWForm();
+				form.AddField("Username", CUsername);
+				form.AddField("Password", CPassword);
+				WWW www = new WWW(url, form);
+
+				StartCoroutine(CreateAccount(www));
+
+			}
+			else
+			{
+				Feedback = "The password is not the same";
+			}
+		}
+
+
+		if (GUI.Button(new Rect(357, 243, 90, 25), "Back"))
+		{
+			CurrentMenu = "Login";
+
+		}
+
+
+	}//End CreateAccountGUI method
+
+
+	IEnumerator CreateAccount(WWW www)
+	{
+		yield return www;
+
+		// check for errors
+		if (www.error != null)
+		{
+			Feedback = www.error;
+		}
+		else
+		{
+			var result = www.text;
+			switch (result)
+			{
+			case "Registration has been successful":
+				Feedback = "Registration has been successful";
+				CurrentMenu = "Login";
+				break;
+			case "One or more field are still empty":
+				Feedback = "One or more field are still empty";
+				break;
+			case "Username is already used":
+				Feedback = "Username is already used";
+				break;
+			}
+		}
+
+	}//End CreateAccount
+
+	IEnumerator LoginAccount(WWW www)
+	{
+		yield return www;
+
+		// check for errors
+		if (www.error != null)
+		{
+			Feedback = www.error;
+		}
+		else
+		{
+			var result = www.text;
+			switch (result)
+			{
 			case "Login successful!":
 				camera1.SetActive (false);
 				camera2.SetActive (true);
-		
+
+				//getInfo ();
+
+
 				break;
-                case "Invalid password":
-                    Feedback = "Invalid password";
-                    break;
-                case "Invalid username":
-                    Feedback = "Invalid username";
-                    break;
-                case "Not everything is filled in":
-                    Feedback = "Not everything is filled in";
-                    break;
+			case "Invalid password":
+				Feedback = "Invalid password";
+				break;
+			case "Invalid username":
+				Feedback = "Invalid username";
+				break;
+			case "Not everything is filled in":
+				Feedback = "Not everything is filled in";
+				break;
 
-            }
+			}
 
-        }
+		}
 
-    }//End LoginAccount
-
-
-
+	}//End LoginAccount
 
 
 

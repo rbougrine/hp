@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
-
+/*
 public class StatusBar : MonoBehaviour {
 	public  static Login infoScript;
 	string username;
@@ -20,6 +20,7 @@ public class StatusBar : MonoBehaviour {
 	{
 
 		this.username = username;
+
 		//Debug.Log(username);	
 	}
 
@@ -60,7 +61,29 @@ public class StatusBar : MonoBehaviour {
 
 	}
 
-}
+	void getInfo(){
+		string url = "http://145.24.222.160/getInfo.php";
 
+		WWWForm form = new WWWForm();
+		form.AddField("Username", Username);
+
+		WWW www = new WWW(url, form);
+		StartCoroutine(userinfo(www));
+
+	}
+
+	IEnumerator userinfo(WWW www){
+
+		yield return www;
+
+		if (www.error != null) {
+			Feedback = www.error;
+		} else {
+			Feedback = www.text;
+
+		}
+
+}
+*/
 
 
