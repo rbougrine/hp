@@ -8,7 +8,7 @@ public class door : MonoBehaviour
     public Animator anim;
     public GameObject Camera;
     public string sceneName;
-
+    bool closeMessage = false;
 
     void Awake()
     {
@@ -24,6 +24,34 @@ public class door : MonoBehaviour
     {
 
         StartCoroutine(doorMovement());
+
+    }
+
+   public void OnGUI()
+    {
+        GameObject LoginScript = GameObject.Find("Login");
+        Login Login = LoginScript.GetComponent<Login>();
+
+      //  closeMessage = true;
+
+        if (closeMessage)
+        {
+            GUI.Box(new Rect(235, 55, 225, 222), "Are you sure you want to quit the game?");
+            if (GUI.Button(new Rect(242, 223, 111, 25), "Yes"))
+            {
+              
+                Login.CurrentMenu = "Login";
+                closeMessage = false;
+                Login.camera1.SetActive(true);
+                Login.camera2.SetActive(false);
+              
+            }
+            else if (GUI.Button(new Rect(357, 223, 90, 25), "No"))
+            {
+                closeMessage = false;
+            }
+
+        }
 
     }
 
@@ -49,9 +77,7 @@ public class door : MonoBehaviour
         }    
    
      }
-
-  
-  
+   
 
     IEnumerator doorMovement()
     {
@@ -59,7 +85,7 @@ public class door : MonoBehaviour
 
         if (Physics.Raycast(Camera.transform.position, Camera.transform.forward, out hit, Mathf.Infinity))
         {
-            var ObjectParent = hit.collider.gameObject.transform.parent.name;
+            var ObjectParent = hit.collider.gameObject.transform.parent.parent.name;
           
             if(ObjectParent == "Door_left")
                 {
@@ -83,5 +109,7 @@ public class door : MonoBehaviour
           
         }
     }
+
+ 
 }
  
