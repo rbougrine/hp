@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+
+
 public class Playedtime : MonoBehaviour
 {
     // playtime contains the time
@@ -20,7 +22,7 @@ public class Playedtime : MonoBehaviour
 
 
 
-  public  void startTimer()
+    public void startTimer()
     {
 
         StartCoroutine(Playtimer());
@@ -28,9 +30,8 @@ public class Playedtime : MonoBehaviour
 
 
 
-    private IEnumerator Playtimer()
+    IEnumerator Playtimer()
     {
-
         while (true)
         {
             yield return new WaitForSeconds(1);
@@ -39,24 +40,23 @@ public class Playedtime : MonoBehaviour
             minutes = (playtime / 60) % 60;
             hours = (playtime / 3600) % 24;
 
-
-
+            
         }
-
 
     }
 
     void OnGUI()
     {
-        testgui();
+        timerDisplay();
     }
 
-    void testgui()
+
+    void timerDisplay()
     {
         GUI.Label(new Rect(100, 100, 100, 150), hours.ToString());
         GUI.Label(new Rect(110, 100, 100, 150), minutes.ToString());
         GUI.Label(new Rect(120, 100, 100, 150), seconds.ToString());
-        // StartCoroutine(Playtimer());
+
         }
     
 }
