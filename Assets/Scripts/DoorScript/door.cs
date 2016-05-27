@@ -98,7 +98,7 @@ public class door : MonoBehaviour
                             
             }else
                 {
-                   anim.Play("openDoorRight");
+                    anim.Play("openDoorRight");
                     doorisClosed = false;
                     yield return new WaitForSeconds(5);
                     anim.Play("closeDoorRight");
