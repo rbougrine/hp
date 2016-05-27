@@ -13,7 +13,7 @@ public class Login : MonoBehaviour
 	public string CurrentMenu = "Login";
 	public Texture2D MessageBox = null;
 	public string Username = "";
-	public string Password = "";
+	string Password = "";
 	public GameObject camera1;
 	public GameObject camera2;
 
@@ -24,10 +24,15 @@ public class Login : MonoBehaviour
 	private string ConfirmPassword = "";
 	private string Feedback = null;
 
+    //camera position
+    float X;
+    float Y;
+    float Z;
+    string sceneName;
 
 	//GUI test section
-	public float X;
-	public float Y;
+	public float x;
+	public float y;
 	public float Width;
 	public float Height;
 
@@ -48,11 +53,6 @@ public class Login : MonoBehaviour
 
 	}//End Start method
 
-	public string GetUsername(string username){
-
-		return this.Username;
-
-	}
 
 	void OnGUI()
 	{
@@ -97,7 +97,7 @@ public class Login : MonoBehaviour
 
 		if (GUI.Button(new Rect(357, 223, 90, 25), "Log in"))
 		{
-			string url = "http://145.24.222.160/LoginAccountT.php";
+			string url = "http://145.24.222.160/LoginAccount.php";
 
 			WWWForm form = new WWWForm();
 			form.AddField("Username", Username);
@@ -133,7 +133,7 @@ public class Login : MonoBehaviour
 		{
 			if (CPassword == ConfirmPassword)
 			{
-				string url = "http://145.24.222.160/CreateAccountT.php";
+				string url = "http://145.24.222.160/CreateAccount.php";
 
 				WWWForm form = new WWWForm();
 				form.AddField("Username", CUsername);
@@ -204,13 +204,17 @@ public class Login : MonoBehaviour
 			switch (result)
 			{
 			case "Login successful!":
-				camera1.SetActive (false);
+                camera1.SetActive (false);
 				camera2.SetActive (true);
-
-				//getInfo ();
-
-
-				break;
+                CurrentMenu = "";
+                //checkPosition(); 
+                    
+                    //Get info for the StatusBar
+                    GameObject StatusBarScript = GameObject.Find("StatusBar");
+                    StatusBar StatusBar = StatusBarScript.GetComponent<StatusBar>();
+                    StatusBar.getInfo();
+                   
+                    break;
 			case "Invalid password":
 				Feedback = "Invalid password";
 				break;
@@ -227,7 +231,53 @@ public class Login : MonoBehaviour
 
 	}//End LoginAccount
 
+    void checkPosition()
+    {
+        string url = "http://145.24.222.160/checkPosition.php";
+      
+        WWWForm form = new WWWForm();
+        form.AddField("username", Username);
+        WWW www = new WWW(url, form);
 
+        StartCoroutine(PositionStatus(www));
+    }
+
+    IEnumerator PositionStatus(WWW www)
+    {
+        yield return www;
+      
+        if (www.text == "empty")
+        {
+            Debug.Log("New account, empty positions var");
+        }
+        else
+        {
+             string[] position = www.text.Split(',');
+
+            //get script to change the camera position
+            GameObject StatusBarScript = GameObject.Find("CameraPosition");
+            UserPosition UserPosition = StatusBarScript.GetComponent<UserPosition>();
+
+            //assign the numbers to new position camera variables
+            UserPosition.X = float.Parse(position[0]);
+            UserPosition.Y = float.Parse(position[1]);
+            UserPosition.Z = float.Parse(position[2]);
+            sceneName = (position[3]);
+
+            if (sceneName == "Game")
+            {
+                //change camera position
+                UserPosition.changeCameraPosition();
+            }
+            else
+            {
+                SceneManager.LoadScene(sceneName);
+                UserPosition.changeCameraPosition();
+            }           
+            
+
+        }   
+    }
 
 }//End Class
 
