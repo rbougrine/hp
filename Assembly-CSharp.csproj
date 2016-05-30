@@ -109,6 +109,8 @@
      <Compile Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\Vortex.cs" />
      <Compile Include="Assets\Objects\Clock\Scripts\Clock.cs" />
      <Compile Include="Assets\Objects\Clock\Scripts\Timer.cs" />
+     <Compile Include="Assets\PanelMan.cs" />
+     <Compile Include="Assets\PipePanelChanger.cs" />
      <Compile Include="Assets\Scripts\DoorScript\door.cs" />
      <Compile Include="Assets\Scripts\InfoToggler.cs" />
      <Compile Include="Assets\Scripts\LoginScript\Login.cs" />
