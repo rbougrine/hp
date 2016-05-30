@@ -45,7 +45,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Asset\Objects\Clock\Scripts\Clock.cs" />
      <Compile Include="Assets\Cardboard\Scripts\Audio\CardboardAudio.cs" />
      <Compile Include="Assets\Cardboard\Scripts\Audio\CardboardAudioListener.cs" />
      <Compile Include="Assets\Cardboard\Scripts\Audio\CardboardAudioRoom.cs" />
@@ -70,7 +69,6 @@
      <Compile Include="Assets\Cardboard\Scripts\VRDevices\CardboardAndroidDevice.cs" />
      <Compile Include="Assets\Cardboard\Scripts\VRDevices\CardboardiOSDevice.cs" />
      <Compile Include="Assets\Cardboard\Scripts\VRDevices\UnityEditorDevice.cs" />
-     <Compile Include="Assets\InfoToggler.cs" />
      <Compile Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\Antialiasing.cs" />
      <Compile Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\Bloom.cs" />
      <Compile Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\BloomAndFlares.cs" />
@@ -109,12 +107,17 @@
      <Compile Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\Twirl.cs" />
      <Compile Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\VignetteAndChromaticAberration.cs" />
      <Compile Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\Vortex.cs" />
+     <Compile Include="Assets\Objects\Clock\Scripts\Clock.cs" />
      <Compile Include="Assets\Objects\Clock\Scripts\Timer.cs" />
      <Compile Include="Assets\Scripts\DoorScript\door.cs" />
+     <Compile Include="Assets\Scripts\InfoToggler.cs" />
      <Compile Include="Assets\Scripts\LoginScript\Login.cs" />
+     <Compile Include="Assets\Scripts\Playedtime.cs" />
+     <Compile Include="Assets\Scripts\PointCounter.cs" />
      <Compile Include="Assets\Scripts\SplashScript\SplashScript.cs" />
+     <Compile Include="Assets\Scripts\StatusBar.cs" />
+     <Compile Include="Assets\Scripts\UserPosition.cs" />
      <Compile Include="Assets\Scripts\Walk.cs" />
-     <Compile Include="Assets\StatusBar.cs" />
      <None Include="Assets\NatureStarterKit2\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
      <None Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderRGB.shader" />

@@ -63,7 +63,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Asset\Objects\Clock\Scripts\Clock.cs" />
     <Compile Include="Assets\Cardboard\Scripts\Audio\CardboardAudio.cs" />
     <Compile Include="Assets\Cardboard\Scripts\Audio\CardboardAudioListener.cs" />
     <Compile Include="Assets\Cardboard\Scripts\Audio\CardboardAudioRoom.cs" />
@@ -127,14 +126,18 @@
     <Compile Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\Twirl.cs" />
     <Compile Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\VignetteAndChromaticAberration.cs" />
     <Compile Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\Vortex.cs" />
+    <Compile Include="Assets\Objects\Clock\Scripts\Clock.cs" />
     <Compile Include="Assets\Objects\Clock\Scripts\Timer.cs" />
     <Compile Include="Assets\Playedtime.cs" />
+    <Compile Include="Assets\PointCounter.cs" />
     <Compile Include="Assets\Scripts\DoorScript\door.cs" />
     <Compile Include="Assets\Scripts\Klok.cs" />
     <Compile Include="Assets\Scripts\LoginScript\Login.cs" />
     <Compile Include="Assets\Scripts\SplashScript\SplashScript.cs" />
+    <Compile Include="Assets\Scripts\StatusBar.cs" />
+    <Compile Include="Assets\Scripts\UserPosition.cs" />
     <Compile Include="Assets\Scripts\Walk.cs" />
-    <Compile Include="Assets\StatusBar.cs" />
+    <Compile Include="Assets\StatusBarG.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Cardboard\Distortion\CardboardDistortion.cginc" />

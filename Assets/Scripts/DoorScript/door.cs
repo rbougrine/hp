@@ -10,6 +10,7 @@ public class door : MonoBehaviour
     public string sceneName;
     bool closeMessage = false;
 
+
     void Awake()
     {
         anim = GetComponent<Animator>();
@@ -112,4 +113,3 @@ public class door : MonoBehaviour
 
  
 }
- 

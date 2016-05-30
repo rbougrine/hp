@@ -5,37 +5,56 @@ using UnityEngine.SceneManagement;
 public class StatusBar : MonoBehaviour
 {
     public string username;
+    public string Feedback = null;
+    public int score;
+    public string InfoStatusbar;
+
+    // Gui style options to style gameobject wich it belongs
+    public GUIStyle labelStyle;
+    public GUIStyle scorestyle;
+
 
     void Start()
     {
-       
+     
     }
 
-    void Update()
+ 
+    // Managing that the statusbar game object wont be destoyed so it can be used in the garage scene
+   void Awake()
     {
+        DontDestroyOnLoad(this);
 
-    }
+    }         
 
-   public void getInfo()
+    public void getInfo()
     {
+        /*
+        - Retrieving username of the user when logged in 
+         the retrieved username from login is set to username string
+         in the statusbar.
+        */
         GameObject loginScreen = GameObject.Find("Login");
         Login Login = loginScreen.GetComponent<Login>();
         username = Login.Username;
 
-        if (Login.camera1 == true)
-        {
-            string url = "http://145.24.222.160/getInfo.php";
-            WWWForm form = new WWWForm();
-            form.AddField("Username", username);
+        /*
+        - Php script wich collects the info the user inserts in loginscreen 
+        - With the retrieved username from Login a query is been done to get the 
+          the right user informatie to parse to the statusbar GUI
+        */
 
-            WWW www = new WWW(url, form);
+        string url = "http://145.24.222.160/getInfo.php";
+        WWWForm form = new WWWForm();
+        form.AddField("Username", username);
 
-            StartCoroutine(userInfo(www));
-        }
-        else
-        {
-            Debug.Log("Still logging in");
-        }
+
+        WWW www = new WWW(url, form);
+
+        StartCoroutine(userInfo(www));
+
+
+
     }
 
     IEnumerator userInfo(WWW www)
@@ -44,32 +63,71 @@ public class StatusBar : MonoBehaviour
 
         if (www.error != null)
         {
-            Debug.Log(www.error);
+
+            Feedback = www.error;
+
         }
         else
         {
-            Debug.Log(www.text);
+            // Information the database sends back when succesfully logged in 
+            Feedback = www.text;
+
+          // Retrieving parts of the information string from the datasbase 
+           
+            string[] position = Feedback.Split(',');
+            InfoStatusbar = (position[0]);
+           
+            // Retrieve only score int from the database string www.text
+            score = int.Parse(position[1]);
+
+
+
         }
     }
 
-    void onGUI()
+  
+
+    void OnGUI()
     {
-        if (SceneManager.GetActiveScene().name == "Game")
+        // set userinformation to statusbar after login completed
+        GameObject loginScreen = GameObject.Find("Login");
+        Login Login = loginScreen.GetComponent<Login>();
+        
+ 
+        var CurrentMenu = Login.CurrentMenu;
+        if (CurrentMenu == "")
         {
             Bar();
         }
-        else
-        {
 
-        }
 
     }
 
     void Bar()
     {
+        
+        /*
+       -Creating statusbar Gui with information retrieved from the userinfo() method
+        -Adding scrore from pointer to the StatusBar
+        */
+        GUI.Box(new Rect(250, 150, 260, 20), InfoStatusbar, labelStyle);
+        GUI.Label(new Rect(250, 150, 260, 20), score.ToString(), scorestyle);
 
-        GUI.Box(new Rect(235, 55, 225, 222), "Status Bar");
+        // getting score variable from PointCounter
+        GameObject points = GameObject.Find("Cubes");
+        PointCounter pointcounter = points.GetComponent<PointCounter>();
+
+
+        // set pointercounter score to statusbar score
+        score = pointcounter.score;
+
+
+
+
+
+
 
     }
+}
 
-}//End Class
+
