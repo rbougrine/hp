@@ -128,8 +128,9 @@
     <Compile Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\Vortex.cs" />
     <Compile Include="Assets\Objects\Clock\Scripts\Clock.cs" />
     <Compile Include="Assets\Objects\Clock\Scripts\Timer.cs" />
+    <Compile Include="Assets\PipeCheck.cs" />
     <Compile Include="Assets\Playedtime.cs" />
-    <Compile Include="Assets\Scripts\DoorScript\door.cs" />
+    <Compile Include="Assets\Scripts\DoorScript\Door.cs" />
     <Compile Include="Assets\Scripts\Klok.cs" />
     <Compile Include="Assets\Scripts\LoginScript\Login.cs" />
     <Compile Include="Assets\Scripts\SplashScript\SplashScript.cs" />

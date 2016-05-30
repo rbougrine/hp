@@ -2,17 +2,24 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class door : MonoBehaviour
+public class Door : MonoBehaviour
 {
     bool doorisClosed = true;
     public Animator anim;
     public GameObject Camera;
-    public string sceneName;
-    bool closeMessage = false;
+    public string sceneName,Message;
+    static RaycastHit hit;
+   
 
     void Awake()
     {
         anim = GetComponent<Animator>();
+        
+    }
+
+    void Start()
+    {
+     
     }
 
     void Update()
@@ -20,49 +27,106 @@ public class door : MonoBehaviour
 
     }
 
-    public void doorAction()
+    //Door mechanisme
+    void OnGUI()
     {
 
-        StartCoroutine(doorMovement());
-
+        if (Message == "quitGame")
+        {
+            quitGame();
+        }
+        else if (Message == "toGarage")
+        {
+            toGarage();
+        }
+        
+    }
+   
+   public bool CameraLooking
+    {
+        get
+        {
+            return Physics.Raycast(Camera.transform.position, Camera.transform.forward, out hit, Mathf.Infinity);
+        }
     }
 
-   public void OnGUI()
+  public string SeenObject
+    { 
+        get
+        {
+            return hit.collider.gameObject.transform.parent.name; ;
+        }
+    }
+
+    public void clickedOnDoor()
+    {    
+       
+        if (CameraLooking)
+        {
+                     
+            if (SeenObject == "Front_door")
+            {
+                Message = "quitGame";
+            }
+            else if (SeenObject == "Back_door")
+            {
+                Message = "toGarage";
+            }
+             else
+                {
+                     StartCoroutine(doorMovement());
+                }
+        }
+    }
+
+    void quitGame()
     {
         GameObject LoginScript = GameObject.Find("Login");
         Login Login = LoginScript.GetComponent<Login>();
 
-      //  closeMessage = true;
 
-        if (closeMessage)
-        {
-            GUI.Box(new Rect(235, 55, 225, 222), "Are you sure you want to quit the game?");
-            if (GUI.Button(new Rect(242, 223, 111, 25), "Yes"))
+        GUI.Box(new Rect(262, 86, 334, 121), "Are you sure you want to quit the game?");
+
+        if (GUI.Button(new Rect(291, 162, 111, 25), "Yes"))
             {
-              
-                Login.CurrentMenu = "Login";
-                closeMessage = false;
+                Message = null;
+
+                Login.CurrentMenu = "Login";            
                 Login.camera1.SetActive(true);
                 Login.camera2.SetActive(false);
-              
+
             }
-            else if (GUI.Button(new Rect(357, 223, 90, 25), "No"))
+            else if (GUI.Button(new Rect(467, 162, 111, 25), "No"))
             {
-                closeMessage = false;
+                Message = null;
             }
-
-        }
-
+               
     }
 
+    void toGarage()
+    {
+         GUI.Box(new Rect(235, 55, 225, 222), "Do you want to enter the garage?");
+
+        if (GUI.Button(new Rect(242, 223, 111, 25), "Yes"))
+        {                    
+            Message = null;
+            doorTeleport();
+           
+        }
+        else if (GUI.Button(new Rect(357, 223, 90, 25), "No"))
+        {
+            Message = null;
+        }
+   }
+
     //Switching between garage and house
-    public void doorTeleport()
+    //while changing the position of the camera to the saved position from the database
+    void doorTeleport()
     {
         GameObject positionScript = GameObject.Find("CameraPosition");
         UserPosition UserPosition = positionScript.GetComponent<UserPosition>();
 
         UserPosition.collectInfo();
-
         
         if (UserPosition.sceneName == "Game")
         {
@@ -78,34 +142,41 @@ public class door : MonoBehaviour
    
      }
    
-
+    //Opening and closing the doors
     IEnumerator doorMovement()
-    {
-        RaycastHit hit;
+    {    
 
-        if (Physics.Raycast(Camera.transform.position, Camera.transform.forward, out hit, Mathf.Infinity))
+        if (CameraLooking)
         {
-            var ObjectParent = hit.collider.gameObject.transform.parent.parent.name;
           
-            if(ObjectParent == "Door_left")
+            if (doorisClosed == true)
+            {
+                Debug.Log(SeenObject);
+                if (SeenObject == "Door_left")
                 {
-                  
+
                     anim.Play("openDoor");
                     doorisClosed = false;
                     yield return new WaitForSeconds(5);
                     anim.Play("closeDoor");
                     doorisClosed = true;
-                            
-            }else
+
+                }
+                else
                 {
                     anim.Play("openDoorRight");
                     doorisClosed = false;
                     yield return new WaitForSeconds(5);
                     anim.Play("closeDoorRight");
                     doorisClosed = true;
-      
-            }
 
+                }
+            }
+            else
+            {
+                Debug.Log("Can't open a door thats already open");
+
+            }
           
         }
     }

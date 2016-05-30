@@ -175,14 +175,14 @@ public class Login : MonoBehaviour
 			switch (result)
 			{
 			case "Registration has been successful":
-				Feedback = "Registration has been successful";
+				Feedback = result;
 				CurrentMenu = "Login";
 				break;
 			case "One or more field are still empty":
-				Feedback = "One or more field are still empty";
+				Feedback = result;
 				break;
 			case "Username is already used":
-				Feedback = "Username is already used";
+				Feedback = result;
 				break;
 			}
 		}
@@ -200,34 +200,23 @@ public class Login : MonoBehaviour
 		}
 		else
 		{
-			var result = www.text;
-			switch (result)
-			{
-			case "Login successful!":
-                camera1.SetActive (false);
-				camera2.SetActive (true);
-                CurrentMenu = "";
-                //checkPosition(); 
-                    
-                    //Get info for the StatusBar
-                    GameObject StatusBarScript = GameObject.Find("StatusBar");
-                    StatusBar StatusBar = StatusBarScript.GetComponent<StatusBar>();
-                    StatusBar.getInfo();
-                   
-                    break;
-			case "Invalid password":
-				Feedback = "Invalid password";
-				break;
-			case "Invalid username":
-				Feedback = "Invalid username";
-				break;
-			case "Not everything is filled in":
-				Feedback = "Not everything is filled in";
-				break;
+            if (www.text == "Login successful!")
+            {
+                camera1.SetActive(false);
+                camera2.SetActive(true);
+                CurrentMenu = null;
+                checkPosition();
 
-			}
-
-		}
+                //Get info for the StatusBar
+                GameObject StatusBarScript = GameObject.Find("StatusBar");
+                StatusBar StatusBar = StatusBarScript.GetComponent<StatusBar>();
+                StatusBar.getInfo();
+            } else {
+                Feedback = www.text;
+            }
+			
+            }
+		
 
 	}//End LoginAccount
 
