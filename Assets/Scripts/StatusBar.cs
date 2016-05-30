@@ -79,8 +79,7 @@ public class StatusBar : MonoBehaviour
            
             // Retrieve only score int from the database string www.text
             score = int.Parse(position[1]);
-
-
+           
 
         }
     }
@@ -95,7 +94,7 @@ public class StatusBar : MonoBehaviour
         
  
         var CurrentMenu = Login.CurrentMenu;
-        if (CurrentMenu == "")
+        if (CurrentMenu == null)
         {
             Bar();
         }

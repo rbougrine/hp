@@ -9,7 +9,8 @@ public class Door : MonoBehaviour
     public GameObject Camera;
     public string sceneName,Message;
     static RaycastHit hit;
-   
+    private bool cameraLooking;
+    private string seenObject;
 
 
     void Awake()
@@ -25,7 +26,8 @@ public class Door : MonoBehaviour
 
     void Update()
     {
-
+        cameraLooking = Physics.Raycast(Camera.transform.position, Camera.transform.forward, out hit, Mathf.Infinity);
+        seenObject = hit.collider.gameObject.transform.parent.name;
     }
 
     //Door mechanisme
@@ -47,7 +49,7 @@ public class Door : MonoBehaviour
     {
         get
         {
-            return Physics.Raycast(Camera.transform.position, Camera.transform.forward, out hit, Mathf.Infinity);
+            return cameraLooking;
         }
     }
 
@@ -55,7 +57,7 @@ public class Door : MonoBehaviour
     { 
         get
         {
-            return hit.collider.gameObject.transform.parent.name; ;
+            return seenObject;
         }
     }
 

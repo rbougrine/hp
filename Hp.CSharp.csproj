@@ -87,7 +87,6 @@
     <Compile Include="Assets\Cardboard\Scripts\VRDevices\CardboardAndroidDevice.cs" />
     <Compile Include="Assets\Cardboard\Scripts\VRDevices\CardboardiOSDevice.cs" />
     <Compile Include="Assets\Cardboard\Scripts\VRDevices\UnityEditorDevice.cs" />
-    <Compile Include="Assets\InfoToggler.cs" />
     <Compile Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\Antialiasing.cs" />
     <Compile Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\Bloom.cs" />
     <Compile Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\BloomAndFlares.cs" />
@@ -129,10 +128,11 @@
     <Compile Include="Assets\Objects\Clock\Scripts\Clock.cs" />
     <Compile Include="Assets\Objects\Clock\Scripts\Timer.cs" />
     <Compile Include="Assets\PipeCheck.cs" />
-    <Compile Include="Assets\Playedtime.cs" />
     <Compile Include="Assets\Scripts\DoorScript\Door.cs" />
-    <Compile Include="Assets\Scripts\Klok.cs" />
+    <Compile Include="Assets\Scripts\InfoToggler.cs" />
     <Compile Include="Assets\Scripts\LoginScript\Login.cs" />
+    <Compile Include="Assets\Scripts\Playedtime.cs" />
+    <Compile Include="Assets\Scripts\PointCounter.cs" />
     <Compile Include="Assets\Scripts\SplashScript\SplashScript.cs" />
     <Compile Include="Assets\Scripts\StatusBar.cs" />
     <Compile Include="Assets\Scripts\UserPosition.cs" />
