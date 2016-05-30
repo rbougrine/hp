@@ -5,40 +5,39 @@ using UnityEngine.SceneManagement;
 public class UserPosition : MonoBehaviour
 {
 
-    public string sceneName;
-    string username;
+    public string sceneName, username;
+    private Vector3 cameraPosition;
 
-    private Vector3 CameraPosition = GameObject.Find("CardboardMain").transform.position;
-   
     //Current camera position
-    string x;
-    string y;
-    string z;
-   
+    public string x, y, z;
+    
     //New camera position
-    public float X;
-    public float Y;
-    public float Z;
-
-    CardboardHead head;
-
+    public float X,Y,Z;
+   
+    //This script will continue to be used even when the scene are switched
     void Awake()
     {
         DontDestroyOnLoad(this);
     }
-
-    // Use this for initialization
     void Start()
     {
-
+        cameraPosition = GameObject.Find("CardboardMain").transform.position;
     }
 
-    // Update is called once per frame
-    void Update()
+    public Vector3 CameraPosition
     {
-
+        get
+        {
+            return cameraPosition;
+        }
+        set
+        {
+            cameraPosition = value; 
+        }
     }
-
+  
+    //Collect all the recent new information about the position, active scene
+    //and the username which will be send to retrieveInfo()
     public void collectInfo()
     {
       
@@ -57,6 +56,7 @@ public class UserPosition : MonoBehaviour
         retrieveInfo();
     }
 
+    //Save the new position data to the database to be saved with the current scene name.
     void sendInfo()
     {
         string url = "http://145.24.222.160/savePosition.php";
@@ -73,6 +73,7 @@ public class UserPosition : MonoBehaviour
 
     }
 
+    //Get the recent saved position data from the database
     void retrieveInfo()
     {
         string url = "http://145.24.222.160/retrievePosition.php";
@@ -86,6 +87,7 @@ public class UserPosition : MonoBehaviour
 
     }
 
+    //Save new position to the database
     IEnumerator saveInfo(WWW www)
     {
         yield return www;
@@ -102,6 +104,8 @@ public class UserPosition : MonoBehaviour
 
     }
 
+    //Receive data from the database and check if the data is empty 
+    //or its from the same scene or the data is from the scene you about the enter
     IEnumerator getInfo(WWW www)
     {
         yield return www;
@@ -131,15 +135,13 @@ public class UserPosition : MonoBehaviour
          }
     }
     
-
+    //Change position from the camera with the received new position from the database
     public void changeCameraPosition()
     {
      
-       CameraPosition = new Vector3(X,Y,Z);
-     
+        CameraPosition = new Vector3(X,Y,Z);     
         GameObject camera = GameObject.Find("CardboardMain");
-        camera.transform.position = CameraPosition;
-      
+        camera.transform.position = CameraPosition;  
 
     }
 }
