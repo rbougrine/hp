@@ -87,6 +87,7 @@
     <Compile Include="Assets\Cardboard\Scripts\VRDevices\CardboardAndroidDevice.cs" />
     <Compile Include="Assets\Cardboard\Scripts\VRDevices\CardboardiOSDevice.cs" />
     <Compile Include="Assets\Cardboard\Scripts\VRDevices\UnityEditorDevice.cs" />
+    <Compile Include="Assets\DoneButton.cs" />
     <Compile Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\Antialiasing.cs" />
     <Compile Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\Bloom.cs" />
     <Compile Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\BloomAndFlares.cs" />
@@ -127,7 +128,8 @@
     <Compile Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\Vortex.cs" />
     <Compile Include="Assets\Objects\Clock\Scripts\Clock.cs" />
     <Compile Include="Assets\Objects\Clock\Scripts\Timer.cs" />
-    <Compile Include="Assets\PipeCheck.cs" />
+    <Compile Include="Assets\PanelMan.cs" />
+    <Compile Include="Assets\PipePanelChanger.cs" />
     <Compile Include="Assets\Scripts\DoorScript\Door.cs" />
     <Compile Include="Assets\Scripts\InfoToggler.cs" />
     <Compile Include="Assets\Scripts\LoginScript\Login.cs" />

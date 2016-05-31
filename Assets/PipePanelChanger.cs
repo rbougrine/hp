@@ -11,7 +11,7 @@ public class PipePanelChanger : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-
+       
     }
 
     // Update is called once per frame
@@ -23,8 +23,8 @@ public class PipePanelChanger : MonoBehaviour {
 
     public void OnMouseClick()
     {
-        if (currentStatus == 8)
-            currentStatus = 1;
+        if (currentStatus == 10)
+            currentStatus = 0;
         else
             currentStatus++;
     }
