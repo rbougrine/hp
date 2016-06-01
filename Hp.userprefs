@@ -1,6 +1,10 @@
 ﻿<Properties StartupItem="Hp.CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\StartButton.cs">
+    <Files>
+      <File FileName="Assets\StartButton.cs" Line="4" Column="41" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

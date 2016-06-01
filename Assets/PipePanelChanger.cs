@@ -23,7 +23,7 @@ public class PipePanelChanger : MonoBehaviour {
 
     public void OnMouseClick()
     {
-        if (currentStatus == 10)
+        if (currentStatus == 17)
             currentStatus = 0;
         else
             currentStatus++;
