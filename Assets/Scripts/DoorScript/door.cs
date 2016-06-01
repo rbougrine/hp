@@ -7,10 +7,11 @@ public class Door : MonoBehaviour
     bool doorisClosed = true;
     public Animator anim;
     public GameObject Camera;
+    public GameObject AskBox;
     public string sceneName,Message;
     static RaycastHit hit;
     private bool cameraLooking;
-    private string seenObject;
+    private Transform seenObject;
 
 
     void Awake()
@@ -27,7 +28,7 @@ public class Door : MonoBehaviour
     void Update()
     {
         cameraLooking = Physics.Raycast(Camera.transform.position, Camera.transform.forward, out hit, Mathf.Infinity);
-        seenObject = hit.collider.gameObject.transform.parent.name;
+        seenObject = hit.collider.gameObject.transform;
     }
 
     //Door mechanisme
@@ -53,7 +54,7 @@ public class Door : MonoBehaviour
         }
     }
 
-  public string SeenObject
+  public Transform SeenObject
     { 
         get
         {
@@ -67,13 +68,13 @@ public class Door : MonoBehaviour
         if (CameraLooking)
         {
                      
-            if (SeenObject == "Front_door")
+            if (SeenObject.parent.name == "Front_door")
             {
                 Message = "quitGame";
             }
-            else if (SeenObject == "Back_door")
+            else if (SeenObject.parent.name == "Back_door")
             {
-                Message = "toGarage";
+                AskBox.SetActive(true);
             }
              else
                 {
@@ -106,20 +107,17 @@ public class Door : MonoBehaviour
                
     }
 
-    void toGarage()
+   public void toGarage()
     {
-         GUI.Box(new Rect(235, 55, 225, 222), "Do you want to enter the garage?");
-
-        if (GUI.Button(new Rect(242, 223, 111, 25), "Yes"))
-        {                    
-            Message = null;
-            doorTeleport();
-           
-        }
-        else if (GUI.Button(new Rect(357, 223, 90, 25), "No"))
+        if (SeenObject.name == "yes")
         {
-            Message = null;
+            SceneManager.LoadScene("Garage");
         }
+        else
+        {
+            AskBox.SetActive(false);
+        }
+
    }
 
     //Switching between garage and house
@@ -155,7 +153,7 @@ public class Door : MonoBehaviour
             if (doorisClosed == true)
             {
                 Debug.Log(SeenObject);
-                if (SeenObject == "Door_left")
+                if (SeenObject.parent.name == "Door_left")
                 {
 
                     anim.Play("openDoor");

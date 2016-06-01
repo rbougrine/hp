@@ -17,32 +17,23 @@ public class PanelMan : MonoBehaviour
     public Texture nine;
     public Texture ten;
     public Texture empty;
+    int countWrong, countGood;
     // Use this for initialization
     void Start()
     {
         texture = new Texture[11];
         texture[0] = empty;
-        Debug.Log(texture[0]);
         texture[1] = one;
-        Debug.Log(texture[1]);
         texture[2] = two;
-        Debug.Log(texture[2]);
         texture[3] = three;
-        Debug.Log(texture[3]);
         texture[4] = four;
-        Debug.Log(texture[4]);
         texture[5] = five;
-        Debug.Log(texture[5]);
         texture[6] = six;
-        Debug.Log(texture[6]);
         texture[7] = seven;
-        Debug.Log(texture[7]);
         texture[8] = eight;
-        Debug.Log(texture[8]);
         texture[9] = nine;
-        Debug.Log(texture[9]);
         texture[10] = ten;
-        Debug.Log(texture[10]);
+      //  Debug.Log(exerciseOne[]);
     }
 
 
@@ -73,6 +64,43 @@ public class PanelMan : MonoBehaviour
 
     }
 
+    public bool checkArray(int[] userInput, int[] exerciseOne)
+    {
+       
+        if (exerciseOne.Length != userInput.Length)
+        {
+            return false;
+        }
+        else
+        {
+            for (int i = 0; i < exerciseOne.Length; i++)
+            {
+                if (exerciseOne[i] != userInput[i])
+                {
+                    countWrong++;
+
+                } else if (exerciseOne[i] == userInput[i])
+                {
+                    countGood++;
+                }
+            }
+            if (countGood == 25)
+            {
+                Debug.Log("Good job");
+
+            }
+            else
+            {
+                Debug.Log("Try again");
+                Debug.Log(countGood+""+countWrong);
+            }
+
+
+        }
+      
+            return true;
+
+    }
 
 
 
