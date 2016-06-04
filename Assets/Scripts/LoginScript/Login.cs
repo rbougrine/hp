@@ -210,7 +210,7 @@ public class Login : MonoBehaviour
                 //Get info for the StatusBar
                 GameObject StatusBarScript = GameObject.Find("StatusBar");
                 StatusBar StatusBar = StatusBarScript.GetComponent<StatusBar>();
-                StatusBar.getInfo();
+                StatusBar.Getinfo();
             } else {
                 Feedback = www.text;
             }

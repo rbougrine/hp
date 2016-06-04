@@ -37,11 +37,11 @@ public class Door : MonoBehaviour
 
         if (Message == "quitGame")
         {
-            quitGame();
+            QuitGame();
         }
         else if (Message == "toGarage")
         {
-            toGarage();
+            ToGarage();
         }
         
     }
@@ -83,7 +83,7 @@ public class Door : MonoBehaviour
         }
     }
 
-    void quitGame()
+    void QuitGame()
     {
         GameObject LoginScript = GameObject.Find("Login");
         Login Login = LoginScript.GetComponent<Login>();
@@ -107,7 +107,7 @@ public class Door : MonoBehaviour
                
     }
 
-   public void toGarage()
+   public void ToGarage()
     {
         if (SeenObject.name == "yes")
         {
@@ -122,7 +122,7 @@ public class Door : MonoBehaviour
 
     //Switching between garage and house
     //while changing the position of the camera to the saved position from the database
-    void doorTeleport()
+    void DoorTeleport()
     {
         GameObject positionScript = GameObject.Find("CameraPosition");
         UserPosition UserPosition = positionScript.GetComponent<UserPosition>();
