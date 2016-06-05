@@ -7,20 +7,17 @@ public class Playedtime : MonoBehaviour
 {
     // Globale variable used in PlayedTime script
 
-    public GUIStyle timetyle;
+    
 
     private IEnumerator timer;
     private string time;
     private string Username;
-    private int playtime = 0;
-    private int seconds = 0;
-    private int minutes = 0;
-    private int hours = 0;
-
-  
-
-
-
+    public int playtime = 0;
+    public int seconds = 0;
+    public int minutes = 0;
+    public int hours = 0;
+    public UiManG gui;
+    private GameObject Gui;
 
 
     void Start()
@@ -28,17 +25,26 @@ public class Playedtime : MonoBehaviour
         // Get informatie 
         Getinformation();
         timer = Playtimer();
-        
+        gui = Gui.GetComponent<UiManG>();
     }
+
+
+
+    public UiManG GUI
+    {
+        get
+        {
+            return gui;
+
+        }
+    }
+
 
 
 
     public void Donetime() {
 
-        /*
-        - Stop timer when clicked on garage door,
-        - And data to database
-        */
+     
         StopCoroutine(timer);
         time = hours.ToString() + minutes.ToString() + seconds.ToString();
         SendInfo();
@@ -49,7 +55,7 @@ public class Playedtime : MonoBehaviour
 
     public void StartTimer()
     {
-        // method to start timer when player clicking on garage door 
+       
         StartCoroutine(timer);
  
     }
@@ -123,17 +129,14 @@ public class Playedtime : MonoBehaviour
 
     void OnGUI()
     {
-        TimerDisplay();
+
+        gui.TimerDisplay();
+
+
     }
 
 
-    void TimerDisplay()
-    {
-       // displaying timer on screen
-        GUI.Box(new Rect(250, 150, 260, 20), "PlayedTime = " +  hours.ToString() + " Hours:  " +  minutes.ToString() + " Minutes:  " + seconds.ToString() + " Secondes  ", timetyle);
   
-
-    }
     
 }
 
