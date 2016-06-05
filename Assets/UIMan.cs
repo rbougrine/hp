@@ -15,7 +15,6 @@ public class UIMan : MonoBehaviour {
 
         statusBar = statusbar.GetComponent<StatusBar>();
 
-
     }
 
 
@@ -47,10 +46,8 @@ public class UIMan : MonoBehaviour {
 
         InfoStatusbar = statusBar.InfoStatusbar;
         GUI.Box(new Rect(250, 150, 260, 20), InfoStatusbar, labelStyle);
+     
 
-
-
-      
         GameObject points = GameObject.Find("Score");
         PointCounter pointcounter = points.GetComponent<PointCounter>();
         score = pointcounter.score;
