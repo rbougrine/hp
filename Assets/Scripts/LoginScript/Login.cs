@@ -6,20 +6,26 @@ using UnityEngine.SceneManagement;
 
 public class Login : MonoBehaviour
 {
+    public AsyncOperation sceneLoading;
 
-	#region variables
+    #region variables
 
-	//Public Variables
-	public string CurrentMenu = "Login";
+    //Public Variables
+    public string CurrentMenu = "Login";
 	public Texture2D MessageBox = null;
 	public string Username = "";
 	string Password = "";
 	public GameObject camera1;
 	public GameObject camera2;
+    public GameObject EventSystem;
+    public bool loggedIn;
+    private GameObject statusBarScript;
+    private StatusBar statusBar;
+    private GameObject UserPositionScript;
+    private UserPosition userPosition;
 
-
-	//Private Variables
-	private string CUsername = "";
+    //Private Variables
+    private string CUsername = "";
 	private string CPassword = "";
 	private string ConfirmPassword = "";
 	private string Feedback = null;
@@ -47,26 +53,45 @@ public class Login : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
-		camera1.SetActive (true);
-		camera2.SetActive (false);
+        statusBarScript = GameObject.Find("StatusBar");
+        statusBar = statusBarScript.GetComponent<StatusBar>();
+        UserPositionScript = GameObject.Find("CameraPosition");
+        userPosition = UserPositionScript.GetComponent<UserPosition>();
 
 
-	}//End Start method
+    }//End Start method
 
+    public UserPosition UserPosition
+    {
+        get
+        {
+            return userPosition;
+        }
+
+    }
+
+    public StatusBar StatusBar
+    {
+        get
+        {
+            return statusBar;
+        }
+
+    }
 
 	void OnGUI()
 	{
 		GUI.skin.box.normal.background = MessageBox;
 
-		if (CurrentMenu == "Login")
-		{
-			LoginGUI();
-		}
-		else if (CurrentMenu == "CreateAccount")
-		{
-			CreateAccountGUI();     
-		}
-
+        if (CurrentMenu == "Login" && loggedIn != true)
+        {
+            LoginGUI();
+        }
+        else if (CurrentMenu == "CreateAccount")
+        {
+            CreateAccountGUI();
+        }
+       
 		//Feedback messages for the login system
 		if (Feedback != null)
 		{
@@ -83,7 +108,15 @@ public class Login : MonoBehaviour
 	}//End OnGUI method
 
 
-
+     public void inUse()
+    {
+         if (SceneManager.GetActiveScene().name == "Game" && Username != null)
+        {
+             camera1.SetActive(false);
+             camera2.SetActive(true);
+             EventSystem.SetActive(true);
+        }
+    }
 
 	void LoginGUI()
 	{
@@ -171,21 +204,16 @@ public class Login : MonoBehaviour
 		}
 		else
 		{
-			var result = www.text;
-			switch (result)
-			{
-			case "Registration has been successful":
-				Feedback = result;
-				CurrentMenu = "Login";
-				break;
-			case "One or more field are still empty":
-				Feedback = result;
-				break;
-			case "Username is already used":
-				Feedback = result;
-				break;
-			}
-		}
+            if (www.text == "Registratie successful")
+            {
+                Feedback = www.text;
+                CurrentMenu = "Login";
+            }
+            else
+            {
+                Feedback = www.text;
+            }
+        }
 
 	}//End CreateAccount
 
@@ -202,20 +230,21 @@ public class Login : MonoBehaviour
 		{
             if (www.text == "Login successful!")
             {
-                camera1.SetActive(false);
-                camera2.SetActive(true);
+                loggedIn = true;     
                 CurrentMenu = null;
+
+                inUse();
                 checkPosition();
 
-                //Get info for the StatusBar
-                GameObject StatusBarScript = GameObject.Find("StatusBar");
-                StatusBar StatusBar = StatusBarScript.GetComponent<StatusBar>();
-                StatusBar.Getinfo();
-            } else {
+                StatusBar.getInfo();
+
+            }
+            else
+            {
                 Feedback = www.text;
             }
 			
-            }
+      }
 		
 
 	}//End LoginAccount
@@ -231,6 +260,39 @@ public class Login : MonoBehaviour
         StartCoroutine(PositionStatus(www));
     }
 
+   public void loadingScenes(string levelName)
+    {
+        sceneLoading = SceneManager.LoadSceneAsync(levelName);
+        sceneLoading.allowSceneActivation = false;
+        StartCoroutine(LoadSceneWait());
+
+
+    }
+
+    IEnumerator LoadSceneWait()
+    {
+        while (sceneLoading.progress < 0.9f)
+        {
+            yield return new WaitForSeconds(0.1f);
+            Debug.Log(sceneLoading.progress);
+            Debug.Log("progress");
+        }
+      
+        sceneLoading.allowSceneActivation = true;
+        Debug.Log("Done loading");
+        if (sceneLoading.allowSceneActivation == true && SceneManager.GetActiveScene().name == "Game")
+        {
+            Debug.Log("in");
+            loggedIn = true;
+            CurrentMenu = null;
+        }
+        else
+        {
+            Debug.Log("Nope");
+
+        }
+    }
+
     IEnumerator PositionStatus(WWW www)
     {
         yield return www;
@@ -242,11 +304,7 @@ public class Login : MonoBehaviour
         else
         {
              string[] position = www.text.Split(',');
-
-            //get script to change the camera position
-            GameObject StatusBarScript = GameObject.Find("CameraPosition");
-            UserPosition UserPosition = StatusBarScript.GetComponent<UserPosition>();
-
+           
             //assign the numbers to new position camera variables
             UserPosition.X = float.Parse(position[0]);
             UserPosition.Y = float.Parse(position[1]);
@@ -260,11 +318,13 @@ public class Login : MonoBehaviour
             }
             else
             {
-                SceneManager.LoadScene(sceneName);
-                UserPosition.changeCameraPosition();
-            }           
+                loadingScenes(sceneName);
+                if (sceneLoading.isDone == true)
+                {
+                    UserPosition.changeCameraPosition();
+                }
+            }
             
-
         }   
     }
 
