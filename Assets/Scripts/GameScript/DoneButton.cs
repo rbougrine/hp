@@ -67,8 +67,6 @@ public class DoneButton : MonoBehaviour
             return time;
 
         }
-
-
     }
     
 
@@ -119,7 +117,7 @@ public class DoneButton : MonoBehaviour
         switch (result)
         {
             case "GoodJob":
-
+                time.Donetime();
                 points.Addpoints();
                 GoodJob.SetActive(true);
                 break;
@@ -137,12 +135,10 @@ public class DoneButton : MonoBehaviour
         }
         else
         {
-        // GameObject time = GameObject.Find("Timer");
-        // Playedtime timer = time.GetComponent<Playedtime>();
 
 
            GoodJob.SetActive(false);
-           time.Donetime();
+           
          
         }
        

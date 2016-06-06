@@ -18,7 +18,8 @@ public class Playedtime : MonoBehaviour
     public int hours = 0;
     public UiManG gui;
     private GameObject Gui;
-
+    public DateTime starttime, endtime;
+    
 
     void Start()
     {
@@ -46,18 +47,25 @@ public class Playedtime : MonoBehaviour
 
      
         StopCoroutine(timer);
+        endtime = DateTime.Now;
+        Debug.Log(endtime);
+      
+
         time = hours.ToString() + minutes.ToString() + seconds.ToString();
         SendInfo();
         Debug.Log("Total time played by user has been send to the database");
-     
+        Debug.Log(endtime - starttime);
+
 
     }
 
     public void StartTimer()
     {
-       
+        starttime = DateTime.Now;
+        Debug.Log(starttime);
         StartCoroutine(timer);
- 
+        starttime.ToLongDateString();
+        
     }
 
 
@@ -103,7 +111,8 @@ public class Playedtime : MonoBehaviour
         WWWForm form = new WWWForm();
 
         form.AddField("username", Username);
-        form.AddField("time", time);
+        form.AddField("startime", starttime.ToLongTimeString());
+        form.AddField("endtime", endtime.ToLongTimeString());
         WWW www = new WWW(url, form);
 
         StartCoroutine(saveInfo(www));
