@@ -7,6 +7,10 @@ public class UserPosition : MonoBehaviour
 
     public string sceneName, username;
     private Vector3 cameraPosition;
+    private GameObject statusBar;
+    private StatusBar status;
+    private GameObject loginScript;
+    private Login login;
 
     //Current camera position
     public string x, y, z;
@@ -14,14 +18,47 @@ public class UserPosition : MonoBehaviour
     //New camera position
     public float X,Y,Z;
    
-    //This script will continue to be used even when the scene are switched
+    //This script will continue to be used even when the scenes are switched
     void Awake()
     {
         DontDestroyOnLoad(this);
+     
     }
+
     void Start()
     {
-        cameraPosition = GameObject.Find("CardboardMain").transform.position;
+        statusBar = GameObject.Find("StatusBar");
+        status = statusBar.GetComponent<StatusBar>();
+        loginScript = GameObject.Find("Login");
+        login = loginScript.GetComponent<Login>();
+
+    }
+
+    void Update()
+   {
+       if (LoginScript.camera2 != null && LoginScript.camera2.activeSelf)
+       {
+           cameraPosition = GameObject.Find("CardboardMain").transform.position;
+       }
+  }
+
+    public Login LoginScript
+    {
+        get
+        {
+            return login;
+
+        }
+
+    }
+    public StatusBar Status
+    {
+        get
+        {
+            return status;
+        }
+
+
     }
 
     public Vector3 CameraPosition
@@ -36,7 +73,7 @@ public class UserPosition : MonoBehaviour
         }
     }
   
-    //Collect all the recent new information about the position, active scene
+    // Collect all the recent new information about the position, active scene
     //and the username which will be send to retrieveInfo()
     public void collectInfo()
     {
@@ -44,15 +81,10 @@ public class UserPosition : MonoBehaviour
         x = CameraPosition.x.ToString("0.00");
         y = CameraPosition.y.ToString("0.00");
         z = CameraPosition.z.ToString("0.00");
-
-        Scene scene = SceneManager.GetActiveScene();
-        sceneName = scene.name;
-
-        GameObject statusBarScript = GameObject.Find("StatusBar");
-        StatusBar StatusBar = statusBarScript.GetComponent<StatusBar>();
-
-        username = StatusBar.username;
-
+      
+        sceneName = SceneManager.GetActiveScene().name;
+        username = Status.username;
+        
         retrieveInfo();
     }
 
@@ -60,7 +92,7 @@ public class UserPosition : MonoBehaviour
     void sendInfo()
     {
         string url = "http://145.24.222.160/savePosition.php";
-
+ 
         WWWForm form = new WWWForm();
         form.AddField("x", x);
         form.AddField("y", y);
@@ -82,7 +114,7 @@ public class UserPosition : MonoBehaviour
         form.AddField("username", username);
         form.AddField("sceneName",sceneName);
         WWW www = new WWW(url, form);
-
+      
         StartCoroutine(getInfo(www));
 
     }
@@ -99,7 +131,7 @@ public class UserPosition : MonoBehaviour
         }
         else
         {
-            Debug.Log(www.text + "saveInfo");
+            Debug.Log(www.text + "saveInfo compleet");
         }
 
     }

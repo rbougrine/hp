@@ -12,11 +12,14 @@ public class StatusBar : MonoBehaviour
     // Gui style options to style gameobject wich it belongs
     public GUIStyle labelStyle;
     public GUIStyle scorestyle;
+    private GameObject loginScript;
+    private Login login;
 
 
     void Start()
     {
-     
+        loginScript = GameObject.Find("Login");
+        login = loginScript.GetComponent<Login>();
     }
 
  
@@ -27,6 +30,15 @@ public class StatusBar : MonoBehaviour
 
     }         
 
+    public Login Login
+    {
+        get
+        {
+            return login;
+
+        }
+
+    }
     public void getInfo()
     {
         /*
@@ -34,8 +46,7 @@ public class StatusBar : MonoBehaviour
          the retrieved username from login is set to username string
          in the statusbar.
         */
-        GameObject loginScreen = GameObject.Find("Login");
-        Login Login = loginScreen.GetComponent<Login>();
+       
         username = Login.Username;
 
         /*
@@ -113,12 +124,12 @@ public class StatusBar : MonoBehaviour
         GUI.Label(new Rect(250, 150, 260, 20), score.ToString(), scorestyle);
 
         // getting score variable from PointCounter
-        GameObject points = GameObject.Find("Cubes");
-        PointCounter pointcounter = points.GetComponent<PointCounter>();
+     //   GameObject points = GameObject.Find("Cubes");
+     //   PointCounter pointcounter = points.GetComponent<PointCounter>();
 
 
         // set pointercounter score to statusbar score
-        score = pointcounter.score;
+       // score = pointcounter.score;
 
 
 
