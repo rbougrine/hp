@@ -12,7 +12,7 @@ using System.Collections;
 
 public class Walk : MonoBehaviour 
 {
-	private const int RIGHT_ANGLE = 90; 
+	private const int RIGHT_ANGLE = 100; 
 
 	// This variable determinates if the player will move or not 
 	private bool isWalking = false;
