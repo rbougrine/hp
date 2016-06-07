@@ -107,6 +107,7 @@
      <Compile Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\Twirl.cs" />
      <Compile Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\VignetteAndChromaticAberration.cs" />
      <Compile Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\Vortex.cs" />
+     <Compile Include="Assets\PointerCounterModel.cs" />
      <Compile Include="Assets\Scripts\DoorScript\Door.cs" />
      <Compile Include="Assets\Scripts\GameScript\DoneButton.cs" />
      <Compile Include="Assets\Scripts\GameScript\ExerciseChanger.cs" />

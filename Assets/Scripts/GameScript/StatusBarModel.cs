@@ -37,7 +37,7 @@ public class StatusBarModel : MonoBehaviour {
    
         username = login.Username;
 
-        string url = "http://" + ip + "/LoginAccount.php";
+        string url = "http://" + ip + "/getInfo.php";
 
      
         WWWForm form = new WWWForm();
