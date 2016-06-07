@@ -20,10 +20,11 @@ public class PointerCounterModel : MonoBehaviour {
   public void SendInfo()
     {
 
-        GameObject point = GameObject.Find("Score");
-        PointCounter points = point.GetComponent<PointCounter>();
-        username = points.username;
-        score = points.score;
+        // GameObject point = GameObject.Find("Score");
+        // PointCounter points = point.GetComponent<PointCounter>();
+        PointCounter scoree = GameObject.Find("Score").GetComponent<PointCounter>();
+        username = scoree.username;
+        score = scoree.score;
 
         // php file from server where savingscore is processing
         string url = "http://145.24.222.160/saveScore.php";

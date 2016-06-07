@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public class StatusBarModel : MonoBehaviour {
 
     public string username;
@@ -9,6 +10,7 @@ public class StatusBarModel : MonoBehaviour {
     public string Feedback = null;
     public int score;
     public string InfoStatusbar;
+    public string InfoStatusbarScore;
     private readonly string ip = "145.24.222.160";
 
     // Use this for initialization
@@ -71,7 +73,7 @@ public class StatusBarModel : MonoBehaviour {
 
             string[] position = Feedback.Split(',');
             InfoStatusbar = (position[0]);
-
+            InfoStatusbarScore = (position[1]);
             // Retrieve only score int from the database string www.text
             score = int.Parse(position[1]);
             Debug.Log("SCORE IS HIER VAN DE DB" + score);
