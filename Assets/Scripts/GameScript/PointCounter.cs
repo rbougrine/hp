@@ -21,10 +21,11 @@ public class PointCounter : MonoBehaviour
 
         // get Score and Username from statusbar of the current user
         GameObject statusbar = GameObject.Find("StatusBar");
-        StatusBar status = statusbar.GetComponent<StatusBar>();
+        StatusBarModel status = statusbar.GetComponent<StatusBarModel>();
         score = status.score;
         username = status.username;
         Debug.Log(score);
+        Debug.Log("hierrrrr2");
 
 
 

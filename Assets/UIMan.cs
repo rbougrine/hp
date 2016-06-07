@@ -6,14 +6,14 @@ public class UIMan : MonoBehaviour {
     public GUIStyle labelStyle;
     public GUIStyle scorestyle;
     // Use this for initialization
-    private StatusBar statusBar;
+    private StatusBarModel statusBar;
     public int score;
     public GameObject statusbar;
      
 
     void Start () {
 
-        statusBar = statusbar.GetComponent<StatusBar>();
+        statusBar = statusbar.GetComponent<StatusBarModel>();
 
     }
 
@@ -29,7 +29,7 @@ public class UIMan : MonoBehaviour {
 	
 	}
 
-    public StatusBar StatusBar {
+    public StatusBarModel StatusBar {
         get {
 
             return statusBar;
@@ -46,11 +46,10 @@ public class UIMan : MonoBehaviour {
 
         InfoStatusbar = statusBar.InfoStatusbar;
         GUI.Box(new Rect(250, 150, 260, 20), InfoStatusbar, labelStyle);
-     
 
-        GameObject points = GameObject.Find("Score");
-        PointCounter pointcounter = points.GetComponent<PointCounter>();
-        score = pointcounter.score;
+
+        PointCounter points = GameObject.Find("Score").GetComponent<PointCounter>();
+        score = points.score;
         GUI.Label(new Rect(250, 150, 260, 20), score.ToString(), scorestyle);
        
 

@@ -49,7 +49,7 @@ public class UserPosition : MonoBehaviour
         sceneName = scene.name;
 
         GameObject statusBarScript = GameObject.Find("StatusBar");
-        StatusBar StatusBar = statusBarScript.GetComponent<StatusBar>();
+        StatusBarModel StatusBar = statusBarScript.GetComponent<StatusBarModel>();
 
         username = StatusBar.username;
 

@@ -92,7 +92,7 @@ public class Playedtime : MonoBehaviour
         - To use for updating the  users score in the game tabel
         */
         GameObject statusbar = GameObject.Find("StatusBar");
-        StatusBar status = statusbar.GetComponent<StatusBar>();
+        StatusBarModel status = statusbar.GetComponent<StatusBarModel>();
    
         // set username from status to Username 
         Username = status.username;
