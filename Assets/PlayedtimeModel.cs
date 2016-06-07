@@ -6,14 +6,10 @@ public class PlayedtimeModel : MonoBehaviour {
 
     public DateTime starttime, endtime;
     private string Username;
+    private readonly string ip = "145.24.222.160";
 
     // Use this for initialization
     void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
 	
 	}
 
@@ -26,7 +22,7 @@ public class PlayedtimeModel : MonoBehaviour {
         endtime = timer.endtime;
 
         // php file from server where savingtime is processing
-        string url = "http://145.24.222.160/saveTime.php";
+        string url = "http://" + ip + "/saveTime.php";
 
         WWWForm form = new WWWForm();
 

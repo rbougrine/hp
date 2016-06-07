@@ -20,12 +20,6 @@ public class StatusBarModel : MonoBehaviour {
 
     }
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
-
     public Login Login
     {
         get
@@ -49,9 +43,6 @@ public class StatusBarModel : MonoBehaviour {
         WWW www = new WWW(url, form);
 
         StartCoroutine(userInfo(www));
-
-
-
     }
 
     IEnumerator userInfo(WWW www)
@@ -73,7 +64,7 @@ public class StatusBarModel : MonoBehaviour {
 
             string[] position = Feedback.Split(',');
             InfoStatusbar = (position[0]);
-            InfoStatusbarScore = (position[1]);
+            //InfoStatusbarScore = (position[1]);
             // Retrieve only score int from the database string www.text
             score = int.Parse(position[1]);
             Debug.Log("SCORE IS HIER VAN DE DB" + score);

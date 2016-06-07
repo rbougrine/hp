@@ -6,9 +6,6 @@ using System.Globalization;
 public class Playedtime : MonoBehaviour
 {
     // Globale variable used in PlayedTime script
-
-    
-
     private IEnumerator timer;
     private string time;
     public string Username;
@@ -29,8 +26,6 @@ public class Playedtime : MonoBehaviour
         gui = Gui.GetComponent<UiManG>();
     }
 
-
-
     public UiManG GUI
     {
         get
@@ -40,9 +35,7 @@ public class Playedtime : MonoBehaviour
         }
     }
 
-
     public void Donetime() {
-
      
         StopCoroutine(timer);
         endtime = DateTime.Now;
@@ -50,7 +43,6 @@ public class Playedtime : MonoBehaviour
         Debug.Log("ik eindig");
         PlayedtimeModel Timer = GameObject.Find("Timer").GetComponent<PlayedtimeModel>();
      
-    
         time = hours.ToString() + minutes.ToString() + seconds.ToString();
         Debug.Log(time);
         Timer.SendInfo();
