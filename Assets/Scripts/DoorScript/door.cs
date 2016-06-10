@@ -4,20 +4,20 @@ using UnityEngine.SceneManagement;
 
 public class Door : MonoBehaviour
 {
-    bool doorisClosed = true;
+   //public variable
     public Animator anim;
-    public GameObject Camera;
-    public GameObject AskBox;
-    public GameObject AskBoxFront;
-    public string sceneName,Message;
+    public GameObject Camera, AskBox, AskBoxFront;
+    public string sceneName, Message;
     static RaycastHit hit;
+
+    //private variable
     private bool cameraLooking;
     private Transform seenObject;
-    private GameObject loginScript;
-    private Login login;
-    private GameObject userPositionScript;
+    private bool doorisClosed = true;
+    private GameObject loginObject, userPositionScript;
+    private SwitchingScenes switchingScenes;
     private UserPosition userPosition;
-   
+    private Login login;
 
     void Awake()
     {
@@ -26,8 +26,9 @@ public class Door : MonoBehaviour
 
     void Start()
     {
-        loginScript = GameObject.Find("Login");
-        login = loginScript.GetComponent<Login>();
+        loginObject = GameObject.Find("Login");
+        login = loginObject.GetComponent<Login>();
+        switchingScenes = loginObject.GetComponent<SwitchingScenes>();
         userPositionScript = GameObject.Find("CameraPosition");
         userPosition = userPositionScript.GetComponent<UserPosition>();
     }
@@ -53,6 +54,15 @@ public class Door : MonoBehaviour
         get
         {
             return login;
+        }
+
+    }
+
+    public SwitchingScenes SwitchingScenes
+    {
+        get
+        {
+            return switchingScenes;
 
         }
 
@@ -103,13 +113,13 @@ public class Door : MonoBehaviour
         {
             LoginScript.camera1.SetActive(true);
             LoginScript.camera2.SetActive(false);
-            LoginScript.loggedIn = false;
+            LoginScript.logged = false;
             LoginScript.CurrentMenu = "Login";
             
         }
         else
         {
-            Debug.Log(LoginScript.loggedIn+"loggedIn");
+            Debug.Log(LoginScript.logged+"loggedIn");
             AskBoxFront.SetActive(false);
         }
     }
@@ -131,30 +141,26 @@ public class Door : MonoBehaviour
     //while changing the position of the camera to the saved position from the database
     void doorTeleport()
     {
-      
         UserPosition.collectInfo(); 
                
         if (UserPosition.sceneName == "Game")
         {
             Debug.Log("Switching scenes to garage");
 
-            LoginScript.loadingScenes("Garage");
+            SwitchingScenes.loadingScenes("Garage");
            
         }
         else
         {
            Debug.Log("Switching scenes to game");
 
-            LoginScript.loadingScenes("Game");
+            SwitchingScenes.loadingScenes("Game");
 
             
-        }
-  
-            
+        }         
    
      }
-  
-    //Opening and closing the doors
+     //Opening and closing the doors
     IEnumerator doorMovement()
     {    
 
