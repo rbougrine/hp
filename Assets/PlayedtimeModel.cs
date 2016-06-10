@@ -27,7 +27,7 @@ public class PlayedtimeModel : MonoBehaviour {
         WWWForm form = new WWWForm();
 
         form.AddField("username", Username);
-        form.AddField("startime", starttime.ToLongTimeString());
+        form.AddField("begintime", starttime.ToLongTimeString());
         form.AddField("endtime", endtime.ToLongTimeString());
         WWW www = new WWW(url, form);
 
