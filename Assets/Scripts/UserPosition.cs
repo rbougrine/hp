@@ -4,50 +4,47 @@ using UnityEngine.SceneManagement;
 
 public class UserPosition : MonoBehaviour
 {
-
+    //public variable
     public string sceneName, username;
+    public string x, y, z;
+    public float X, Y, Z;
+
+    //private variable
     private Vector3 cameraPosition;
     private GameObject statusBar;
     private StatusBar status;
     private GameObject loginScript;
     private Login login;
 
-    //Current camera position
-    public string x, y, z;
-    
-    //New camera position
-    public float X,Y,Z;
-   
     //This script will continue to be used even when the scenes are switched
     void Awake()
     {
-        DontDestroyOnLoad(this);
-     
+        DontDestroyOnLoad(this); 
     }
 
     void Start()
     {
         statusBar = GameObject.Find("StatusBar");
         status = statusBar.GetComponent<StatusBar>();
+
         loginScript = GameObject.Find("Login");
         login = loginScript.GetComponent<Login>();
 
     }
 
     void Update()
-   {
+    {
        if (LoginScript.camera2 != null && LoginScript.camera2.activeSelf)
        {
            cameraPosition = GameObject.Find("CardboardMain").transform.position;
        }
-  }
+    }
 
     public Login LoginScript
     {
         get
         {
             return login;
-
         }
 
     }
@@ -57,8 +54,6 @@ public class UserPosition : MonoBehaviour
         {
             return status;
         }
-
-
     }
 
     public Vector3 CameraPosition
@@ -167,13 +162,4 @@ public class UserPosition : MonoBehaviour
          }
     }
     
-    //Change position from the camera with the received new position from the database
-    public void changeCameraPosition()
-    {
-     
-        CameraPosition = new Vector3(X,Y,Z);     
-        GameObject camera = GameObject.Find("CardboardMain");
-        camera.transform.position = CameraPosition;  
-
-    }
 }

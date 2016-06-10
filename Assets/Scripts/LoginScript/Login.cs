@@ -6,84 +6,69 @@ using UnityEngine.SceneManagement;
 
 public class Login : MonoBehaviour
 {
-    public AsyncOperation sceneLoading;
-
     #region variables
 
     //Public Variables
+    public bool logged;
     public string CurrentMenu = "Login";
-	public Texture2D MessageBox = null;
-	public string Username = "";
-	string Password = "";
-	public GameObject camera1;
-	public GameObject camera2;
-    public GameObject EventSystem;
-    public bool loggedIn;
-    private GameObject statusBarScript;
-    private StatusBar statusBar;
-    private GameObject UserPositionScript;
-    private UserPosition userPosition;
+    public string Feedback = "";
+    public Texture2D MessageBox = null;
+    public string Username, CUsername;
+    public GameObject camera1, camera2, EventSystem;
 
     //Private Variables
-    private string CUsername = "";
-	private string CPassword = "";
-	private string ConfirmPassword = "";
-	private string Feedback = null;
-
-    //camera position
-    float X;
-    float Y;
-    float Z;
-    string sceneName;
-
-	//GUI test section
-	public float x;
-	public float y;
-	public float Width;
-	public float Height;
-
+    private GameObject loginScript;
+    private string password = "";
+    private string cpassword = "";
+    private string ConfirmPassword = "";
+    private LoginController controller;
+    
 	#endregion variables
-
-	void Awake()
-	{
-		DontDestroyOnLoad (this);
-	}
-
 
 	// Use this for initialization
 	void Start()
 	{
-        statusBarScript = GameObject.Find("StatusBar");
-        statusBar = statusBarScript.GetComponent<StatusBar>();
-        UserPositionScript = GameObject.Find("CameraPosition");
-        userPosition = UserPositionScript.GetComponent<UserPosition>();
+        loginScript = GameObject.Find("Login");
+        controller = loginScript.GetComponent<LoginController>();
+    }
 
-
-    }//End Start method
-
-    public UserPosition UserPosition
+    public string Password
     {
         get
         {
-            return userPosition;
+            return password;
         }
-
+        set
+        {
+            password = value;
+        }
     }
 
-    public StatusBar StatusBar
+    public string CPassword
     {
         get
         {
-            return statusBar;
+            return cpassword;
         }
-
+        set
+        {
+            cpassword = value;
+        }
     }
 
-	void OnGUI()
+    public LoginController Controller
+    {
+        get
+        {
+            return controller;
+        }
+    }
+
+    void OnGUI()
 	{
 		GUI.skin.box.normal.background = MessageBox;
 
-        if (CurrentMenu == "Login" && loggedIn != true)
+        if (CurrentMenu == "Login" && logged != true)
         {
             LoginGUI();
         }
@@ -93,22 +78,14 @@ public class Login : MonoBehaviour
         }
        
 		//Feedback messages for the login system
-		if (Feedback != null)
+		if (Feedback != "")
 		{
-			GUI.skin.box.normal.background = MessageBox;
-			GUI.Box(new Rect(235, 103, 225, 111), Feedback);
-
-			if (GUI.Button(new Rect(287, 164, 111, 25), "Okay"))
-			{
-				Feedback = null;
-			}
-
+            FeedbackGUI();
 		}
+	}
 
-	}//End OnGUI method
-
-
-     public void inUse()
+   
+    public void LoggedIn()
     {
          if (SceneManager.GetActiveScene().name == "Game" && Username != null)
         {
@@ -126,26 +103,19 @@ public class Login : MonoBehaviour
 		Username = GUI.TextField(new Rect(253, 106, 170, 21), Username);
 
 		GUI.Label(new Rect(252, 128, 170, 23), "Password:");
+     
 		Password = GUI.PasswordField(new Rect(252, 151, 170, 23), Password, "*"[0], 25);
 
 		if (GUI.Button(new Rect(357, 223, 90, 25), "Log in"))
 		{
-			string url = "http://145.24.222.160/LoginAccount.php";
-
-			WWWForm form = new WWWForm();
-			form.AddField("Username", Username);
-			form.AddField("Password", Password);
-			WWW www = new WWW(url, form);
-
-			StartCoroutine(LoginAccount(www));
-
+            Controller.Authorization();
 		}
 
 		if (GUI.Button(new Rect(242, 223, 111, 25), "Create Account"))
 		{
 			CurrentMenu = "CreateAccount";
 		}
-	}//End LoginGUI method
+	}
 
 	void CreateAccountGUI()
 	{
@@ -161,171 +131,33 @@ public class Login : MonoBehaviour
 		GUI.Label(new Rect(252, 181, 170, 23), "Confirm Password:");
 		ConfirmPassword = GUI.PasswordField(new Rect(252, 209, 170, 23), ConfirmPassword, "*"[0], 25);
 
-
-		if (GUI.Button(new Rect(242, 243, 111, 25),"Create Account"))
-		{
-			if (CPassword == ConfirmPassword)
+		if (GUI.Button(new Rect(344, 243, 111, 25), "Create Account"))
+        {
+            if (CPassword == ConfirmPassword)
 			{
-				string url = "http://145.24.222.160/CreateAccount.php";
-
-				WWWForm form = new WWWForm();
-				form.AddField("Username", CUsername);
-				form.AddField("Password", CPassword);
-				WWW www = new WWW(url, form);
-
-				StartCoroutine(CreateAccount(www));
-
-			}
+                Controller.Register();
+            }
 			else
 			{
 				Feedback = "The password is not the same";
 			}
-		}
+		} 
+		    if (GUI.Button(new Rect(245, 243, 90, 25), "Back"))
+		    {
+			    CurrentMenu = "Login";
 
+		    }
 
-		if (GUI.Button(new Rect(357, 243, 90, 25), "Back"))
-		{
-			CurrentMenu = "Login";
+     	}
 
-		}
-
-
-	}//End CreateAccountGUI method
-
-
-	IEnumerator CreateAccount(WWW www)
-	{
-		yield return www;
-
-		// check for errors
-		if (www.error != null)
-		{
-			Feedback = www.error;
-		}
-		else
-		{
-            if (www.text == "Registratie successful")
-            {
-                Feedback = www.text;
-                CurrentMenu = "Login";
-            }
-            else
-            {
-                Feedback = www.text;
-            }
-        }
-
-	}//End CreateAccount
-
-	IEnumerator LoginAccount(WWW www)
-	{
-		yield return www;
-
-		// check for errors
-		if (www.error != null)
-		{
-			Feedback = www.error;
-		}
-		else
-		{
-            if (www.text == "Login successful!")
-            {
-                loggedIn = true;     
-                CurrentMenu = null;
-
-                inUse();
-                checkPosition();
-
-                StatusBar.getInfo();
-
-            }
-            else
-            {
-                Feedback = www.text;
-            }
-			
-      }
-		
-
-	}//End LoginAccount
-
-    void checkPosition()
+    void FeedbackGUI()
     {
-        string url = "http://145.24.222.160/checkPosition.php";
-      
-        WWWForm form = new WWWForm();
-        form.AddField("username", Username);
-        WWW www = new WWW(url, form);
+        GUI.Box(new Rect(235, 103, 225, 111), Feedback);
 
-        StartCoroutine(PositionStatus(www));
-    }
-
-   public void loadingScenes(string levelName)
-    {
-        sceneLoading = SceneManager.LoadSceneAsync(levelName);
-        sceneLoading.allowSceneActivation = false;
-        StartCoroutine(LoadSceneWait());
-
-
-    }
-
-    IEnumerator LoadSceneWait()
-    {
-        while (sceneLoading.progress < 0.9f)
+        if (GUI.Button(new Rect(287, 164, 111, 25), "Okay"))
         {
-            yield return new WaitForSeconds(0.1f);
-            Debug.Log(sceneLoading.progress);
-            Debug.Log("progress");
+            Feedback = "";
         }
-      
-        sceneLoading.allowSceneActivation = true;
-        Debug.Log("Done loading");
-        if (sceneLoading.allowSceneActivation == true && SceneManager.GetActiveScene().name == "Game")
-        {
-            Debug.Log("in");
-            loggedIn = true;
-            CurrentMenu = null;
-        }
-        else
-        {
-            Debug.Log("Nope");
-
-        }
-    }
-
-    IEnumerator PositionStatus(WWW www)
-    {
-        yield return www;
-      
-        if (www.text == "empty")
-        {
-            Debug.Log("New account, empty positions var");
-        }
-        else
-        {
-             string[] position = www.text.Split(',');
-           
-            //assign the numbers to new position camera variables
-            UserPosition.X = float.Parse(position[0]);
-            UserPosition.Y = float.Parse(position[1]);
-            UserPosition.Z = float.Parse(position[2]);
-            sceneName = (position[3]);
-
-            if (sceneName == "Game")
-            {
-                //change camera position
-                UserPosition.changeCameraPosition();
-            }
-            else
-            {
-                loadingScenes(sceneName);
-                if (sceneLoading.isDone == true)
-                {
-                    UserPosition.changeCameraPosition();
-                }
-            }
-            
-        }   
     }
 
 }//End Class
