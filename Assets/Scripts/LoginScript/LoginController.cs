@@ -6,7 +6,7 @@ public class LoginController : MonoBehaviour {
     private readonly string ip = "145.24.222.160";
     private GameObject loginObject, StatusBarObject;
     private Login login;
-    private StatusBar statusBar;
+    private StatusBarModel statusBarModel;
     private SwitchingScenes switchingScenes;
    
 
@@ -18,7 +18,7 @@ public class LoginController : MonoBehaviour {
 
         login = loginObject.GetComponent<Login>();
         switchingScenes = loginObject.GetComponent<SwitchingScenes>();
-        statusBar = StatusBarObject.GetComponent<StatusBar>();
+        statusBarModel = StatusBarObject.GetComponent<StatusBarModel>();
     }
 
     public Login LoginScript
@@ -39,11 +39,11 @@ public class LoginController : MonoBehaviour {
 
     }
 
-    public StatusBar StatusBar
+    public StatusBarModel StatusBarModel
     {
         get
         {
-            return statusBar;
+            return statusBarModel;
         }
 
     }
@@ -94,7 +94,7 @@ public class LoginController : MonoBehaviour {
                 LoginScript.LoggedIn();
                 SwitchingScenes.checkPosition();
 
-                StatusBar.Getinfo();
+                StatusBarModel.Getinfo();
             }
             else
             {

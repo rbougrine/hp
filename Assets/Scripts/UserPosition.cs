@@ -12,7 +12,7 @@ public class UserPosition : MonoBehaviour
     //private variable
     private Vector3 cameraPosition;
     private GameObject statusBar;
-    private StatusBar status;
+    private StatusBarModel statusBarModel;
     private GameObject loginScript;
     private Login login;
 
@@ -25,7 +25,7 @@ public class UserPosition : MonoBehaviour
     void Start()
     {
         statusBar = GameObject.Find("StatusBar");
-        status = statusBar.GetComponent<StatusBar>();
+        statusBarModel = statusBar.GetComponent<StatusBarModel>();
 
         loginScript = GameObject.Find("Login");
         login = loginScript.GetComponent<Login>();
@@ -48,11 +48,11 @@ public class UserPosition : MonoBehaviour
         }
 
     }
-    public StatusBar Status
+    public StatusBarModel StatusBarModel
     {
         get
         {
-            return status;
+            return statusBarModel;
         }
     }
 
@@ -78,7 +78,7 @@ public class UserPosition : MonoBehaviour
         z = CameraPosition.z.ToString("0.00");
       
         sceneName = SceneManager.GetActiveScene().name;
-        username = Status.username;
+        username = StatusBarModel.username;
         
         retrieveInfo();
     }
