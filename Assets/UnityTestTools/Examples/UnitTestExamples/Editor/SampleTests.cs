@@ -6,97 +6,83 @@ using UnityEngine;
 
 namespace UnityTest
 {
-    [TestFixture]
-    [Category("Sample Tests")]
-    internal class SampleTests
+    public class TestHplab
     {
-        [Test]
-        [Category("Failing Tests")]
-        public void ExceptionTest()
-        {
-            throw new Exception("Exception throwing test");
-        }
 
         [Test]
-        [Ignore("Ignored test")]
-        public void IgnoredTest()
+        public void Scorescheck()
         {
-            throw new Exception("Ignored this test");
+
+            var pointcounter = new PointCounter();
+            pointcounter.score = 50;
+            pointcounter.Addpoints();
+
+            Assert.AreEqual(60, pointcounter.score);
+
+
         }
+
 
         [Test]
-        [MaxTime(100)]
-        [Category("Failing Tests")]
-        public void SlowTest()
+        public void Statusbar()
         {
-            Thread.Sleep(200);
+
+            var statusbar = new StatusBarModel();
+            statusbar.username = "Anny";
+
+            Assert.IsNotEmpty(statusbar.username);
+
+
         }
+
 
         [Test]
-        [Category("Failing Tests")]
-        public void FailingTest()
+        public void DateTimeCheck()
         {
-            Assert.Fail();
+
+            var time = new Playedtime();
+            time.starttime = time.endtime;
+            Assert.AreEqual(time.starttime, time.endtime);
+
+
+
         }
+
 
         [Test]
-        [Category("Failing Tests")]
-        public void InconclusiveTest()
+        public void DateTimeCheckNOT()
         {
-            Assert.Inconclusive();
+
+            var time = new Playedtime();
+            time.starttime = time.endtime;
+            Assert.AreNotEqual(time.starttime, time.endtime);
+
+
+
         }
+
+
+
 
         [Test]
-        public void PassingTest()
+        public void cheatest()
         {
-            Assert.Pass();
+            var PanelMan = new PanelMan();
+            var question = new DoneButton();
+
+            var exerciseOne = new int[] { 7, 11, 4, 11, 5, 16, 0, 0, 0, 16, 2, 0, 0, 0, 16, 8, 11, 14, 11, 6, 0, 0, 0, 0, 0 };
+            var cheatbutton = new int[] { 7, 11, 4, 11, 5, 16, 0, 0, 0, 16, 2, 0, 0, 0, 16, 8, 11, 14, 11, 6, 0, 0, 0, 0, 0 };
+            var test = PanelMan.CheckArray(exerciseOne, cheatbutton);
+
+            Assert.AreEqual(false, test);
+
         }
 
-        [Test]
-        public void ParameterizedTest([Values(1, 2, 3)] int a)
-        {
-            Assert.Pass();
-        }
 
-        [Test]
-        public void RangeTest([NUnit.Framework.Range(1, 10, 3)] int x)
-        {
-            Assert.Pass();
-        }
-
-        [Test]
-        [Culture("pl-PL")]
-        public void CultureSpecificTest()
-        {
-        }
-
-        [Test]
-        [ExpectedException(typeof(ArgumentException), ExpectedMessage = "expected message")]
-        public void ExpectedExceptionTest()
-        {
-            throw new ArgumentException("expected message");
-        }
-
-        [Datapoint]
-        public double zero = 0;
-        [Datapoint]
-        public double positive = 1;
-        [Datapoint]
-        public double negative = -1;
-        [Datapoint]
-        public double max = double.MaxValue;
-        [Datapoint]
-        public double infinity = double.PositiveInfinity;
-
-        [Theory]
-        public void SquareRootDefinition(double num)
-        {
-            Assume.That(num >= 0.0 && num < double.MaxValue);
-
-            var sqrt = Math.Sqrt(num);
-
-            Assert.That(sqrt >= 0.0);
-            Assert.That(sqrt * sqrt, Is.EqualTo(num).Within(0.000001));
-        }
     }
+
+
+}
+
+
 }

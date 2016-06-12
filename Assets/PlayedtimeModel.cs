@@ -2,18 +2,34 @@
 using System.Collections;
 using System;
 
-public class PlayedtimeModel : MonoBehaviour {
+public class PlayedtimeModel : MonoBehaviour
+{
+
+    /*
+  * Created by Anny Aidinian.
+  * 
+  * Class that sends the played time back to the database
+  * 
+  */
+
 
     public DateTime starttime, endtime;
     private string Username;
-    private readonly string ip = "145.24.222.160";
+    private readonly string Ip = "145.24.222.160";
 
     // Use this for initialization
-    void Start () {
-	
-	}
+    void Start()
+    {
 
-    // Sending the score bacck to database with including username and score
+    }
+
+
+
+    /*
+  * Sends back the played time by the user,
+  * including begin and endtime
+  * Triggered when user succesfully achieves excerise  
+  */
     public void SendInfo()
     {
         Playedtime timer = GameObject.Find("Timer").GetComponent<Playedtime>();
@@ -22,7 +38,7 @@ public class PlayedtimeModel : MonoBehaviour {
         endtime = timer.endtime;
 
         // php file from server where savingtime is processing
-        string url = "http://" + ip + "/saveTime.php";
+        string url = "http://" + Ip + "/saveTime.php";
 
         WWWForm form = new WWWForm();
 
@@ -46,7 +62,7 @@ public class PlayedtimeModel : MonoBehaviour {
         }
         else
         {
-            // Debug.Log(www.text + "saveInfo");
+            Debug.Log(www.text + "saveInfo");
         }
 
     }

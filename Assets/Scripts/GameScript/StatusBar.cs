@@ -2,21 +2,26 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
+
+/*
+ * Created by Anny Aidinian.
+ * 
+ * Class that activates the statusBar
+ *
+ */
+
+
 public class StatusBar : MonoBehaviour
 {
-  
     public Login login;
     public UIMan gui;
-  
+
     void Start()
     {
         login = login.GetComponent<Login>();
         gui = gui.GetComponent<UIMan>();
- 
-  
     }
 
-    // Managing that the statusbar game object wont be destoyed so it can be used in the garage scene
     void Awake()
     {
         DontDestroyOnLoad(this);
@@ -25,8 +30,6 @@ public class StatusBar : MonoBehaviour
 
     public UIMan GUI
     {
-
-
         get
         {
             return gui;
@@ -41,10 +44,13 @@ public class StatusBar : MonoBehaviour
         }
     }
 
+    /*
+    * Starts GUI elements if the condition is met.
+    * Starts process in the statubarcontroller.
+    */
+
     void OnGUI()
     {
-        // set userinformation to statusbar after login completed
-       
         var CurrentMenu = login.CurrentMenu;
         if (CurrentMenu == null)
         {

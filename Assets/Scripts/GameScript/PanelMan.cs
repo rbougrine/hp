@@ -4,32 +4,22 @@ using System.Collections;
 public class PanelMan : MonoBehaviour
 {
 
+    /*
+     * Created by Randa Bougrine & Anny Aidinian.
+     * 
+     * Class managing changes in the panel
+     * 
+     */
+
     public Texture[] texture;
     public int[] userInput;
-
-    public Texture one;
-    public Texture two;
-    public Texture three;
-    public Texture four;
-    public Texture five;
-    public Texture six;
-    public Texture seven;
-    public Texture eight;
-    public Texture nine;
-    public Texture ten;
-    public Texture eleven;
-    public Texture twelve;
-    public Texture thirteen;
-    public Texture fourteen;
-    public Texture fifteen;
-    public Texture sixteen;
-    public Texture seventeen;
-    public Texture empty;
-   
     int countWrong, countGood;
     private string result;
-   
-    // Use this for initialization
+
+    public Texture one, two, three, four, five, six, seven, eight, nine, ten,
+    eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, empty;
+
+
     void Start()
     {
         texture = new Texture[18];
@@ -52,7 +42,7 @@ public class PanelMan : MonoBehaviour
         texture[15] = fifteen;
         texture[16] = sixteen;
         texture[17] = seventeen;
-       
+
     }
 
 
@@ -78,10 +68,14 @@ public class PanelMan : MonoBehaviour
 
     public Texture GiveTexture(int indicator)
     {
-       return texture[indicator];
+        return texture[indicator];
     }
-    
-    //test method, checks if the done button works.
+
+
+    /*
+    * Resolves the puzzel when triggered  
+    */
+
     public void CheatState(int[] exercise)
     {
         Transform[] allChildren = GetComponentsInChildren<Transform>();
@@ -95,7 +89,11 @@ public class PanelMan : MonoBehaviour
         }
     }
 
-    //read the input of the user
+
+
+    /*
+    * Fetch currentstatus state  of user input.
+    */
     public void ReadState()
     {
         Transform[] allChildren = GetComponentsInChildren<Transform>();
@@ -111,13 +109,19 @@ public class PanelMan : MonoBehaviour
 
     }
 
-    //compare the userinput with the exercise array, also check if they have the same length
-    //count the amount of the good and wrong places the user put the pipes in
+
+
+
+    /*
+    * Checks if exerciese is done right
+    * by checking user input answer length equals excersie length answer.
+    */
+
     public bool CheckArray(int[] userInput, int[] exercise)
     {
         for (int i = 0; i < exercise.Length; i++)
         {
-           // Debug.Log(exercise[i]);
+            // Debug.Log(exercise[i]);
 
         }
         if (exercise.Length != userInput.Length)
@@ -133,7 +137,8 @@ public class PanelMan : MonoBehaviour
                 {
                     countWrong++;
 
-                } else if (exercise[i] == userInput[i])
+                }
+                else if (exercise[i] == userInput[i])
                 {
                     countGood++;
                 }
@@ -150,7 +155,7 @@ public class PanelMan : MonoBehaviour
             else
             {
                 Result = "TryAgain";
-                Debug.Log("Good:"+countGood+"Wrong:"+countWrong);
+                Debug.Log("Good:" + countGood + "Wrong:" + countWrong);
                 countWrong = 0;
                 countGood = 0;
                 return false;
@@ -158,8 +163,8 @@ public class PanelMan : MonoBehaviour
 
 
         }
-      
-         
+
+
 
     }
 

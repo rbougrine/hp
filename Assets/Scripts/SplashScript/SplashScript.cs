@@ -6,6 +6,13 @@ using UnityEngine.SceneManagement;
 public class SplashScript : MonoBehaviour
 {
 
+    /*
+    * Created by Anny Aidinian.
+    * 
+    * Class handels splash process
+    * 
+    */
+
     public float loadingTime;
     public Image loadingBar;
     public Text percent;
@@ -27,8 +34,8 @@ public class SplashScript : MonoBehaviour
         }
         if (loadingBar.fillAmount == 1.0f)
         {
-			SceneManager.LoadScene ("Game");
-			Debug.Log ("Splash done get to game");
+            SceneManager.LoadScene("Game");
+            Debug.Log("Splash done get to game");
         }
         percent.text = (loadingBar.fillAmount * 100).ToString("f0");
     }

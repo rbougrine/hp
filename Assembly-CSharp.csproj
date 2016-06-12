@@ -109,7 +109,7 @@
      <Compile Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\Vortex.cs" />
      <Compile Include="Assets\PlayedtimeModel.cs" />
      <Compile Include="Assets\PointerCounterModel.cs" />
-     <Compile Include="Assets\Scripts\DoorScript\Door.cs" />
+     <Compile Include="Assets\Scripts\DoorScript\door.cs" />
      <Compile Include="Assets\Scripts\GameScript\DoneButton.cs" />
      <Compile Include="Assets\Scripts\GameScript\ExerciseChanger.cs" />
      <Compile Include="Assets\Scripts\GameScript\PanelMan.cs" />
@@ -121,6 +121,8 @@
      <Compile Include="Assets\Scripts\GameScript\StatusBarModel.cs" />
      <Compile Include="Assets\Scripts\InfoToggler.cs" />
      <Compile Include="Assets\Scripts\LoginScript\Login.cs" />
+     <Compile Include="Assets\Scripts\LoginScript\LoginController.cs" />
+     <Compile Include="Assets\Scripts\LoginScript\SwitchingScenes.cs" />
      <Compile Include="Assets\Scripts\SplashScript\SplashScript.cs" />
      <Compile Include="Assets\Scripts\UserPosition.cs" />
      <Compile Include="Assets\Scripts\Walk.cs" />
@@ -202,6 +204,7 @@
      <None Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\FisheyeShader.shader" />
      <None Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\AngryBotsTests\Shaders\Fx\Multiply.shader" />
      <None Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\Apply.shader" />
+     <None Include="Assets\Resources\testscenes.txt" />
      <None Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\frag_ao.cginc" />
      <None Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\AngryBotsTests\Shaders\BackgroundAndCharacters\CharacterSelfIlluminationReflective.shader" />
      <None Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\AngryBotsTests\Shaders\BackgroundAndCharacters\PlanarRealtimeReflection.shader" />
@@ -233,6 +236,7 @@
      <None Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\BlurEffectConeTaps.shader" />
      <None Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\CameraMotionBlur.shader" />
      <None Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\DLAA.shader" />
+     <None Include="Assets\Resources\networkconfig.txt" />
      <None Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\NoiseAndGrainDX11.shader" />
      <None Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\AngryBotsTests\Shaders\Fx\LaserScope.shader" />
      <None Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\AngryBotsTests\Shaders\BackgroundAndCharacters\SuperSimpleSelfIllumination.shader" />

@@ -5,6 +5,14 @@ using System.Globalization;
 
 public class Playedtime : MonoBehaviour
 {
+    /*
+   * Created by Anny Aidinian.
+   * 
+   * Class that manages which information box is set visible
+   * 
+   */
+
+
     // Globale variable used in PlayedTime script
     private IEnumerator timer;
     private string time;
@@ -16,11 +24,11 @@ public class Playedtime : MonoBehaviour
     public UiManG gui;
     private GameObject Gui;
     public DateTime starttime, endtime;
-    
+
 
     void Start()
     {
-        // Get informatie 
+
         Getinformation();
         timer = Playtimer();
         gui = Gui.GetComponent<UiManG>();
@@ -34,39 +42,50 @@ public class Playedtime : MonoBehaviour
 
         }
     }
+    /*
+    * Triggers when the user clicks on the Start game object.
+    * current time is selected as starttime
+    */
 
-    public void Donetime() {
-     
+    public void StartTimer()
+    {
+        starttime = DateTime.Now;
+        StartCoroutine(timer);
+        starttime.ToLongDateString();
+
+    }
+
+
+
+    /*
+    * Triggers when the user succesfully is done with the exercise.
+    * current time is selected as endtime
+    */
+
+    public void Donetime()
+    {
+
         StopCoroutine(timer);
         endtime = DateTime.Now;
-        Debug.Log(endtime);
-        Debug.Log("ik eindig");
+       
+       
         PlayedtimeModel Timer = GameObject.Find("Timer").GetComponent<PlayedtimeModel>();
-     
+
         time = hours.ToString() + minutes.ToString() + seconds.ToString();
-        Debug.Log(time);
+      
         Timer.SendInfo();
-        Debug.Log("Total time played by user has been send to the database");
-        Debug.Log("gespeelde tijd");
         Debug.Log(endtime - starttime);
 
 
     }
 
-    public void StartTimer()
+    /*
+    * Timer for the GUI is created and when puzzel game is started
+    *
+    */
+    public IEnumerator Playtimer()
     {
-        starttime = DateTime.Now;
-        Debug.Log(starttime);
-        Debug.Log("ik begin");
-        StartCoroutine(timer);
-        starttime.ToLongDateString();
-        
-    }
 
-
-    public  IEnumerator Playtimer()
-    {
-       // Timer created and set as courtine 
         while (true)
         {
             yield return new WaitForSeconds(1);
@@ -74,30 +93,34 @@ public class Playedtime : MonoBehaviour
             seconds = (playtime % 60);
             minutes = (playtime / 60) % 60;
             hours = (playtime / 3600) % 24;
-      
-            
+
+
         }
 
     }
 
+
+
+    /*
+     * Fetches the user information from the Statusbar
+     */
     void Getinformation()
     {
-        /*
-        - Get username from statusbar of the current user
-        - To use for updating the  users score in the game tabel
-        */
+
         GameObject statusbar = GameObject.Find("StatusBar");
         StatusBarModel status = statusbar.GetComponent<StatusBarModel>();
-   
-        // set username from status to Username 
+
         Username = status.username;
         Debug.Log(Username);
 
-   
+
 
     }
 
 
+    /*
+    * Starts the GUI to draw the timer
+    */
     void OnGUI()
     {
 

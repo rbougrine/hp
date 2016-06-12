@@ -1,24 +1,40 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PointerCounterModel : MonoBehaviour {
+public class PointerCounterModel : MonoBehaviour
+{
+
+
+    /*
+    * Created by Anny Aidinian.
+    * 
+    * Class that sends the score back to the database
+    * 
+    */
+
     public string username;
     public int score;
-    private readonly string ip = "145.24.222.160";
-    // Use this for initialization
-    void Start () {
+    private readonly string Ip = "145.24.222.160";
 
-       
+
+    void Start()
+    {
+
+
     }
-	
-    // Sending the score bacck to the database with including username and score
-  public void SendInfo()
+
+    /*
+    * Sends back the points obtained by the user
+    * Triggered when user succesfully achieves excerise  
+    */
+
+    public void SendInfo()
     {
         PointCounter scoree = GameObject.Find("Score").GetComponent<PointCounter>();
         username = scoree.username;
         score = scoree.score;
 
-        string url = "http://" + ip + "/saveScore.php";
+        string url = "http://" + Ip + "/saveScore.php";
 
         WWWForm form = new WWWForm();
 
@@ -41,7 +57,7 @@ public class PointerCounterModel : MonoBehaviour {
         }
         else
         {
-             Debug.Log(www.text + "saveInfo");
+            Debug.Log(www.text + "saveInfo");
         }
 
     }
