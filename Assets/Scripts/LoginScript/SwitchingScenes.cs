@@ -137,15 +137,15 @@ public class SwitchingScenes : MonoBehaviour
 
             if (sceneName == "Game")
             {
-               changeCameraPosition();
+               ChangeCameraPosition();
             }
             else
             {
-                loadingScenes(sceneName);
+                LoadingScenes(sceneName);
 
                 if (sceneLoading.isDone == true)
                 {
-                    changeCameraPosition();
+                    ChangeCameraPosition();
                 }
             }
         }
