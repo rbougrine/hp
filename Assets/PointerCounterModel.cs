@@ -18,12 +18,13 @@ public class PointerCounterModel : MonoBehaviour {
         username = scoree.username;
         score = scoree.score;
 
-        string url = "http://" + ip + "/saveScore.php";
+        string url = "http://" + ip + "/Unity_apply/controller.php";
 
         WWWForm form = new WWWForm();
 
         form.AddField("username", username);
         form.AddField("score", score);
+        form.AddField("Job","SaveScore");
         WWW www = new WWW(url, form);
 
         StartCoroutine(saveInfo(www));

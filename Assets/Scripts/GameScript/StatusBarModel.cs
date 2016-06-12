@@ -33,12 +33,12 @@ public class StatusBarModel : MonoBehaviour {
    
         username = login.Username;
 
-        string url = "http://" + ip + "/getInfo.php";
+        string url = "http://" + ip + "/Unity_apply/controller.php";
 
-     
+
         WWWForm form = new WWWForm();
         form.AddField("Username", username);
-
+        form.AddField("Job","GetInfo");
 
         WWW www = new WWW(url, form);
 

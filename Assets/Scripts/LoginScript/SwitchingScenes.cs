@@ -68,10 +68,11 @@ public class SwitchingScenes : MonoBehaviour
 
     public void checkPosition()
     {
-        string url = "http://" + ip + "/checkPosition.php";
+        string url = "http://" + ip + "/Unity_apply/controller.php";
 
         WWWForm form = new WWWForm();
         form.AddField("username", Login.Username);
+        form.AddField("Job","CheckPosition");
         WWW www = new WWW(url, form);
 
         StartCoroutine(PositionStatus(www));

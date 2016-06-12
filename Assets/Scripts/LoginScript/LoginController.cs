@@ -51,11 +51,12 @@ public class LoginController : MonoBehaviour {
     //sending the username and password to the database to login into the game
     public void Authorization()
     {
-        string url = "http://" + ip + "/LoginAccount.php";
+        string url = "http://" + ip + "/Unity_apply/controller.php";
 
         WWWForm form = new WWWForm();
         form.AddField("Username", LoginScript.Username);
         form.AddField("Password", LoginScript.Password);
+        form.AddField("Job", "LoginAccount");
         WWW www = new WWW(url, form);
 
         StartCoroutine(LoginAccount(www));
@@ -65,11 +66,12 @@ public class LoginController : MonoBehaviour {
     //sending the new username and password to the database to register
     public void Register()
     {
-        string url = "http://" + ip + "/CreateAccount.php";
+        string url = "http://" + ip + "/Unity_apply/controller.php";
 
         WWWForm form = new WWWForm();
         form.AddField("Username", LoginScript.CUsername);
         form.AddField("Password", LoginScript.CPassword);
+        form.AddField("Job", "RegisterAccount");
         WWW www = new WWW(url, form);
         
         StartCoroutine(CreateAccount(www));

@@ -6,6 +6,7 @@ public class UserPosition : MonoBehaviour
 {
     //public variable
     public string sceneName, username;
+    private readonly string ip = "145.24.222.160";
     public string x, y, z;
     public float X, Y, Z;
 
@@ -86,14 +87,15 @@ public class UserPosition : MonoBehaviour
     //Save the new position data to the database to be saved with the current scene name.
     void sendInfo()
     {
-        string url = "http://145.24.222.160/savePosition.php";
- 
+        string url = "http://" + ip + "/Unity_apply/controller.php";
+
         WWWForm form = new WWWForm();
         form.AddField("x", x);
         form.AddField("y", y);
         form.AddField("z", z);
         form.AddField("username", username);
         form.AddField("scene", sceneName);
+        form.AddField("Job","SavePosition");
         WWW www = new WWW(url, form);
 
         StartCoroutine(saveInfo(www));
@@ -103,11 +105,12 @@ public class UserPosition : MonoBehaviour
     //Get the recent saved position data from the database
     void retrieveInfo()
     {
-        string url = "http://145.24.222.160/retrievePosition.php";
+        string url = "http://" + ip + "/Unity_apply/controller.php";
 
         WWWForm form = new WWWForm();
         form.AddField("username", username);
         form.AddField("sceneName",sceneName);
+        form.AddField("Job","RetrievePosition");
         WWW www = new WWW(url, form);
       
         StartCoroutine(getInfo(www));

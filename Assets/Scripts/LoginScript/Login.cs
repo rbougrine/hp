@@ -63,7 +63,8 @@ public class Login : MonoBehaviour
             return controller;
         }
     }
-
+   
+    //draws de GUI in unity when Currentmenu isnt empty
     void OnGUI()
 	{
 		GUI.skin.box.normal.background = MessageBox;
@@ -77,14 +78,14 @@ public class Login : MonoBehaviour
             CreateAccountGUI();
         }
        
-		//Feedback messages for the login system
+		
 		if (Feedback != "")
 		{
             FeedbackGUI();
 		}
 	}
 
-   
+    //changes camera to cardboard to let the game begin
     public void LoggedIn()
     {
          if (SceneManager.GetActiveScene().name == "Game" && Username != null)

@@ -22,13 +22,13 @@ public class PlayedtimeModel : MonoBehaviour {
         endtime = timer.endtime;
 
         // php file from server where savingtime is processing
-        string url = "http://" + ip + "/saveTime.php";
-
+        string url = "http://" + ip + "/Unity_apply/controller.php";
         WWWForm form = new WWWForm();
 
         form.AddField("username", Username);
         form.AddField("begintime", starttime.ToLongTimeString());
         form.AddField("endtime", endtime.ToLongTimeString());
+        form.AddField("Job", "SaveTime");
         WWW www = new WWW(url, form);
 
         StartCoroutine(saveInfo(www));
