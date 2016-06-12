@@ -94,7 +94,7 @@ public class LoginController : MonoBehaviour {
                 LoginScript.CurrentMenu = null;
 
                 LoginScript.LoggedIn();
-                SwitchingScenes.checkPosition();
+                SwitchingScenes.CheckPosition();
 
                 StatusBarModel.Getinfo();
             }

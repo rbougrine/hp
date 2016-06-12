@@ -26,11 +26,11 @@ public class Door : MonoBehaviour
 
     void Start()
     {
-        loginObject = GameObject.Find("Login");
-        login = loginObject.GetComponent<Login>();
-        switchingScenes = loginObject.GetComponent<SwitchingScenes>();
-        userPositionScript = GameObject.Find("CameraPosition");
-        userPosition = userPositionScript.GetComponent<UserPosition>();
+       loginObject = GameObject.Find("Login");
+       login = loginObject.GetComponent<Login>();
+       switchingScenes = loginObject.GetComponent<SwitchingScenes>();
+       userPositionScript = GameObject.Find("CameraPosition");
+       userPosition = userPositionScript.GetComponent<UserPosition>();
     }
 
     void Update()
@@ -86,12 +86,12 @@ public class Door : MonoBehaviour
     }
 
     //method called when clicked on a door
-    public void clickedOnDoor()
+    public void ClickedOnDoor()
     {
       
         if (CameraLooking)
         {
-              
+          
             if (SeenObject.parent.name == "Front_door")
             {
                 AskBoxFront.SetActive(true);
@@ -102,7 +102,7 @@ public class Door : MonoBehaviour
             }
              else
                 {
-                     StartCoroutine(doorMovement());
+                     StartCoroutine(DoorMovement());
                 }
         }
     }
@@ -128,7 +128,7 @@ public class Door : MonoBehaviour
     {
         if (SeenObject.name == "yes")
         {
-            doorTeleport();
+            DoorTeleport();
         }
         else
         {
@@ -139,7 +139,7 @@ public class Door : MonoBehaviour
 
     //Switching between garage and house
     //while changing the position of the camera to the saved position from the database
-    void doorTeleport()
+    void DoorTeleport()
     {
         UserPosition.collectInfo(); 
                
@@ -154,14 +154,14 @@ public class Door : MonoBehaviour
         {
            Debug.Log("Switching scenes to game");
 
-            SwitchingScenes.loadingScenes("Game");
+           //SwitchingScenes.loadingScenes("Game");
 
             
         }         
    
      }
      //Opening and closing the doors
-    IEnumerator doorMovement()
+    IEnumerator DoorMovement()
     {    
 
         if (CameraLooking)

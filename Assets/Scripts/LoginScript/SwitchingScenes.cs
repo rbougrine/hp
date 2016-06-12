@@ -66,7 +66,7 @@ public class SwitchingScenes : MonoBehaviour
 
     }
 
-    public void checkPosition()
+    public void CheckPosition()
     {
         string url = "http://" + ip + "/Unity_apply/controller.php";
 
@@ -78,7 +78,7 @@ public class SwitchingScenes : MonoBehaviour
         StartCoroutine(PositionStatus(www));
     }
 
-    public void loadingScenes(string levelName)
+    public void LoadingScenes(string levelName)
     {
         sceneLoading = SceneManager.LoadSceneAsync(levelName);
         sceneLoading.allowSceneActivation = false;
@@ -86,7 +86,7 @@ public class SwitchingScenes : MonoBehaviour
     }
  
     //Change position from the camera with the received new position from the database
-    public void changeCameraPosition()
+    public void ChangeCameraPosition()
     {
         UserPosition.CameraPosition = new Vector3(X, Y, Z);
         GameObject camera = GameObject.Find("CardboardMain");
