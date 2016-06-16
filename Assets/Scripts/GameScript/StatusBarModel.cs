@@ -2,24 +2,31 @@
 using System.Collections;
 
 
-public class StatusBarModel : MonoBehaviour {
+public class StatusBarModel : MonoBehaviour
+{
 
-    public string username;
+    /*
+    * Created by Anny Aidinian.
+    * 
+    * Class that retrieves data from the database. 
+    * And sends it to the class that request the data.
+    */
+
+
     public Login login;
     private GameObject logIn;
     public string Feedback = null;
     public int score;
-    public string InfoStatusbar;
-    public string InfoStatusbarScore;
+    public string username, InfoStatusbar, InfoStatusbarScore;
     private readonly string ip = "145.24.222.160";
 
-    // Use this for initialization
-    void Start () {
+
+    void Start()
+    {
 
         login = login.GetComponent<Login>();
-
     }
-	
+
     public Login Login
     {
         get
@@ -28,22 +35,32 @@ public class StatusBarModel : MonoBehaviour {
         }
     }
 
+
+    /*
+     * Fetches the data using the username.
+     * Given by the login class
+     */
+
     public void Getinfo()
     {
-   
+
         username = login.Username;
 
-        string url = "http://" + ip + "/Unity_apply/controller.php";
+        string url = "http://" + ip + "/getInfo.php";
 
 
         WWWForm form = new WWWForm();
         form.AddField("Username", username);
-        form.AddField("Job","GetInfo");
+
 
         WWW www = new WWW(url, form);
 
         StartCoroutine(userInfo(www));
     }
+
+    /*
+     * Fetches desired parts of the feedback string.
+     */
 
     IEnumerator userInfo(WWW www)
     {
@@ -57,17 +74,14 @@ public class StatusBarModel : MonoBehaviour {
         }
         else
         {
-            // Information the database sends back when succesfully logged in 
+
             Feedback = www.text;
-
-            // Retrieving parts of the information string from the datasbase 
-
             string[] position = Feedback.Split(',');
             InfoStatusbar = (position[0]);
-            //InfoStatusbarScore = (position[1]);
-            // Retrieve only score int from the database string www.text
+            InfoStatusbarScore = (position[1]);
+
             score = int.Parse(position[1]);
-            Debug.Log("SCORE IS HIER VAN DE DB" + score);
+
 
 
         }

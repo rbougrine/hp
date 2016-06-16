@@ -1,16 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class StartButton : MonoBehaviour {
+public class StartButton : MonoBehaviour
+{
 
- 
+    /*
+   * Created by Randa Bougrine & Anny Aidinian.
+   * 
+   * Class that managed the randomizing process
+   * 
+   */
+
     public Texture[] exercise;
     public int[] currentExercise;
 
     public Texture begin;
-    public Texture one;
-    public Texture two;
-    public Texture three;
+    public Texture one, two, three;
     public int randomnumber;
     public GameObject manager;
     private ExerciseChanger changer;
@@ -19,8 +24,8 @@ public class StartButton : MonoBehaviour {
     private Playedtime timee;
     public GameObject Timerbegin;
 
-    // Use this for initialization
-    void Start ()
+
+    void Start()
     {
         done = DoneButton.GetComponent<DoneButton>();
         changer = manager.GetComponent<ExerciseChanger>();
@@ -31,10 +36,10 @@ public class StartButton : MonoBehaviour {
         exercise[1] = one;
         exercise[2] = two;
         exercise[3] = three;
-        
-     
+
+
     }
-  
+
     public ExerciseChanger Changer
     {
         get
@@ -51,7 +56,7 @@ public class StartButton : MonoBehaviour {
         }
     }
 
-   
+
     public Playedtime Timee
     {
         get
@@ -67,23 +72,29 @@ public class StartButton : MonoBehaviour {
         return exercise[indicator];
     }
 
-  
+
+
+
     public void Starttijd()
     {
         timee.StartTimer();
     }
 
-    //start button chooses a randomnumber that will choose which exercise will be shown
+
+    /*
+    * Randomizing the excercises that will be shown
+    */
+
     public void BeginState()
     {
-    
+
         randomnumber = Random.Range(1, 4);
         ExerciseChooser();
 
         switch (randomnumber)
-         {
+        {
             case 1:
-                Changer.currentExercise = 1;          
+                Changer.currentExercise = 1;
                 break;
             case 2:
                 Changer.currentExercise = 2;
@@ -94,9 +105,12 @@ public class StartButton : MonoBehaviour {
 
         }
 
+    }
 
 
-        }
+    /*
+    * Manages which exercise is assigned to the random number 
+    */
 
     public void ExerciseChooser()
     {
@@ -115,7 +129,7 @@ public class StartButton : MonoBehaviour {
 
     }
 
-} 
+}
 
 
 
