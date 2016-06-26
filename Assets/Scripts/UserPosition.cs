@@ -16,11 +16,12 @@ public class UserPosition : MonoBehaviour
     private StatusBarModel statusBarModel;
     private GameObject loginScript;
     private Login login;
+    private SwitchingScenes switchScene;
 
     //This script will continue to be used even when the scenes are switched
     void Awake()
     {
-        DontDestroyOnLoad(this); 
+      
     }
 
     void Start()
@@ -30,15 +31,14 @@ public class UserPosition : MonoBehaviour
 
         loginScript = GameObject.Find("Login");
         login = loginScript.GetComponent<Login>();
-
+        switchScene = loginScript.GetComponent<SwitchingScenes>();
+        switchScene.changePosition();
     }
 
     void Update()
     {
-       if (LoginScript.camera2 != null && LoginScript.camera2.activeSelf)
-       {
-           cameraPosition = GameObject.Find("CardboardMain").transform.position;
-       }
+        cameraPosition = GameObject.Find("CardboardMain").transform.position;
+        
     }
 
     public Login LoginScript
@@ -73,7 +73,8 @@ public class UserPosition : MonoBehaviour
     //and the username which will be send to retrieveInfo()
     public void collectInfo()
     {
-      
+        Debug.Log("4");
+       
         x = CameraPosition.x.ToString("0.00");
         y = CameraPosition.y.ToString("0.00");
         z = CameraPosition.z.ToString("0.00");

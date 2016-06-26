@@ -21,17 +21,21 @@ public class Playedtime : MonoBehaviour
     public int seconds = 0;
     public int minutes = 0;
     public int hours = 0;
-    public UiManG gui;
-    private GameObject Gui;
+    private UiManG gui;
+    private GameObject Gui, statusbar;
     public DateTime starttime, endtime;
+    private StatusBarModel model;
 
 
     void Start()
     {
-
-        Getinformation();
         timer = Playtimer();
+        Gui = GameObject.Find("UiManG");
         gui = Gui.GetComponent<UiManG>();
+        statusbar = GameObject.Find("StatusBar");
+        model = statusbar.GetComponent<StatusBarModel>();
+        Username = model.username;
+        Debug.Log(Username);
     }
 
     public UiManG GUI
@@ -42,11 +46,11 @@ public class Playedtime : MonoBehaviour
 
         }
     }
+
     /*
     * Triggers when the user clicks on the Start game object.
     * current time is selected as starttime
     */
-
     public void StartTimer()
     {
         starttime = DateTime.Now;
@@ -100,31 +104,13 @@ public class Playedtime : MonoBehaviour
     }
 
 
-
-    /*
-     * Fetches the user information from the Statusbar
-     */
-    void Getinformation()
-    {
-
-        GameObject statusbar = GameObject.Find("StatusBar");
-        StatusBarModel status = statusbar.GetComponent<StatusBarModel>();
-
-        Username = status.username;
-        Debug.Log(Username);
-
-
-
-    }
-
-
     /*
     * Starts the GUI to draw the timer
     */
     void OnGUI()
     {
 
-        gui.TimerDisplay();
+        GUI.TimerDisplay();
 
 
     }

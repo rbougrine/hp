@@ -14,7 +14,7 @@ public class Login : MonoBehaviour
     public string Feedback = "";
     public Texture2D MessageBox = null;
     public string Username, CUsername;
-    public GameObject camera1, camera2, EventSystem;
+  
 
     //Private Variables
     private GameObject loginScript;
@@ -22,14 +22,22 @@ public class Login : MonoBehaviour
     private string cpassword = "";
     private string ConfirmPassword = "";
     private LoginController controller;
-    
-	#endregion variables
+    private SwitchingScenes switchingScenes;
 
-	// Use this for initialization
-	void Start()
+    #endregion variables
+
+
+    void Awake()
+    {
+        DontDestroyOnLoad(this);
+    }
+    
+    // Use this for initialization
+    void Start()
 	{
         loginScript = GameObject.Find("Login");
         controller = loginScript.GetComponent<LoginController>();
+        switchingScenes = loginScript.GetComponent<SwitchingScenes>();
     }
 
     public string Password
@@ -63,7 +71,15 @@ public class Login : MonoBehaviour
             return controller;
         }
     }
-   
+    public SwitchingScenes SwitchingScenes
+    {
+        get
+        {
+            return switchingScenes;
+
+        }
+
+    }
     //draws de GUI in unity when Currentmenu isnt empty
     void OnGUI()
 	{
@@ -85,14 +101,13 @@ public class Login : MonoBehaviour
 		}
 	}
 
-    //changes camera to cardboard to let the game begin
+    //switches scene to users last visited one
     public void LoggedIn()
     {
-         if (SceneManager.GetActiveScene().name == "Game" && Username != null)
+        if (SceneManager.GetActiveScene().name == "Garage" && logged == true)
         {
-             camera1.SetActive(false);
-             camera2.SetActive(true);
-             EventSystem.SetActive(true);
+            Debug.Log("succes");
+           // EventSystem.SetActive(true);
         }
     }
 

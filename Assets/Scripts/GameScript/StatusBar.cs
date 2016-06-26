@@ -13,13 +13,18 @@ using UnityEngine.SceneManagement;
 
 public class StatusBar : MonoBehaviour
 {
-    public Login login;
-    public UIMan gui;
+    private Login login;
+    private GameObject loginScript, guiScript;
+    private UIMan gui;
 
     void Start()
-    {
-        login = login.GetComponent<Login>();
-        gui = gui.GetComponent<UIMan>();
+    {       
+            loginScript = GameObject.Find("Login");
+            guiScript = GameObject.Find("UiMan");
+
+            login = loginScript.GetComponent<Login>();
+            gui = guiScript.GetComponent<UIMan>();
+      
     }
 
     void Awake()
@@ -51,10 +56,10 @@ public class StatusBar : MonoBehaviour
 
     void OnGUI()
     {
-        var CurrentMenu = login.CurrentMenu;
+        var CurrentMenu = Login.CurrentMenu;
         if (CurrentMenu == null)
         {
-            gui.Bar();
+            GUI.Bar();
         }
 
 

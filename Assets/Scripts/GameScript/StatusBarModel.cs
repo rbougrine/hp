@@ -13,8 +13,8 @@ public class StatusBarModel : MonoBehaviour
     */
 
 
-    public Login login;
-    private GameObject logIn;
+    private Login login;
+    private GameObject loginScript;
     public string Feedback = null;
     public int score;
     public string username, InfoStatusbar, InfoStatusbarScore;
@@ -23,8 +23,9 @@ public class StatusBarModel : MonoBehaviour
 
     void Start()
     {
-
-        login = login.GetComponent<Login>();
+        loginScript = GameObject.Find("Login");
+        login = loginScript.GetComponent<Login>();
+        Getinfo();
     }
 
     public Login Login
@@ -41,10 +42,10 @@ public class StatusBarModel : MonoBehaviour
      * Given by the login class
      */
 
-    public void Getinfo()
+    void Getinfo()
     {
 
-        username = login.Username;
+        username = Login.Username;
 
         string url = "http://" + ip + "/getInfo.php";
 

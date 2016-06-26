@@ -18,6 +18,8 @@ public class UIMan : MonoBehaviour
     public int score;
     public GUIStyle labelStyle, scorestyle;
     private StatusBarModel statusBar;
+    private GameObject loginScript;
+    private SwitchingScenes switchScene;
 
 
 
@@ -26,7 +28,7 @@ public class UIMan : MonoBehaviour
     {
 
         statusBar = statusbar.GetComponent<StatusBarModel>();
-
+     
     }
 
 

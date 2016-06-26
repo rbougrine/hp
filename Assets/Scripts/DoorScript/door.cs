@@ -29,7 +29,7 @@ public class Door : MonoBehaviour
        loginObject = GameObject.Find("Login");
        login = loginObject.GetComponent<Login>();
        switchingScenes = loginObject.GetComponent<SwitchingScenes>();
-       userPositionScript = GameObject.Find("CameraPosition");
+       userPositionScript = GameObject.Find("UserPosition");
        userPosition = userPositionScript.GetComponent<UserPosition>();
     }
 
@@ -111,27 +111,31 @@ public class Door : MonoBehaviour
     {
         if (SeenObject.name == "yes")
         {
-            LoginScript.camera1.SetActive(true);
-            LoginScript.camera2.SetActive(false);
             LoginScript.logged = false;
-            LoginScript.CurrentMenu = "Login";
+            SceneManager.LoadScene("Login");
             
         }
         else
         {
-            Debug.Log(LoginScript.logged+"loggedIn");
-            AskBoxFront.SetActive(false);
+             AskBoxFront.SetActive(false);
         }
     }
 
     public void toRoom()
     {
+        if (SceneManager.GetActiveScene().name == "Game")
+        {
+            SwitchingScenes.LoadingScenes("Garage");
+        }
+        else
+            Debug.Log(SeenObject.name);
         if (SeenObject.name == "yes")
         {
-            DoorTeleport();
+          DoorTeleport();
         }
         else
         {
+            Debug.Log(SeenObject.name);
             AskBox.SetActive(false);
         }
 
@@ -141,20 +145,21 @@ public class Door : MonoBehaviour
     //while changing the position of the camera to the saved position from the database
     void DoorTeleport()
     {
-        UserPosition.collectInfo(); 
-               
+       
+        UserPosition.collectInfo();
+     
         if (UserPosition.sceneName == "Game")
         {
             Debug.Log("Switching scenes to garage");
 
-            SwitchingScenes.loadingScenes("Garage");
+            SwitchingScenes.LoadingScenes("Garage");
            
         }
         else
         {
            Debug.Log("Switching scenes to game");
-
-           //SwitchingScenes.loadingScenes("Game");
+        
+          SwitchingScenes.LoadingScenes("Game");
 
             
         }         

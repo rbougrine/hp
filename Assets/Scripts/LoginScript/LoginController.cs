@@ -14,11 +14,11 @@ public class LoginController : MonoBehaviour {
     void Start ()
     {
         loginObject = GameObject.Find("Login");
-        StatusBarObject = GameObject.Find("StatusBar");
+    //    StatusBarObject = GameObject.Find("StatusBar");
 
         login = loginObject.GetComponent<Login>();
         switchingScenes = loginObject.GetComponent<SwitchingScenes>();
-        statusBarModel = StatusBarObject.GetComponent<StatusBarModel>();
+    //    statusBarModel = StatusBarObject.GetComponent<StatusBarModel>();
     }
 
     public Login LoginScript
@@ -80,7 +80,7 @@ public class LoginController : MonoBehaviour {
     IEnumerator LoginAccount(WWW www)
     {
         yield return www;
-
+       
         // check for errors
         if (www.error != null)
         {
@@ -92,14 +92,13 @@ public class LoginController : MonoBehaviour {
             {
                 LoginScript.logged = true;
                 LoginScript.CurrentMenu = null;
-
-                LoginScript.LoggedIn();
+                
                 SwitchingScenes.CheckPosition();
-
-                StatusBarModel.Getinfo();
+               
             }
             else
             {
+
                 LoginScript.Feedback = www.text;
             }
 
