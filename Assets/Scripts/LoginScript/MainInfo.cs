@@ -9,7 +9,7 @@ public class MainInfo : MonoBehaviour
 
     private readonly string ip;
     private string url;
-    private GameObject loginScript,userScript, door,statusBar, manager,uiMan, GoodJob, start, Point, timer, doneButton, timerbegin, uiManG;
+    private GameObject loginScript, userScript, score,door, statusBar, manager, uiMan, GoodJob, start, Point, timer, doneButton, timerbegin, uiManG;
     private LoginController controller;
     private SwitchingScenes switchingScenes;
     private UserPosition userPosition;
@@ -24,39 +24,80 @@ public class MainInfo : MonoBehaviour
     private ExerciseChanger changer;
     private UiManG garageGUI;
     private UIMan gameUI;
-  
+    private PointerCounterModel pointerCounterModel;
 
     public MainInfo()
     {
+        ip = "145.24.222.160";
+        url = "http://" + ip + "/Unity_apply/controller.php";
+
         loginScript = GameObject.Find("Login");
+
+        login = loginScript.GetComponent<Login>();
+        switchingScenes = loginScript.GetComponent<SwitchingScenes>();
+        controller = loginScript.GetComponent<LoginController>();
+
+        if (SceneManager.GetActiveScene().name != "Login")
+        {
+            InitializeScene();
+        }
+      
+    }
+
+
+    void InitializeScene()
+    {
         userScript = GameObject.Find("UserPosition");
         statusBar = GameObject.Find("StatusBar");
+        userPosition = userScript.GetComponent<UserPosition>();
+        statusBarModel = statusBar.GetComponent<StatusBarModel>();
+
+        if (SceneManager.GetActiveScene().name == "Game")
+        {
+            InitializeGame();
+           
+        }
+        else if (SceneManager.GetActiveScene().name == "Garage")
+        {
+            InitializeGarage();
+        }
+
+
+    }
+
+
+    void InitializeGame()
+    {
+        gameUI = GameObject.Find("UiMan").GetComponent<UIMan>();
+
+    }
+
+    void InitializeGarage()
+    {
+        ObjectsGarage();
+        startButton = start.GetComponent<StartButton>();
+        panelManager = manager.GetComponent<PanelMan>();
+        check = door.GetComponent<Door>();
+        points = Point.GetComponent<PointCounter>();
+        time = timer.GetComponent<Playedtime>();
+        changer = manager.GetComponent<ExerciseChanger>();
+        done = doneButton.GetComponent<DoneButton>();
+        garageGUI = uiManG.GetComponent<UiManG>();
+        pointerCounterModel = score.GetComponent<PointerCounterModel>();
+    }
+
+    
+    void ObjectsGarage()
+    {
+        score = GameObject.Find("Score");
         manager = GameObject.Find("Exercise");
         start = GameObject.Find("Start");
         door = GameObject.Find("Front_door");
         doneButton = GameObject.Find("Done");
         timerbegin = GameObject.Find("Timer");
         uiManG = GameObject.Find("UiManG");
-        uiMan = GameObject.Find("UiMan");
-
-        controller = loginScript.GetComponent<LoginController>();
-        login = loginScript.GetComponent<Login>();
-        switchingScenes = loginScript.GetComponent<SwitchingScenes>();  
-        userPosition = userScript.GetComponent<UserPosition>();
-        statusBarModel = statusBar.GetComponent<StatusBarModel>();
-        startButton = start.GetComponent<StartButton>();
-        panelManager = manager.GetComponent<PanelMan>();
-        check = door.GetComponent<Door>();
-        points = Point.GetComponent<PointCounter>();
-        time = timer.GetComponent<Playedtime>();
-        changer = manager.GetComponent<ExerciseChanger>();   
-        done = doneButton.GetComponent<DoneButton>();
-        garageGUI = uiManG.GetComponent<UiManG>();
-        gameUI = uiMan.GetComponent<UIMan>();
-
-        ip = "145.24.222.160";
-        url = "http://" + ip + "/Unity_apply/controller.php";
     }
+
 
     public string IP
     {
@@ -218,4 +259,11 @@ public class MainInfo : MonoBehaviour
 
     }
 
+    public PointerCounterModel PointerCounterModel
+    {
+        get
+        {
+            return pointerCounterModel;
+        }
+    }
 }

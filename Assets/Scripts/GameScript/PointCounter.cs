@@ -12,12 +12,12 @@ public class PointCounter : MonoBehaviour
 
     public int score;
     public string username;
+    private MainInfo mainInfo;
 
-
-
+   
     void Start()
     {
-
+        mainInfo = new MainInfo();
         Getinformation();
 
     }
@@ -28,14 +28,9 @@ public class PointCounter : MonoBehaviour
 
     void Getinformation()
     {
-        GameObject statusbar = GameObject.Find("StatusBar");
-        StatusBarModel status = statusbar.GetComponent<StatusBarModel>();
-        score = status.score;
-        username = status.username;
-
-
-
-
+      
+        score = mainInfo.StatusBarModel.score;
+        username = mainInfo.StatusBarModel.username;
     }
 
     /*
@@ -44,10 +39,9 @@ public class PointCounter : MonoBehaviour
 
     public void Addpoints()
     {
-        GameObject point = GameObject.Find("Score");
-        PointerCounterModel points = point.GetComponent<PointerCounterModel>();
+    
         score += 10;
-        points.SendInfo();
+        mainInfo.PointerCounterModel.SendInfo();
 
     }
 

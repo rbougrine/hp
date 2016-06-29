@@ -18,8 +18,7 @@ public class UiManG : MonoBehaviour
     private int hours = 0;
     private MainInfo mainInfo;
     public GUIStyle timetyle;
-    
-
+ 
 
     // Use this for initialization
     void Start()
