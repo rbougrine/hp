@@ -14,12 +14,12 @@ public class PointerCounterModel : MonoBehaviour
 
     public string username;
     public int score;
-    private readonly string Ip = "145.24.222.160";
+    private MainInfo mainInfo;
 
 
     void Start()
     {
-
+        mainInfo = new MainInfo();
 
     }
 
@@ -34,13 +34,14 @@ public class PointerCounterModel : MonoBehaviour
         username = scoree.username;
         score = scoree.score;
 
-        string url = "http://" + Ip + "/saveScore.php";
+   
 
         WWWForm form = new WWWForm();
 
         form.AddField("username", username);
         form.AddField("score", score);
-        WWW www = new WWW(url, form);
+        form.AddField("Job", "SaveScore");
+        WWW www = new WWW(mainInfo.URL, form);
 
         StartCoroutine(saveInfo(www));
 

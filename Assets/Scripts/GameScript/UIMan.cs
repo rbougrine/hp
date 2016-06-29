@@ -14,12 +14,9 @@ public class UIMan : MonoBehaviour
 
 
     public string InfoStatusbar, InfoStatusbarScore;
-    public GameObject statusbar;
     public int score;
     public GUIStyle labelStyle, scorestyle;
-    private StatusBarModel statusBar;
-    private GameObject loginScript;
-    private SwitchingScenes switchScene;
+    private MainInfo mainInfo;
 
 
 
@@ -27,7 +24,7 @@ public class UIMan : MonoBehaviour
     void Start()
     {
 
-        statusBar = statusbar.GetComponent<StatusBarModel>();
+        mainInfo = new MainInfo();
      
     }
 
@@ -43,18 +40,6 @@ public class UIMan : MonoBehaviour
     }
 
 
-
-    public StatusBarModel StatusBar
-    {
-        get
-        {
-
-            return statusBar;
-
-        }
-
-    }
-
     /*
      * Draws the GUI of the statusbar with userinformation.
      * Whichever condition is met, the score is fetches from other classes.
@@ -63,8 +48,8 @@ public class UIMan : MonoBehaviour
 
     public void Bar()
     {
-        InfoStatusbar = statusBar.InfoStatusbar;
-        InfoStatusbarScore = statusBar.InfoStatusbarScore;
+        InfoStatusbar = mainInfo.StatusBarModel.InfoStatusbar;
+        InfoStatusbarScore = mainInfo.StatusBarModel.InfoStatusbarScore;
         GUI.Box(new Rect(250, 150, 260, 20), InfoStatusbar, labelStyle);
 
         if (SceneManager.GetActiveScene().name == "Game")

@@ -3,48 +3,25 @@ using System.Collections;
 
 public class LoginController : MonoBehaviour {
 
-    private readonly string ip = "145.24.222.160";
-    private GameObject loginObject;
-    private Login login;
-    private SwitchingScenes switchingScenes;
-   
+    private MainInfo mainInfo;
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
-        loginObject = GameObject.Find("Login");
-        login = loginObject.GetComponent<Login>();
-        switchingScenes = loginObject.GetComponent<SwitchingScenes>();
+        mainInfo = new MainInfo();
     }
 
-    public Login LoginScript
-    {
-        get
-        {
-            return login;
-        }
 
-    }
-
-    public SwitchingScenes SwitchingScenes
-    {
-        get
-        {
-            return switchingScenes;
-        }
-
-    }
-    
     //sending the username and password to the database to login into the game
     public void Authorization()
     {
-        string url = "http://" + ip + "/Unity_apply/controller.php";
+      
 
         WWWForm form = new WWWForm();
-        form.AddField("Username", LoginScript.Username);
-        form.AddField("Password", LoginScript.Password);
+        form.AddField("Username", mainInfo.Login.Username);
+        form.AddField("Password", mainInfo.Login.Password);
         form.AddField("Job", "LoginAccount");
-        WWW www = new WWW(url, form);
+        WWW www = new WWW(mainInfo.URL, form);
 
         StartCoroutine(LoginAccount(www));
 
@@ -53,13 +30,11 @@ public class LoginController : MonoBehaviour {
     //sending the new username and password to the database to register
     public void Register()
     {
-        string url = "http://" + ip + "/Unity_apply/controller.php";
-
         WWWForm form = new WWWForm();
-        form.AddField("Username", LoginScript.CUsername);
-        form.AddField("Password", LoginScript.CPassword);
+        form.AddField("Username", mainInfo.Login.CUsername);
+        form.AddField("Password", mainInfo.Login.CPassword);
         form.AddField("Job", "RegisterAccount");
-        WWW www = new WWW(url, form);
+        WWW www = new WWW(mainInfo.URL, form);
         
         StartCoroutine(CreateAccount(www));
     }
@@ -71,22 +46,22 @@ public class LoginController : MonoBehaviour {
         // check for errors
         if (www.error != null)
         {
-             LoginScript.Feedback = www.error;
+             mainInfo.Login.Feedback = www.error;
         }
         else
         {
             if (www.text == "Login successful!")
             {
-                LoginScript.logged = true;
-                LoginScript.CurrentMenu = null;
+                mainInfo.Login.logged = true;
+                mainInfo.Login.CurrentMenu = null;
                 
-                SwitchingScenes.CheckPosition();
+                mainInfo.SwitchingScenes.CheckPosition();
                
             }
             else
             {
 
-                LoginScript.Feedback = www.text;
+                mainInfo.Login.Feedback = www.text;
             }
 
         }
@@ -100,18 +75,18 @@ public class LoginController : MonoBehaviour {
         // check for errors
         if (www.error != null)
         {
-            LoginScript.Feedback = www.error;
+            mainInfo.Login.Feedback = www.error;
         }
         else
         {
             if (www.text == "Registratie successful")
             {
-                LoginScript.Feedback = www.text;
-                LoginScript.CurrentMenu = "Login";
+                mainInfo.Login.Feedback = www.text;
+                mainInfo.Login.CurrentMenu = "Login";
             }
             else
             {
-                LoginScript.Feedback = www.text;
+                mainInfo.Login.Feedback = www.text;
             }
         }
 

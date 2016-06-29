@@ -58,6 +58,12 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
@@ -140,27 +146,28 @@
     <Compile Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\Twirl.cs" />
     <Compile Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\VignetteAndChromaticAberration.cs" />
     <Compile Include="Assets\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Scripts\Vortex.cs" />
-    <Compile Include="Assets\PlayedtimeModel.cs" />
-    <Compile Include="Assets\PointerCounterModel.cs" />
     <Compile Include="Assets\Scripts\DoorScript\Door.cs" />
     <Compile Include="Assets\Scripts\GameScript\DoneButton.cs" />
     <Compile Include="Assets\Scripts\GameScript\ExerciseChanger.cs" />
+    <Compile Include="Assets\Scripts\GameScript\GameInfo\Playedtime.cs" />
+    <Compile Include="Assets\Scripts\GameScript\GameInfo\PlayedtimeModel.cs" />
+    <Compile Include="Assets\Scripts\GameScript\GameInfo\PointerCounterModel.cs" />
+    <Compile Include="Assets\Scripts\GameScript\GameInfo\StatusBar.cs" />
+    <Compile Include="Assets\Scripts\GameScript\GameInfo\StatusBarModel.cs" />
+    <Compile Include="Assets\Scripts\GameScript\GameInfo\UiManG.cs" />
+    <Compile Include="Assets\Scripts\GameScript\InfoToggler.cs" />
     <Compile Include="Assets\Scripts\GameScript\PanelMan.cs" />
     <Compile Include="Assets\Scripts\GameScript\PipePanelChanger.cs" />
-    <Compile Include="Assets\Scripts\GameScript\Playedtime.cs" />
     <Compile Include="Assets\Scripts\GameScript\PointCounter.cs" />
     <Compile Include="Assets\Scripts\GameScript\StartButton.cs" />
-    <Compile Include="Assets\Scripts\GameScript\StatusBar.cs" />
-    <Compile Include="Assets\Scripts\GameScript\StatusBarModel.cs" />
-    <Compile Include="Assets\Scripts\InfoToggler.cs" />
+    <Compile Include="Assets\Scripts\GameScript\UIMan.cs" />
+    <Compile Include="Assets\Scripts\GameScript\UserPosition.cs" />
+    <Compile Include="Assets\Scripts\GameScript\Walk.cs" />
     <Compile Include="Assets\Scripts\LoginScript\Login.cs" />
     <Compile Include="Assets\Scripts\LoginScript\LoginController.cs" />
+    <Compile Include="Assets\Scripts\LoginScript\MainInfo.cs" />
     <Compile Include="Assets\Scripts\LoginScript\SwitchingScenes.cs" />
     <Compile Include="Assets\Scripts\SplashScript\SplashScript.cs" />
-    <Compile Include="Assets\Scripts\UserPosition.cs" />
-    <Compile Include="Assets\Scripts\Walk.cs" />
-    <Compile Include="Assets\UIMan.cs" />
-    <Compile Include="Assets\UiManG.cs" />
     <Compile Include="Assets\UnityTestTools\Assertions\AssertionComponent.cs" />
     <Compile Include="Assets\UnityTestTools\Assertions\AssertionException.cs" />
     <Compile Include="Assets\UnityTestTools\Assertions\Assertions.cs" />

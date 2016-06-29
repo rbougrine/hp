@@ -16,29 +16,21 @@ public class UiManG : MonoBehaviour
     private int seconds = 0;
     private int minutes = 0;
     private int hours = 0;
+    private MainInfo mainInfo;
     public GUIStyle timetyle;
-    private Playedtime time;
-    public GameObject timer;
+    
 
 
     // Use this for initialization
     void Start()
     {
 
-        time = timer.GetComponent<Playedtime>();
+        mainInfo = new MainInfo();
 
     }
 
 
-    public Playedtime Time
-    {
-        get
-        {
-            return time;
-
-        }
-    }
-
+   
     /*
      * Fetches the time.
      * Draws the GUI.
@@ -47,9 +39,9 @@ public class UiManG : MonoBehaviour
     public void TimerDisplay()
     {
 
-        seconds = time.seconds;
-        minutes = time.minutes;
-        hours = time.hours;
+        seconds = mainInfo.Timer.seconds;
+        minutes = mainInfo.Timer.minutes;
+        hours = mainInfo.Timer.hours;
 
         GUI.Box(new Rect(250, 150, 260, 20), "PlayedTime = " + hours.ToString() + " Hours:  " + minutes.ToString() + " Minutes:  " + seconds.ToString() + " Secondes  ", timetyle);
 

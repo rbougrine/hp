@@ -13,27 +13,17 @@ public class StatusBarModel : MonoBehaviour
     */
 
 
-    private Login login;
-    private GameObject loginScript;
+    private MainInfo mainInfo;
     public string Feedback = null;
     public int score;
     public string username, InfoStatusbar, InfoStatusbarScore;
-    private readonly string ip = "145.24.222.160";
+
 
 
     void Start()
     {
-        loginScript = GameObject.Find("Login");
-        login = loginScript.GetComponent<Login>();
+        mainInfo = new MainInfo();
         Getinfo();
-    }
-
-    public Login Login
-    {
-        get
-        {
-            return login;
-        }
     }
 
 
@@ -45,16 +35,12 @@ public class StatusBarModel : MonoBehaviour
     void Getinfo()
     {
 
-        username = Login.Username;
-
-        string url = "http://" + ip + "/getInfo.php";
-
+        username = mainInfo.Login.Username;
 
         WWWForm form = new WWWForm();
         form.AddField("Username", username);
-
-
-        WWW www = new WWW(url, form);
+        form.AddField("Job", "GetInfo");
+        WWW www = new WWW(mainInfo.URL, form);
 
         StartCoroutine(userInfo(www));
     }

@@ -17,20 +17,12 @@ public class StartButton : MonoBehaviour
     public Texture begin;
     public Texture one, two, three;
     public int randomnumber;
-    public GameObject manager;
-    private ExerciseChanger changer;
-    public GameObject DoneButton;
-    private DoneButton done;
-    private Playedtime timee;
-    public GameObject Timerbegin;
-
+    private MainInfo mainInfo;
 
     void Start()
     {
-        done = DoneButton.GetComponent<DoneButton>();
-        changer = manager.GetComponent<ExerciseChanger>();
-        timee = Timerbegin.GetComponent<Playedtime>();
 
+        mainInfo = new MainInfo();
         exercise = new Texture[4];
         exercise[0] = begin;
         exercise[1] = one;
@@ -40,32 +32,7 @@ public class StartButton : MonoBehaviour
 
     }
 
-    public ExerciseChanger Changer
-    {
-        get
-        {
-            return changer;
-        }
-    }
-
-    public DoneButton Done
-    {
-        get
-        {
-            return done;
-        }
-    }
-
-
-    public Playedtime Timee
-    {
-        get
-        {
-            return timee;
-
-        }
-
-    }
+    
 
     public Texture GiveTexture(int indicator)
     {
@@ -77,7 +44,7 @@ public class StartButton : MonoBehaviour
 
     public void Starttijd()
     {
-        timee.StartTimer();
+        mainInfo.Timer.StartTimer();
     }
 
 
@@ -94,13 +61,13 @@ public class StartButton : MonoBehaviour
         switch (randomnumber)
         {
             case 1:
-                Changer.currentExercise = 1;
+                mainInfo.Changer.currentExercise = 1;
                 break;
             case 2:
-                Changer.currentExercise = 2;
+                mainInfo.Changer.currentExercise = 2;
                 break;
             case 3:
-                Changer.currentExercise = 3;
+                mainInfo.Changer.currentExercise = 3;
                 break;
 
         }
@@ -116,15 +83,15 @@ public class StartButton : MonoBehaviour
     {
         if (randomnumber == 1)
         {
-            currentExercise = done.exerciseOne;
+            currentExercise = mainInfo.Done.exerciseOne;
         }
         else if (randomnumber == 2)
         {
-            currentExercise = done.exerciseTwo;
+            currentExercise = mainInfo.Done.exerciseTwo;
         }
         else
         {
-            currentExercise = done.exerciseThree;
+            currentExercise = mainInfo.Done.exerciseThree;
         }
 
     }

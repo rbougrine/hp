@@ -13,17 +13,11 @@ using UnityEngine.SceneManagement;
 
 public class StatusBar : MonoBehaviour
 {
-    private Login login;
-    private GameObject loginScript, guiScript;
-    private UIMan gui;
+    private MainInfo mainInfo;
 
     void Start()
-    {       
-            loginScript = GameObject.Find("Login");
-            guiScript = GameObject.Find("UiMan");
-
-            login = loginScript.GetComponent<Login>();
-            gui = guiScript.GetComponent<UIMan>();
+    {
+        mainInfo = new MainInfo();
       
     }
 
@@ -33,22 +27,6 @@ public class StatusBar : MonoBehaviour
 
     }
 
-    public UIMan GUI
-    {
-        get
-        {
-            return gui;
-        }
-    }
-
-    public Login Login
-    {
-        get
-        {
-            return login;
-        }
-    }
-
     /*
     * Starts GUI elements if the condition is met.
     * Starts process in the statubarcontroller.
@@ -56,10 +34,10 @@ public class StatusBar : MonoBehaviour
 
     void OnGUI()
     {
-        var CurrentMenu = Login.CurrentMenu;
+        var CurrentMenu = mainInfo.Login.CurrentMenu;
         if (CurrentMenu == null)
         {
-            GUI.Bar();
+            mainInfo.GameUI.Bar();
         }
 
 

@@ -14,16 +14,14 @@ public class Login : MonoBehaviour
     public string Feedback = "";
     public Texture2D MessageBox = null;
     public string Username, CUsername;
-  
+    private MainInfo mainInfo;
 
     //Private Variables
-    private GameObject loginScript;
     private string password = "";
     private string cpassword = "";
     private string ConfirmPassword = "";
-    private LoginController controller;
-    private SwitchingScenes switchingScenes;
-
+    
+    
     #endregion variables
 
 
@@ -35,9 +33,7 @@ public class Login : MonoBehaviour
     // Use this for initialization
     void Start()
 	{
-        loginScript = GameObject.Find("Login");
-        controller = loginScript.GetComponent<LoginController>();
-        switchingScenes = loginScript.GetComponent<SwitchingScenes>();
+         mainInfo = new MainInfo();
     }
 
     public string Password
@@ -63,23 +59,7 @@ public class Login : MonoBehaviour
             cpassword = value;
         }
     }
-
-    public LoginController Controller
-    {
-        get
-        {
-            return controller;
-        }
-    }
-    public SwitchingScenes SwitchingScenes
-    {
-        get
-        {
-            return switchingScenes;
-
-        }
-
-    }
+  
     //draws de GUI in unity when Currentmenu isnt empty
     void OnGUI()
 	{
@@ -107,7 +87,6 @@ public class Login : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "Garage" && logged == true)
         {
             Debug.Log("succes");
-           // EventSystem.SetActive(true);
         }
     }
 
@@ -124,7 +103,9 @@ public class Login : MonoBehaviour
 
 		if (GUI.Button(new Rect(357, 223, 90, 25), "Log in"))
 		{
-            Controller.Authorization();
+
+            mainInfo.Controller.Authorization();
+        
 		}
 
 		if (GUI.Button(new Rect(242, 223, 111, 25), "Create Account"))
@@ -151,7 +132,7 @@ public class Login : MonoBehaviour
         {
             if (CPassword == ConfirmPassword)
 			{
-                Controller.Register();
+                mainInfo.Controller.Authorization();
             }
 			else
 			{

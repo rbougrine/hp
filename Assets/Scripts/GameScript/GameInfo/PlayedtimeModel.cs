@@ -6,11 +6,12 @@ public class PlayedtimeModel : MonoBehaviour {
 
     public DateTime starttime, endtime;
     private string Username;
-    private readonly string ip = "145.24.222.160";
+    private MainInfo mainInfo;
 
     // Use this for initialization
-    void Start () {
-	
+    void Start ()
+    {
+        mainInfo = new MainInfo();
 	}
 
     // Sending the score bacck to database with including username and score
@@ -22,14 +23,14 @@ public class PlayedtimeModel : MonoBehaviour {
         endtime = timer.endtime;
 
         // php file from server where savingtime is processing
-        string url = "http://" + ip + "/Unity_apply/controller.php";
+     
         WWWForm form = new WWWForm();
 
         form.AddField("username", Username);
         form.AddField("begintime", starttime.ToLongTimeString());
         form.AddField("endtime", endtime.ToLongTimeString());
         form.AddField("Job", "SaveTime");
-        WWW www = new WWW(url, form);
+        WWW www = new WWW(mainInfo.URL, form);
 
         StartCoroutine(saveInfo(www));
 
@@ -46,7 +47,7 @@ public class PlayedtimeModel : MonoBehaviour {
         }
         else
         {
-            // Debug.Log(www.text + "saveInfo");
+             Debug.Log(www.text + "saveInfo");
         }
 
     }

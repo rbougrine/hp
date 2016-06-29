@@ -15,38 +15,27 @@ public class Playedtime : MonoBehaviour
 
     // Globale variable used in PlayedTime script
     private IEnumerator timer;
+    private MainInfo mainInfo;
     private string time;
     public string Username;
     public int playtime = 0;
     public int seconds = 0;
     public int minutes = 0;
     public int hours = 0;
-    private UiManG gui;
-    private GameObject Gui, statusbar;
+   
     public DateTime starttime, endtime;
-    private StatusBarModel model;
+  
 
 
     void Start()
     {
         timer = Playtimer();
-        Gui = GameObject.Find("UiManG");
-        gui = Gui.GetComponent<UiManG>();
-        statusbar = GameObject.Find("StatusBar");
-        model = statusbar.GetComponent<StatusBarModel>();
-        Username = model.username;
-        Debug.Log(Username);
+        mainInfo = new MainInfo();       
+        Username = mainInfo.StatusBarModel.username;
+       
     }
 
-    public UiManG GUI
-    {
-        get
-        {
-            return gui;
-
-        }
-    }
-
+   
     /*
     * Triggers when the user clicks on the Start game object.
     * current time is selected as starttime
@@ -110,7 +99,7 @@ public class Playedtime : MonoBehaviour
     void OnGUI()
     {
 
-        GUI.TimerDisplay();
+        mainInfo.GarageGUI.TimerDisplay();
 
 
     }

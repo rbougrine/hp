@@ -5,10 +5,7 @@ using UnityEngine.SceneManagement;
 public class SwitchingScenes : MonoBehaviour
 {
     //private variables
-    private readonly string ip = "145.24.222.160";
-    private UserPosition userPosition;
-    private Login login;
-    private GameObject userPositionScript, loginScript;
+    private MainInfo mainInfo;
    
     //public variables
     public AsyncOperation sceneLoading;
@@ -28,35 +25,18 @@ public class SwitchingScenes : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        loginScript = GameObject.Find("Login");
-        login = loginScript.GetComponent<Login>();
+        mainInfo = new MainInfo();
     }
 
-    public UserPosition UserPosition
-    {
-        get
-        {
-            return userPosition;
-        }
-
-    }
-
-    public Login Login
-    {
-        get
-        {
-            return login;
-        }
-
-    }
+  
 
     public void CheckPosition()
     {
-        string url = "http://" + ip + "/Unity_apply/controller.php";
+
         WWWForm form = new WWWForm();
-        form.AddField("Username", Login.Username);
+        form.AddField("Username", mainInfo.Login.Username);
         form.AddField("Job","CheckPosition");
-        WWW www = new WWW(url, form);
+        WWW www = new WWW(mainInfo.URL, form);
 
         StartCoroutine(PositionStatus(www));
     }
@@ -71,9 +51,9 @@ public class SwitchingScenes : MonoBehaviour
     //Change position from the camera with the received new position from the database
     public void ChangeCameraPosition()
     {
-        UserPosition.CameraPosition = new Vector3(X, Y, Z);
+        mainInfo.UserPosition.CameraPosition = new Vector3(X, Y, Z);
         GameObject camera = GameObject.Find("CardboardMain");
-        camera.transform.position = UserPosition.CameraPosition;
+        camera.transform.position = mainInfo.UserPosition.CameraPosition;
     }
 
     IEnumerator LoadSceneWait()
@@ -93,9 +73,6 @@ public class SwitchingScenes : MonoBehaviour
     {
         if (sceneLoading.allowSceneActivation == true && SceneManager.GetActiveScene().name == sceneName)
         {
-            userPositionScript = GameObject.Find("UserPosition");
-            userPosition = userPositionScript.GetComponent<UserPosition>();
-
             if (X != 0.0F)
             {
                 ChangeCameraPosition();

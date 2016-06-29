@@ -12,12 +12,10 @@ public class Door : MonoBehaviour
 
     //private variable
     private bool cameraLooking;
+    private MainInfo mainInfo;
     private Transform seenObject;
     private bool doorisClosed = true;
-    private GameObject loginObject, userPositionScript;
-    private SwitchingScenes switchingScenes;
-    private UserPosition userPosition;
-    private Login login;
+  
 
     void Awake()
     {
@@ -26,11 +24,7 @@ public class Door : MonoBehaviour
 
     void Start()
     {
-       loginObject = GameObject.Find("Login");
-       login = loginObject.GetComponent<Login>();
-       switchingScenes = loginObject.GetComponent<SwitchingScenes>();
-       userPositionScript = GameObject.Find("UserPosition");
-       userPosition = userPositionScript.GetComponent<UserPosition>();
+        mainInfo = new MainInfo();
     }
 
     void Update()
@@ -39,34 +33,7 @@ public class Door : MonoBehaviour
         seenObject = hit.collider.gameObject.transform;
     }
         
-    public UserPosition UserPosition
-    {
-        get
-        {
-            return userPosition;
-
-        }
-
-    }
-
-    public Login LoginScript
-    {
-        get
-        {
-            return login;
-        }
-
-    }
-
-    public SwitchingScenes SwitchingScenes
-    {
-        get
-        {
-            return switchingScenes;
-
-        }
-
-    }
+  
 
    public bool CameraLooking
     {
@@ -111,7 +78,7 @@ public class Door : MonoBehaviour
     {
         if (SeenObject.name == "yes")
         {
-            LoginScript.logged = false;
+            mainInfo.Login.logged = false;
             SceneManager.LoadScene("Login");
             
         }
@@ -125,7 +92,7 @@ public class Door : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "Game")
         {
-            SwitchingScenes.LoadingScenes("Garage");
+            mainInfo.SwitchingScenes.LoadingScenes("Garage");
         }
         else
             Debug.Log(SeenObject.name);
@@ -145,21 +112,21 @@ public class Door : MonoBehaviour
     //while changing the position of the camera to the saved position from the database
     void DoorTeleport()
     {
-       
-        UserPosition.collectInfo();
+
+        mainInfo.UserPosition.collectInfo();
      
-        if (UserPosition.sceneName == "Game")
+        if (mainInfo.UserPosition.sceneName == "Game")
         {
             Debug.Log("Switching scenes to garage");
 
-            SwitchingScenes.LoadingScenes("Garage");
+            mainInfo.SwitchingScenes.LoadingScenes("Garage");
            
         }
         else
         {
            Debug.Log("Switching scenes to game");
-        
-          SwitchingScenes.LoadingScenes("Game");
+
+            mainInfo.SwitchingScenes.LoadingScenes("Game");
 
             
         }         

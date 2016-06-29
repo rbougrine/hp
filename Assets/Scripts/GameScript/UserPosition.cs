@@ -12,11 +12,7 @@ public class UserPosition : MonoBehaviour
 
     //private variable
     private Vector3 cameraPosition;
-    private GameObject statusBar;
-    private StatusBarModel statusBarModel;
-    private GameObject loginScript;
-    private Login login;
-    private SwitchingScenes switchScene;
+    private MainInfo mainInfo;
 
     //This script will continue to be used even when the scenes are switched
     void Awake()
@@ -26,13 +22,8 @@ public class UserPosition : MonoBehaviour
 
     void Start()
     {
-        statusBar = GameObject.Find("StatusBar");
-        statusBarModel = statusBar.GetComponent<StatusBarModel>();
-
-        loginScript = GameObject.Find("Login");
-        login = loginScript.GetComponent<Login>();
-        switchScene = loginScript.GetComponent<SwitchingScenes>();
-        switchScene.changePosition();
+        mainInfo = new MainInfo();
+         mainInfo.SwitchingScenes.changePosition();
     }
 
     void Update()
@@ -41,22 +32,7 @@ public class UserPosition : MonoBehaviour
         
     }
 
-    public Login LoginScript
-    {
-        get
-        {
-            return login;
-        }
-
-    }
-    public StatusBarModel StatusBarModel
-    {
-        get
-        {
-            return statusBarModel;
-        }
-    }
-
+  
     public Vector3 CameraPosition
     {
         get
@@ -73,14 +49,13 @@ public class UserPosition : MonoBehaviour
     //and the username which will be send to retrieveInfo()
     public void collectInfo()
     {
-        Debug.Log("4");
-       
+              
         x = CameraPosition.x.ToString("0.00");
         y = CameraPosition.y.ToString("0.00");
         z = CameraPosition.z.ToString("0.00");
       
         sceneName = SceneManager.GetActiveScene().name;
-        username = StatusBarModel.username;
+        username = mainInfo.StatusBarModel.username;
         
         retrieveInfo();
     }
@@ -88,8 +63,7 @@ public class UserPosition : MonoBehaviour
     //Save the new position data to the database to be saved with the current scene name.
     void sendInfo()
     {
-        string url = "http://" + ip + "/Unity_apply/controller.php";
-
+      
         WWWForm form = new WWWForm();
         form.AddField("x", x);
         form.AddField("y", y);
@@ -97,7 +71,7 @@ public class UserPosition : MonoBehaviour
         form.AddField("username", username);
         form.AddField("scene", sceneName);
         form.AddField("Job","SavePosition");
-        WWW www = new WWW(url, form);
+        WWW www = new WWW(mainInfo.URL, form);
 
         StartCoroutine(saveInfo(www));
 
@@ -106,14 +80,13 @@ public class UserPosition : MonoBehaviour
     //Get the recent saved position data from the database
     void retrieveInfo()
     {
-        string url = "http://" + ip + "/Unity_apply/controller.php";
-
+       
         WWWForm form = new WWWForm();
         form.AddField("username", username);
         form.AddField("sceneName",sceneName);
         form.AddField("Job","RetrievePosition");
-        WWW www = new WWW(url, form);
-      
+        WWW www = new WWW(mainInfo.URL, form);
+
         StartCoroutine(getInfo(www));
 
     }
