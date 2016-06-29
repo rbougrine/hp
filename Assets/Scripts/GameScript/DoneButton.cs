@@ -107,7 +107,7 @@ public class DoneButton : MonoBehaviour
 
     public void CheatButton()
     {
-        PanelManager.CheatState(Startbutton.currentExercise);
+       PanelManager.CheatState(Startbutton.currentExercise);
     }
 
     /*
@@ -138,6 +138,7 @@ public class DoneButton : MonoBehaviour
     public void GoodJobButton()
     {
         Debug.Log(check.SeenObject.name);
+
         if (check.SeenObject.name == "next")
         {
             GoodJob.SetActive(false);

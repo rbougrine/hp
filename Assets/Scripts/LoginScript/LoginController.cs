@@ -4,9 +4,8 @@ using System.Collections;
 public class LoginController : MonoBehaviour {
 
     private readonly string ip = "145.24.222.160";
-    private GameObject loginObject, StatusBarObject;
+    private GameObject loginObject;
     private Login login;
-    private StatusBarModel statusBarModel;
     private SwitchingScenes switchingScenes;
    
 
@@ -14,11 +13,8 @@ public class LoginController : MonoBehaviour {
     void Start ()
     {
         loginObject = GameObject.Find("Login");
-    //    StatusBarObject = GameObject.Find("StatusBar");
-
         login = loginObject.GetComponent<Login>();
         switchingScenes = loginObject.GetComponent<SwitchingScenes>();
-    //    statusBarModel = StatusBarObject.GetComponent<StatusBarModel>();
     }
 
     public Login LoginScript
@@ -35,15 +31,6 @@ public class LoginController : MonoBehaviour {
         get
         {
             return switchingScenes;
-        }
-
-    }
-
-    public StatusBarModel StatusBarModel
-    {
-        get
-        {
-            return statusBarModel;
         }
 
     }

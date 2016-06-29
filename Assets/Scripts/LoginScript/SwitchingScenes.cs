@@ -9,6 +9,7 @@ public class SwitchingScenes : MonoBehaviour
     private UserPosition userPosition;
     private Login login;
     private GameObject userPositionScript, loginScript;
+   
     //public variables
     public AsyncOperation sceneLoading;
     public string sceneName;
