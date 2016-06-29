@@ -19,7 +19,8 @@ public class DoneButton : MonoBehaviour
     public int exercise;
     private PanelMan panelManager;
     private Door check;
-    public GameObject manager, door, GoodJob, StartButton, Point, timer;
+    public GameObject manager, GoodJob, StartButton, Point, timer;
+    private GameObject door;
     private StartButton start;
     private PointCounter points;
     private Playedtime time;
@@ -31,6 +32,7 @@ public class DoneButton : MonoBehaviour
     {
         start = StartButton.GetComponent<StartButton>();
         panelManager = manager.GetComponent<PanelMan>();
+        door = GameObject.Find("Front_door");
         check = door.GetComponent<Door>();
         points = Point.GetComponent<PointCounter>();
         time = timer.GetComponent<Playedtime>();
@@ -142,6 +144,8 @@ public class DoneButton : MonoBehaviour
         if (check.SeenObject.name == "next")
         {
             GoodJob.SetActive(false);
+            start.BeginState();
+
         }
         else
         {
