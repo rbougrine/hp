@@ -31,8 +31,8 @@ public class Playedtime : MonoBehaviour
     {
         timer = Playtimer();
         mainInfo = new MainInfo();       
-        Username = mainInfo.StatusBarModel.username;
-       
+        Username = mainInfo.Login.Username;
+
     }
 
    

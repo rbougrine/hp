@@ -18,19 +18,21 @@ public class PointCounter : MonoBehaviour
     void Start()
     {
         mainInfo = new MainInfo();
-        Getinformation();
-
     }
 
     /*
     * Fetches the user information from the Statusbar
     */
 
-    void Getinformation()
+   public void Getinformation()
     {
-      
+    
         score = mainInfo.StatusBarModel.score;
         username = mainInfo.StatusBarModel.username;
+        Debug.Log(username);
+        Debug.Log(mainInfo);
+        Debug.Log(mainInfo.StatusBarModel);
+
     }
 
     /*

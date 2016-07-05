@@ -132,7 +132,7 @@ public class Login : MonoBehaviour
         {
             if (CPassword == ConfirmPassword)
 			{
-                mainInfo.Controller.Authorization();
+                mainInfo.Controller.Register();
             }
 			else
 			{

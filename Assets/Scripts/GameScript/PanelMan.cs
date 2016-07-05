@@ -16,12 +16,15 @@ public class PanelMan : MonoBehaviour
     int countWrong, countGood;
     private string result;
 
+
     public Texture one, two, three, four, five, six, seven, eight, nine, ten,
     eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, empty;
 
 
     void Start()
     {
+
+
         texture = new Texture[18];
 
         texture[0] = empty;

@@ -18,7 +18,7 @@ public class PlayedtimeModel : MonoBehaviour {
     public void SendInfo()
     {
         Playedtime timer = GameObject.Find("Timer").GetComponent<Playedtime>();
-        Username = timer.Username;
+        Username = mainInfo.Login.Username;
         starttime = timer.starttime;
         endtime = timer.endtime;
 
@@ -26,9 +26,9 @@ public class PlayedtimeModel : MonoBehaviour {
      
         WWWForm form = new WWWForm();
 
-        form.AddField("username", Username);
-        form.AddField("begintime", starttime.ToLongTimeString());
-        form.AddField("endtime", endtime.ToLongTimeString());
+        form.AddField("Username", Username);
+        form.AddField("Begintime", starttime.ToLongTimeString());
+        form.AddField("Endtime", endtime.ToLongTimeString());
         form.AddField("Job", "SaveTime");
         WWW www = new WWW(mainInfo.URL, form);
 

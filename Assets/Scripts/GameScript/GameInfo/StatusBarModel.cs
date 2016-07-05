@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using UnityEngine.SceneManagement;
 
 public class StatusBarModel : MonoBehaviour
 {
@@ -68,10 +68,16 @@ public class StatusBarModel : MonoBehaviour
             InfoStatusbarScore = (position[1]);
 
             score = int.Parse(position[1]);
-
+             if (SceneManager.GetActiveScene().name == "Garage")
+            {
+                mainInfo.Points.Getinformation();
+              
+            }
+           
 
 
         }
     }
 
+    
 }

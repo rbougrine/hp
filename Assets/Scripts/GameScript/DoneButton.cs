@@ -46,7 +46,7 @@ public class DoneButton : MonoBehaviour
 
     public void CheatButton()
     {
-       mainInfo.PanelManager.CheatState(mainInfo.StartButton.currentExercise);
+       mainInfo.PanelMan.CheatState(mainInfo.StartButton.currentExercise);
     }
 
     /*
@@ -56,11 +56,11 @@ public class DoneButton : MonoBehaviour
 
     public void FinalState()
     {
-        mainInfo.PanelManager.ReadState();
-        mainInfo.PanelManager.CheckArray(mainInfo.PanelManager.userInput, mainInfo.StartButton.currentExercise);
+        mainInfo.PanelMan.ReadState();
+        mainInfo.PanelMan.CheckArray(mainInfo.PanelMan.userInput, mainInfo.StartButton.currentExercise);
        
 
-        result = mainInfo.PanelManager.Result;
+        result = mainInfo.PanelMan.Result;
 
         switch (result)
         {

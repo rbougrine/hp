@@ -23,7 +23,7 @@ public class StatusBar : MonoBehaviour
 
     void Awake()
     {
-        DontDestroyOnLoad(this);
+        
 
     }
 

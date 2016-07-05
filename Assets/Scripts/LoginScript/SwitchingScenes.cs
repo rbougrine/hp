@@ -6,36 +6,44 @@ public class SwitchingScenes : MonoBehaviour
 {
     //private variables
     private MainInfo mainInfo;
-   
+
     //public variables
     public AsyncOperation sceneLoading;
     public string sceneName;
-
+    public bool newScene;
+    private Vector3 cameraPosition;
     //camera position
     float X;
     float Y;
     float Z;
 
-   
+
     void Awake()
     {
         DontDestroyOnLoad(this);
     }
-   
+
     // Use this for initialization
     void Start()
     {
         mainInfo = new MainInfo();
+
+
     }
 
-  
-
+    void Update()
+    {
+        if (newScene)
+        {
+            cameraPosition = GameObject.Find("CardboardMain").transform.position;
+        }
+    }
     public void CheckPosition()
     {
 
         WWWForm form = new WWWForm();
         form.AddField("Username", mainInfo.Login.Username);
-        form.AddField("Job","CheckPosition");
+        form.AddField("Job", "CheckPosition");
         WWW www = new WWW(mainInfo.URL, form);
 
         StartCoroutine(PositionStatus(www));
@@ -47,14 +55,7 @@ public class SwitchingScenes : MonoBehaviour
         sceneLoading.allowSceneActivation = false;
         StartCoroutine(LoadSceneWait());
     }
- 
-    //Change position from the camera with the received new position from the database
-    public void ChangeCameraPosition()
-    {
-        mainInfo.UserPosition.CameraPosition = new Vector3(X, Y, Z);
-        GameObject camera = GameObject.Find("CardboardMain");
-        camera.transform.position = mainInfo.UserPosition.CameraPosition;
-    }
+
 
     IEnumerator LoadSceneWait()
     {
@@ -67,6 +68,13 @@ public class SwitchingScenes : MonoBehaviour
         sceneLoading.allowSceneActivation = true;
         Debug.Log("Done loading");
         changePosition();
+    }
+    //Change position from the camera with the received new position from the database
+    public void ChangeCameraPosition()
+    {
+        cameraPosition = new Vector3(X, Y, Z);
+        GameObject camera = GameObject.Find("CardboardMain");
+        camera.transform.position = cameraPosition;
     }
 
     public void changePosition()
@@ -81,16 +89,18 @@ public class SwitchingScenes : MonoBehaviour
             {
                 if (SceneManager.GetActiveScene().name == "Game")
                 {
-                    X = 536.1f;
-                    Y = 12f;
-                    Z = 578f;
+                    mainInfo.UserPosition.X = 536.1f;
+                    mainInfo.UserPosition.Y = 12f;
+                    mainInfo.UserPosition.Z = 578f;
+
                     ChangeCameraPosition();
+
                 }
                 else
                 {
-                    X = -237f;
-                    Y = -38f;
-                    Z = -102f;
+                    mainInfo.UserPosition.X = -237f;
+                    mainInfo.UserPosition.Y = -38f;
+                    mainInfo.UserPosition.Z = -102f;
                     ChangeCameraPosition();
                 }
 
@@ -102,7 +112,7 @@ public class SwitchingScenes : MonoBehaviour
             Debug.Log(SceneManager.GetActiveScene().name);
         }
     }
-    
+
 
     IEnumerator PositionStatus(WWW www)
     {
@@ -117,7 +127,7 @@ public class SwitchingScenes : MonoBehaviour
         else
         {
             string[] position = www.text.Split(',');
-         
+
             //assign the numbers to new position camera variables
             X = float.Parse(position[0]);
             Y = float.Parse(position[1]);
@@ -126,7 +136,7 @@ public class SwitchingScenes : MonoBehaviour
 
             LoadingScenes(sceneName);
 
-                           
+
         }
     }
 
