@@ -6,7 +6,7 @@ public class SwitchingScenes : MonoBehaviour
 {
     //private variables
     private MainInfo mainInfo;
-
+   
     //public variables
     public AsyncOperation sceneLoading;
     public string sceneName;
@@ -17,17 +17,17 @@ public class SwitchingScenes : MonoBehaviour
     float Y;
     float Z;
 
-
+   
     void Awake()
     {
         DontDestroyOnLoad(this);
     }
-
+   
     // Use this for initialization
     void Start()
     {
         mainInfo = new MainInfo();
-
+      
 
     }
 
@@ -43,7 +43,7 @@ public class SwitchingScenes : MonoBehaviour
 
         WWWForm form = new WWWForm();
         form.AddField("Username", mainInfo.Login.Username);
-        form.AddField("Job", "CheckPosition");
+        form.AddField("Job","CheckPosition");
         WWW www = new WWW(mainInfo.URL, form);
 
         StartCoroutine(PositionStatus(www));
@@ -55,8 +55,8 @@ public class SwitchingScenes : MonoBehaviour
         sceneLoading.allowSceneActivation = false;
         StartCoroutine(LoadSceneWait());
     }
-
-
+ 
+   
     IEnumerator LoadSceneWait()
     {
         while (sceneLoading.progress < 0.9f)
@@ -83,7 +83,7 @@ public class SwitchingScenes : MonoBehaviour
         {
             if (X != 0.0F)
             {
-                ChangeCameraPosition();
+              ChangeCameraPosition();
             }
             else
             {
@@ -112,7 +112,7 @@ public class SwitchingScenes : MonoBehaviour
             Debug.Log(SceneManager.GetActiveScene().name);
         }
     }
-
+    
 
     IEnumerator PositionStatus(WWW www)
     {
@@ -127,7 +127,7 @@ public class SwitchingScenes : MonoBehaviour
         else
         {
             string[] position = www.text.Split(',');
-
+         
             //assign the numbers to new position camera variables
             X = float.Parse(position[0]);
             Y = float.Parse(position[1]);
@@ -136,7 +136,7 @@ public class SwitchingScenes : MonoBehaviour
 
             LoadingScenes(sceneName);
 
-
+                           
         }
     }
 

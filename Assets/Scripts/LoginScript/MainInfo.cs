@@ -9,7 +9,7 @@ public class MainInfo : MonoBehaviour
 
     private readonly string ip;
     private string url;
-    private GameObject loginScript, userScript, puzzle,score,door, statusBar, manager, uiMan, GoodJob, start, Point, timer, doneButton, timerbegin, uiManG,cheatButton;
+    private GameObject loginScript, userScript, score,door, statusBar, manager, uiMan, GoodJob, start, Point, timer, doneButton, timerbegin, uiManG;
     private LoginController controller;
     private SwitchingScenes switchingScenes;
     private UserPosition userPosition;
@@ -18,17 +18,13 @@ public class MainInfo : MonoBehaviour
     private StartButton startButton;
     private PointCounter points;
     private Playedtime time;
-    private ExerciseChanger exerciseChanger;
-    private PanelMan puzzleScreen;
+    private PanelMan panelManager;
     private Door check;
     private DoneButton done;
     private ExerciseChanger changer;
     private UiManG garageGUI;
     private UIMan gameUI;
     private PointerCounterModel pointerCounterModel;
-    private UIMan garageUi;
-
- 
 
     public MainInfo()
     {
@@ -40,9 +36,13 @@ public class MainInfo : MonoBehaviour
         login = loginScript.GetComponent<Login>();
         switchingScenes = loginScript.GetComponent<SwitchingScenes>();
         controller = loginScript.GetComponent<LoginController>();
-
+      
         if (SceneManager.GetActiveScene().name != "Login")
         {
+            userScript = GameObject.Find("UserPosition");
+            statusBar = GameObject.Find("StatusBar");
+            userPosition = userScript.GetComponent<UserPosition>();
+            statusBarModel = statusBar.GetComponent<StatusBarModel>();
             InitializeScene();
         }
       
@@ -51,12 +51,6 @@ public class MainInfo : MonoBehaviour
 
     void InitializeScene()
     {
-        userScript = GameObject.Find("UserPosition");
-        statusBar = GameObject.Find("StatusBar");
-        userPosition = userScript.GetComponent<UserPosition>();
-        statusBarModel = statusBar.GetComponent<StatusBarModel>();
-        gameUI = GameObject.Find("UiMan").GetComponent<UIMan>();
-       
         if (SceneManager.GetActiveScene().name == "Game")
         {
             InitializeGame();
@@ -81,7 +75,7 @@ public class MainInfo : MonoBehaviour
     {
         ObjectsGarage();
         startButton = start.GetComponent<StartButton>();
-        exerciseChanger = manager.GetComponent<ExerciseChanger>();
+        panelManager = manager.GetComponent<PanelMan>();
         check = door.GetComponent<Door>();
         points = Point.GetComponent<PointCounter>();
         time = timer.GetComponent<Playedtime>();
@@ -89,13 +83,10 @@ public class MainInfo : MonoBehaviour
         done = doneButton.GetComponent<DoneButton>();
         garageGUI = uiManG.GetComponent<UiManG>();
         pointerCounterModel = score.GetComponent<PointerCounterModel>();
-        puzzleScreen = puzzle.GetComponent<PanelMan>();
+    }
 
-
-}
-
-
-void ObjectsGarage()
+    
+    void ObjectsGarage()
     {
         score = GameObject.Find("Score");
         manager = GameObject.Find("Exercise");
@@ -104,11 +95,6 @@ void ObjectsGarage()
         doneButton = GameObject.Find("Done");
         timerbegin = GameObject.Find("Timer");
         uiManG = GameObject.Find("UiManG");
-        Point = GameObject.Find("Score");
-        timer = GameObject.Find("Timer");
-        puzzle = GameObject.Find("Puzzelscherm");
-
-
     }
 
 
@@ -160,15 +146,6 @@ void ObjectsGarage()
         get
         {
             return switchingScenes;
-
-        }
-    }
-
-    public PanelMan PanelMan
-    {
-        get
-        {
-            return puzzleScreen;
 
         }
     }
@@ -243,11 +220,11 @@ void ObjectsGarage()
 
 
     }
-    public ExerciseChanger ExerciseChanger
+    public PanelMan PanelManager
     {
         get
         {
-            return exerciseChanger;
+            return panelManager;
 
         }
 

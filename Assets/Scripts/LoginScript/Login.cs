@@ -25,6 +25,7 @@ public class Login : MonoBehaviour
     #endregion variables
 
 
+
     void Awake()
     {
         DontDestroyOnLoad(this);
@@ -34,6 +35,8 @@ public class Login : MonoBehaviour
     void Start()
 	{
          mainInfo = new MainInfo();
+
+      
     }
 
     public string Password
@@ -132,7 +135,7 @@ public class Login : MonoBehaviour
         {
             if (CPassword == ConfirmPassword)
 			{
-                mainInfo.Controller.Register();
+                mainInfo.Controller.Authorization();
             }
 			else
 			{

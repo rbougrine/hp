@@ -17,7 +17,7 @@ public class UserPosition : MonoBehaviour
     //This script will continue to be used even when the scenes are switched
     void Awake()
     {
-
+      
     }
 
     void Start()
@@ -29,9 +29,9 @@ public class UserPosition : MonoBehaviour
     void Update()
     {
         cameraPosition = GameObject.Find("CardboardMain").transform.position;
-
+        
     }
-
+  
     public Vector3 CameraPosition
     {
         get
@@ -40,36 +40,36 @@ public class UserPosition : MonoBehaviour
         }
         set
         {
-            cameraPosition = value;
+            cameraPosition = value; 
         }
     }
-
+  
     // Collect all the recent new information about the position, active scene
     //and the username which will be send to retrieveInfo()
     public void collectInfo()
     {
-
+              
         x = CameraPosition.x.ToString("0.00");
         y = CameraPosition.y.ToString("0.00");
         z = CameraPosition.z.ToString("0.00");
-
+      
         sceneName = SceneManager.GetActiveScene().name;
         username = mainInfo.StatusBarModel.username;
-
+        
         retrieveInfo();
     }
 
     //Save the new position data to the database to be saved with the current scene name.
     void sendInfo()
     {
-
+      
         WWWForm form = new WWWForm();
         form.AddField("x", x);
         form.AddField("y", y);
         form.AddField("z", z);
         form.AddField("username", username);
         form.AddField("scene", sceneName);
-        form.AddField("Job", "SavePosition");
+        form.AddField("Job","SavePosition");
         WWW www = new WWW(mainInfo.URL, form);
 
         StartCoroutine(saveInfo(www));
@@ -79,11 +79,11 @@ public class UserPosition : MonoBehaviour
     //Get the recent saved position data from the database
     void retrieveInfo()
     {
-
+       
         WWWForm form = new WWWForm();
         form.AddField("username", username);
-        form.AddField("sceneName", sceneName);
-        form.AddField("Job", "RetrievePosition");
+        form.AddField("sceneName",sceneName);
+        form.AddField("Job","RetrievePosition");
         WWW www = new WWW(mainInfo.URL, form);
 
         StartCoroutine(getInfo(www));
@@ -134,10 +134,10 @@ public class UserPosition : MonoBehaviour
 
                 sendInfo();
             }
-
-        }
+           
+         }
     }
-
-
+   
+   
 
 }
