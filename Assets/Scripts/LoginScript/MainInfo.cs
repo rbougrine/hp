@@ -9,7 +9,7 @@ public class MainInfo : MonoBehaviour
 
     private readonly string ip;
     private string url;
-    private GameObject loginScript, userScript, score,door, statusBar, manager, uiMan, GoodJob, start, Point, timer, doneButton, timerbegin, uiManG;
+    private GameObject loginScript, userScript, score,door, statusBar, manager, GoodJob, start, Point, timer, doneButton;
     private LoginController controller;
     private SwitchingScenes switchingScenes;
     private UserPosition userPosition;
@@ -17,14 +17,15 @@ public class MainInfo : MonoBehaviour
     private Login login;
     private StartButton startButton;
     private PointCounter points;
-    private Playedtime time;
+    private PlayedTimeView time;
     private PanelMan panelManager;
     private Door check;
     private DoneButton done;
     private ExerciseChanger changer;
-    private UiManG garageGUI;
-    private UIMan gameUI;
+    private PlayedTimeView garageGUI;
+    private StatusBarView gameUI;
     private PointerCounterModel pointerCounterModel;
+    private PlayedtimeModel playedTimeModel;
 
     public MainInfo()
     {
@@ -67,7 +68,7 @@ public class MainInfo : MonoBehaviour
 
     void InitializeGame()
     {
-        gameUI = GameObject.Find("UiMan").GetComponent<UIMan>();
+        gameUI = GameObject.Find("StatusBar").GetComponent<StatusBarView>();
 
     }
 
@@ -77,12 +78,12 @@ public class MainInfo : MonoBehaviour
         startButton = start.GetComponent<StartButton>();
         panelManager = manager.GetComponent<PanelMan>();
         check = door.GetComponent<Door>();
-        points = Point.GetComponent<PointCounter>();
-        time = timer.GetComponent<Playedtime>();
+        points = score.GetComponent<PointCounter>();
         changer = manager.GetComponent<ExerciseChanger>();
         done = doneButton.GetComponent<DoneButton>();
-        garageGUI = uiManG.GetComponent<UiManG>();
+        garageGUI = timer.GetComponent<PlayedTimeView>();
         pointerCounterModel = score.GetComponent<PointerCounterModel>();
+        playedTimeModel = timer.GetComponent<PlayedtimeModel>();
     }
 
     
@@ -93,8 +94,8 @@ public class MainInfo : MonoBehaviour
         start = GameObject.Find("Start");
         door = GameObject.Find("Front_door");
         doneButton = GameObject.Find("Done");
-        timerbegin = GameObject.Find("Timer");
-        uiManG = GameObject.Find("UiManG");
+        timer = GameObject.Find("Timer");
+       
     }
 
 
@@ -124,7 +125,7 @@ public class MainInfo : MonoBehaviour
         }
     }
 
-    public UIMan GameUI
+    public StatusBarView GameUI
     {
         get
         {
@@ -133,7 +134,7 @@ public class MainInfo : MonoBehaviour
     }
 
 
-    public UiManG GarageGUI
+    public PlayedTimeView GarageGUI
     {
         get
         {
@@ -190,11 +191,11 @@ public class MainInfo : MonoBehaviour
     }
 
 
-    public Playedtime Time
+    public PlayedtimeModel Time
     {
         get
         {
-            return time;
+            return playedTimeModel;
 
         }
     }
@@ -248,11 +249,13 @@ public class MainInfo : MonoBehaviour
     }
 
 
-    public Playedtime Timer
+
+    
+    public PlayedtimeModel PlaytimeModel
     {
         get
         {
-            return time;
+            return playedTimeModel;
 
         }
 

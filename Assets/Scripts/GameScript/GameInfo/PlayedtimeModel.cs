@@ -5,22 +5,83 @@ using System;
 public class PlayedtimeModel : MonoBehaviour {
 
     public DateTime starttime, endtime;
+    public int playtime = 0;
+    public int seconds = 0;
+    public int minutes = 0;
+    public int hours = 0;
     private string Username;
     private MainInfo mainInfo;
+    private IEnumerator timer;
+    private string time;
+
 
     // Use this for initialization
     void Start ()
     {
         mainInfo = new MainInfo();
-	}
+        timer = Playtimer();
+        Username = mainInfo.Login.Username;
+    }
+
+
+    /*
+  * Triggers when the user clicks on the Start game object.
+  * current time is selected as starttime
+  */
+    public void StartTimer()
+    {
+        starttime = DateTime.Now;
+        StartCoroutine(timer);
+        starttime.ToLongDateString();
+
+    }
+
+
+    /*
+    * Triggers when the user succesfully is done with the exercise.
+    * current time is selected as endtime
+    */
+
+    public void Donetime()
+    {
+
+        StopCoroutine(timer);
+        endtime = DateTime.Now;
+        time = hours.ToString() + minutes.ToString() + seconds.ToString();
+    
+        SendInfo();
+        Debug.Log(endtime - starttime);
+
+
+    }
+
+    /*
+    * Timer for the GUI is created and when puzzel game is started
+    *
+    */
+    public IEnumerator Playtimer()
+    {
+
+        while (true)
+        {
+            yield return new WaitForSeconds(1);
+            playtime += 1;
+            seconds = (playtime % 60);
+            minutes = (playtime / 60) % 60;
+            hours = (playtime / 3600) % 24;
+
+
+        }
+
+    }
+
 
     // Sending the score bacck to database with including username and score
     public void SendInfo()
     {
-        Playedtime timer = GameObject.Find("Timer").GetComponent<Playedtime>();
+
         Username = mainInfo.Login.Username;
-        starttime = timer.starttime;
-        endtime = timer.endtime;
+       
 
         // php file from server where savingtime is processing
      

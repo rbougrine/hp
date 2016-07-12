@@ -31,9 +31,9 @@ public class PointerCounterModel : MonoBehaviour
     public void SendInfo()
     {
       
-        PointCounter scoree = GameObject.Find("Score").GetComponent<PointCounter>();
+  
         username = mainInfo.Login.Username;
-        score = scoree.score;
+        score = mainInfo.Points.score;
 
    
         WWWForm form = new WWWForm();

@@ -29,9 +29,7 @@ public class PointCounter : MonoBehaviour
     
         score = mainInfo.StatusBarModel.score;
         username = mainInfo.StatusBarModel.username;
-        Debug.Log(username);
-        Debug.Log(mainInfo);
-        Debug.Log(mainInfo.StatusBarModel);
+    
 
     }
 

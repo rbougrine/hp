@@ -44,7 +44,7 @@ public class StartButton : MonoBehaviour
 
     public void Starttijd()
     {
-        mainInfo.Timer.StartTimer();
+        mainInfo.PlaytimeModel.StartTimer();
     }
 
 
