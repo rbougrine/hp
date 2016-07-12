@@ -95,17 +95,17 @@ namespace UnityTest
         [Test]
         public void Login()
         {
-            var login = new Login();
+          //  var login = new Login();
 
-            var username = login.Username;
-            username = "test101";
-            var password = login.Password;
-            password = "t";
+         //   var username = login.Username;
+       //     username = "test101";
+           // var password = login.Password;
+            //password = "t";
             string url = "http://145.24.222.160/CreateAccount.php";
 
             WWWForm form = new WWWForm();
-            form.AddField("Username", username);
-            form.AddField("Password", password);
+           // form.AddField("Username", username);
+          //  form.AddField("Password", password);
             WWW www = new WWW(url, form);
 
 

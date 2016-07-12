@@ -33,12 +33,12 @@ public class StatusBarView : MonoBehaviour
 
     void OnGUI()
     {
-        var CurrentMenu = mainInfo.Login.CurrentMenu;
+    //    var CurrentMenu = mainInfo.Login.CurrentMenu;
 
-        if (CurrentMenu == null)
-        {
-            Bar();
-        }
+       // if (CurrentMenu == null)
+     //   {
+     //       Bar();
+    //    }
 
 
     }

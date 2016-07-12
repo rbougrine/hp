@@ -9,6 +9,7 @@ public class LoginController : MonoBehaviour {
     void Start()
     {
         mainInfo = new MainInfo();
+    
     }
 
 
