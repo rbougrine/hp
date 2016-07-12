@@ -1,15 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Assets.Scripts.Interfaces;
 
 public class LoginController : MonoBehaviour {
 
     private MainInfo mainInfo;
+    private ALogin AbstractLogin;
 
     // Use this for initialization
     void Start()
     {
-        mainInfo = new MainInfo();
-    
+        AbstractLogin = new ALogin();
+        mainInfo = new MainInfo();  
     }
 
 
@@ -19,7 +21,7 @@ public class LoginController : MonoBehaviour {
       
 
         WWWForm form = new WWWForm();
-        form.AddField("Username", mainInfo.Login.Username);
+        form.AddField("Username", AbstractLogin.Username);
         form.AddField("Password", mainInfo.Login.Password);
         form.AddField("Job", "LoginAccount");
         WWW www = new WWW(mainInfo.URL, form);
@@ -54,7 +56,7 @@ public class LoginController : MonoBehaviour {
             if (www.text == "Login successful!")
             {
                 mainInfo.Login.logged = true;
-                mainInfo.Login.CurrentMenu = null;
+                AbstractLogin.CurrentMenu = null;
                 
                 mainInfo.SwitchingScenes.CheckPosition();
                
@@ -83,7 +85,7 @@ public class LoginController : MonoBehaviour {
             if (www.text == "Registratie successful")
             {
                 mainInfo.Login.Feedback = www.text;
-                mainInfo.Login.CurrentMenu = "Login";
+                AbstractLogin.CurrentMenu = "Login";
             }
             else
             {

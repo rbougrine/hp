@@ -8,12 +8,8 @@ namespace Assets.Scripts.Interfaces
     class ALogin : ILoginVariables
     {
         private string currentMenu;
-     
-        // Constructor:
-        public ALogin(string menu)
-        {
-            currentMenu = menu;  
-        }
+        private string userName;
+        
 
         public string CurrentMenu
         {
@@ -25,6 +21,19 @@ namespace Assets.Scripts.Interfaces
             set
             {
                 currentMenu = value;        
+            }
+        }
+
+        public string Username
+        {
+            get
+            {
+                return userName;
+            }
+
+            set
+            {
+                userName = value;
             }
         }
     }

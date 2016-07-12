@@ -11,7 +11,7 @@ public class Login : MonoBehaviour
 
     //Public Variables
     public bool logged;
-    private string currentMenu = "";
+  
     public string Feedback = "";
     public Texture2D MessageBox = null;
     public string Username, CUsername;
@@ -23,7 +23,6 @@ public class Login : MonoBehaviour
     private string cpassword = "";
     private string ConfirmPassword = "";
 
-
     #endregion variables
 
     void Awake()
@@ -34,7 +33,8 @@ public class Login : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        AbstractLogin = new ALogin("Login");
+        AbstractLogin = new ALogin();
+        AbstractLogin.CurrentMenu = "Login";
         mainInfo = new MainInfo();
 
     }
@@ -45,10 +45,7 @@ public class Login : MonoBehaviour
         {
             return password;
         }
-        set
-        {
-            password = value;
-        }
+  
     }
 
     public string CPassword
@@ -56,10 +53,6 @@ public class Login : MonoBehaviour
         get
         {
             return cpassword;
-        }
-        set
-        {
-            cpassword = value;
         }
     }
 
@@ -98,11 +91,11 @@ public class Login : MonoBehaviour
         GUI.Box(new Rect(235, 55, 225, 222), "Login");
 
         GUI.Label(new Rect(253, 86, 170, 21), "Username:");
-        Username = GUI.TextField(new Rect(253, 106, 170, 21), Username);
+        AbstractLogin.Username = GUI.TextField(new Rect(253, 106, 170, 21), Username);
 
         GUI.Label(new Rect(252, 128, 170, 23), "Password:");
 
-        Password = GUI.PasswordField(new Rect(252, 151, 170, 23), Password, "*"[0], 25);
+        password = GUI.PasswordField(new Rect(252, 151, 170, 23), password, "*"[0], 25);
 
         if (GUI.Button(new Rect(357, 223, 90, 25), "Log in"))
         {
@@ -126,7 +119,7 @@ public class Login : MonoBehaviour
         CUsername = GUI.TextField(new Rect(253, 106, 170, 21), CUsername);
 
         GUI.Label(new Rect(252, 128, 170, 23), "Password:");
-        CPassword = GUI.PasswordField(new Rect(252, 151, 170, 23), CPassword, "*"[0], 25);
+        cpassword = GUI.PasswordField(new Rect(252, 151, 170, 23), cpassword, "*"[0], 25);
 
         GUI.Label(new Rect(252, 181, 170, 23), "Confirm Password:");
         ConfirmPassword = GUI.PasswordField(new Rect(252, 209, 170, 23), ConfirmPassword, "*"[0], 25);
@@ -142,6 +135,7 @@ public class Login : MonoBehaviour
                 Feedback = "The password is not the same";
             }
         }
+
         if (GUI.Button(new Rect(245, 243, 90, 25), "Back"))
         {
             AbstractLogin.CurrentMenu = "Login";
