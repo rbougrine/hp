@@ -122,11 +122,7 @@ public class PanelMan : MonoBehaviour
 
     public bool CheckArray(int[] userInput, int[] exercise)
     {
-        for (int i = 0; i < exercise.Length; i++)
-        {
-            // Debug.Log(exercise[i]);
-
-        }
+       
         if (exercise.Length != userInput.Length)
         {
             Result = "wrongLength";

@@ -5,20 +5,12 @@ using UnityEngine.SceneManagement;
 public class UserPosition : MonoBehaviour
 {
     //public variable
-    public string sceneName, username;
-    private readonly string ip = "145.24.222.160";
-    public string x, y, z;
+    public string sceneName, username, x, y, z;
     public float X, Y, Z;
 
     //private variable
     private Vector3 cameraPosition;
     private MainInfo mainInfo;
-
-    //This script will continue to be used even when the scenes are switched
-    void Awake()
-    {
-      
-    }
 
     void Start()
     {
@@ -28,8 +20,7 @@ public class UserPosition : MonoBehaviour
 
     void Update()
     {
-        cameraPosition = GameObject.Find("CardboardMain").transform.position;
-        
+        cameraPosition = GameObject.Find("CardboardMain").transform.position;        
     }
   
     public Vector3 CameraPosition
@@ -45,10 +36,9 @@ public class UserPosition : MonoBehaviour
     }
   
     // Collect all the recent new information about the position, active scene
-    //and the username which will be send to retrieveInfo()
+   // and the username which will be send to retrieveInfo()
     public void collectInfo()
-    {
-              
+    {             
         x = CameraPosition.x.ToString("0.00");
         y = CameraPosition.y.ToString("0.00");
         z = CameraPosition.z.ToString("0.00");

@@ -32,8 +32,6 @@ public class Door : MonoBehaviour
         cameraLooking = Physics.Raycast(Camera.transform.position, Camera.transform.forward, out hit, Mathf.Infinity);
         seenObject = hit.collider.gameObject.transform;
     }
-        
-  
 
    public bool CameraLooking
     {
@@ -54,8 +52,7 @@ public class Door : MonoBehaviour
 
     //method called when clicked on a door
     public void ClickedOnDoor()
-    {
-      
+    {   
         if (CameraLooking)
         {
           
@@ -79,9 +76,9 @@ public class Door : MonoBehaviour
         if (SeenObject.name == "yes")
         {
             mainInfo.Login.logged = false;
-            SceneManager.LoadScene("Login");
-            
+            SceneManager.LoadScene("Login");           
         }
+
         else
         {
              AskBoxFront.SetActive(false);
@@ -109,7 +106,7 @@ public class Door : MonoBehaviour
    }
 
     //Switching between garage and house
-    //while changing the position of the camera to the saved position from the database
+   // while changing the position of the camera to the saved position from the database
     void DoorTeleport()
     {
 

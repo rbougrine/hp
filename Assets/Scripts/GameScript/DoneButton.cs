@@ -30,23 +30,9 @@ public class DoneButton : MonoBehaviour
         exerciseThree = new int[] { 7, 11, 4, 11, 5, 16, 0, 0, 0, 16, 12, 11, 14, 17, 13, 16, 0, 0, 0, 16, 8, 11, 14, 11, 6 };
     }
 
-    void OnGUI()
-    {
-        if (result == "TryAgain")
-        {
-            Debug.Log("Try Again");
-        }
-
-
-
-    }
-
-
-
-
     public void CheatButton()
     {
-       mainInfo.PanelMan.CheatState(mainInfo.StartButton.currentExercise);
+       mainInfo.PanelManager.CheatState(mainInfo.StartButton.currentExercise);
     }
 
     /*
@@ -56,22 +42,21 @@ public class DoneButton : MonoBehaviour
 
     public void FinalState()
     {
-        mainInfo.PanelMan.ReadState();
-        mainInfo.PanelMan.CheckArray(mainInfo.PanelMan.userInput, mainInfo.StartButton.currentExercise);
-       
+        mainInfo.PanelManager.ReadState();
+        mainInfo.PanelManager.CheckArray(mainInfo.PanelManager.userInput, mainInfo.StartButton.currentExercise);   
 
-        result = mainInfo.PanelMan.Result;
+        result = mainInfo.PanelManager.Result;
 
-        switch (result)
+        if (result == "GoodJob")
         {
-            case "GoodJob":
-                mainInfo.Time.Donetime();
-                mainInfo.Points.Addpoints();
-                GoodJob.SetActive(true);
-                break;
-
+            mainInfo.Time.Donetime();
+            mainInfo.Points.Addpoints();
+            GoodJob.SetActive(true);
         }
-
+        else
+        {
+            Debug.Log("Try again");
+        }
     }
 
     public void GoodJobButton()
@@ -86,11 +71,7 @@ public class DoneButton : MonoBehaviour
         }
         else
         {
-
-
             GoodJob.SetActive(false);
-
-
         }
 
     }

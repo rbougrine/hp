@@ -27,8 +27,6 @@ public class SwitchingScenes : MonoBehaviour
     void Start()
     {
         mainInfo = new MainInfo();
-      
-
     }
 
     void Update()
@@ -38,6 +36,7 @@ public class SwitchingScenes : MonoBehaviour
             cameraPosition = GameObject.Find("CardboardMain").transform.position;
         }
     }
+
     public void CheckPosition()
     {
 
@@ -56,7 +55,6 @@ public class SwitchingScenes : MonoBehaviour
         StartCoroutine(LoadSceneWait());
     }
  
-   
     IEnumerator LoadSceneWait()
     {
         while (sceneLoading.progress < 0.9f)
@@ -69,6 +67,7 @@ public class SwitchingScenes : MonoBehaviour
         Debug.Log("Done loading");
         changePosition();
     }
+
     //Change position from the camera with the received new position from the database
     public void ChangeCameraPosition()
     {
@@ -101,6 +100,7 @@ public class SwitchingScenes : MonoBehaviour
                     mainInfo.UserPosition.X = -237f;
                     mainInfo.UserPosition.Y = -38f;
                     mainInfo.UserPosition.Z = -102f;
+
                     ChangeCameraPosition();
                 }
 

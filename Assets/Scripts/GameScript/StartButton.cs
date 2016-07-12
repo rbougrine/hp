@@ -16,7 +16,7 @@ public class StartButton : MonoBehaviour
 
     public Texture begin;
     public Texture one, two, three;
-    public int randomnumber;
+    private int randomnumber;
     private MainInfo mainInfo;
 
     void Start()
@@ -57,20 +57,7 @@ public class StartButton : MonoBehaviour
 
         randomnumber = Random.Range(1, 4);
         ExerciseChooser();
-
-        switch (randomnumber)
-        {
-            case 1:
-                mainInfo.Changer.currentExercise = 1;
-                break;
-            case 2:
-                mainInfo.Changer.currentExercise = 2;
-                break;
-            case 3:
-                mainInfo.Changer.currentExercise = 3;
-                break;
-
-        }
+        mainInfo.Changer.currentExercise = randomnumber;
 
     }
 
@@ -81,18 +68,21 @@ public class StartButton : MonoBehaviour
 
     public void ExerciseChooser()
     {
-        if (randomnumber == 1)
+
+        switch (randomnumber)
         {
-            currentExercise = mainInfo.Done.exerciseOne;
+            case 1:
+                currentExercise = mainInfo.Done.exerciseOne;
+                break;
+            case 2:
+                currentExercise = mainInfo.Done.exerciseTwo;
+                break;
+            case 3:
+                currentExercise = mainInfo.Done.exerciseThree;
+                break;
         }
-        else if (randomnumber == 2)
-        {
-            currentExercise = mainInfo.Done.exerciseTwo;
-        }
-        else
-        {
-            currentExercise = mainInfo.Done.exerciseThree;
-        }
+
+     
 
     }
 
