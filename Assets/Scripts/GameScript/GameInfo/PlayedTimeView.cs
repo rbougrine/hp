@@ -11,16 +11,13 @@ public class PlayedTimeView : MonoBehaviour
     * Class that draws the GUI of the timer
     * 
     */
-
-
     private int playtime = 0;
     private int seconds = 0;
     private int minutes = 0;
     private int hours = 0;
     private MainInfo mainInfo;
     public GUIStyle timetyle;
-   
-    // Globale variable used in PlayedTime script
+  
     private IEnumerator timer;
     private string time;
     public string Username;

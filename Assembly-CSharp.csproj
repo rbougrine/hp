@@ -84,6 +84,7 @@
      <Compile Include="Assets\Scripts\GameScript\StatusBarView.cs" />
      <Compile Include="Assets\Scripts\GameScript\UserPosition.cs" />
      <Compile Include="Assets\Scripts\GameScript\Walk.cs" />
+     <Compile Include="Assets\Scripts\Interfaces\IGarageVariable.cs" />
      <Compile Include="Assets\Scripts\LoginScript\Login.cs" />
      <Compile Include="Assets\Scripts\LoginScript\LoginController.cs" />
      <Compile Include="Assets\Scripts\LoginScript\MainInfo.cs" />
