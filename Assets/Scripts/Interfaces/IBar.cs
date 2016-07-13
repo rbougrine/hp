@@ -5,15 +5,24 @@ using System.Text;
 
 namespace Assets.Scripts.Interfaces
 {
-    interface IGarageVariables
+    interface IBar
     {
 
         int Score
         {
             get;
+            set;
+
         }
 
-
+        void Bar();
+        void TimerDisplay();
 
     }
+
+
+
+
+
+
 }

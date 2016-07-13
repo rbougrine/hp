@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using Assets.Scripts.Interfaces;
 
-public class PlayedTimeView : MonoBehaviour
+public class PlayedTimeView : MonoBehaviour, IBar
 {
 
     /*
@@ -117,4 +118,8 @@ public void TimerDisplay()
 
     }
 
+    public void Bar()
+    {
+       
+    }
 }
