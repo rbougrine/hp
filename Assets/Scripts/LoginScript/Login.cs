@@ -17,7 +17,7 @@ public class Login : MonoBehaviour, ILogin
     private MainInfo mainInfo;
 
     //Private Variables
-    private string currentMenu = "";
+    private string currentMenu;
     private string password = "";
     private string cpassword = "";
     private string ConfirmPassword = "";
