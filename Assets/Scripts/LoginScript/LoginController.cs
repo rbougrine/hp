@@ -21,7 +21,7 @@ public class LoginController : MonoBehaviour {
       
 
         WWWForm form = new WWWForm();
-        form.AddField("Username", AbstractLogin.Username);
+        form.AddField("Username", mainInfo.Login.Username);
         form.AddField("Password", mainInfo.Login.Password);
         form.AddField("Job", "LoginAccount");
         WWW www = new WWW(mainInfo.URL, form);

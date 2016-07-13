@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using Assets.Scripts.Interfaces;
 
 public class StatusBarView : MonoBehaviour
 {
@@ -17,7 +18,8 @@ public class StatusBarView : MonoBehaviour
     public int score;
     public GUIStyle labelStyle, scorestyle;
     private MainInfo mainInfo;
-
+    private ALogin AbstractLogin;
+    private AGarage AbstractGarage;
 
 
 
@@ -25,7 +27,8 @@ public class StatusBarView : MonoBehaviour
     {
 
         mainInfo = new MainInfo();
-     
+        AbstractLogin = new ALogin();
+        AbstractGarage = new AGarage();
     }
 
 
@@ -33,12 +36,17 @@ public class StatusBarView : MonoBehaviour
 
     void OnGUI()
     {
-    //    var CurrentMenu = mainInfo.Login.CurrentMenu;
+    
+        var CurrentMenu = AbstractLogin.CurrentMenu;
 
-       // if (CurrentMenu == null)
-     //   {
-     //       Bar();
-    //    }
+        Debug.Log(AbstractLogin.CurrentMenu);
+        if (CurrentMenu == null)
+        {
+         
+          
+            Bar();
+         
+        }
 
 
     }
@@ -52,13 +60,12 @@ public class StatusBarView : MonoBehaviour
     public void Bar()
     {
         InfoStatusbar = mainInfo.StatusBarModel.InfoStatusbar;
-        InfoStatusbarScore = mainInfo.StatusBarModel.InfoStatusbarScore;
         GUI.Box(new Rect(250, 150, 260, 20), InfoStatusbar, labelStyle);
 
         if (SceneManager.GetActiveScene().name == "Game")
 
         {
-            score = mainInfo.StatusBarModel.score;
+            score = AbstractGarage.Score;
             GUI.Label(new Rect(250, 150, 260, 20), score.ToString(), scorestyle);
 
 
@@ -72,7 +79,7 @@ public class StatusBarView : MonoBehaviour
         }
 
     }
-       
 
-    }
+
+}
 

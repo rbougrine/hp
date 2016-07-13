@@ -7,7 +7,7 @@ public class SwitchingScenes : MonoBehaviour
 {
     //private variables
     private MainInfo mainInfo;
-    private ALogin AbstractLogin;
+  
 
     //public variables
     public AsyncOperation sceneLoading;
@@ -29,7 +29,6 @@ public class SwitchingScenes : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        AbstractLogin = new ALogin();
         mainInfo = new MainInfo();
     }
 
@@ -45,7 +44,7 @@ public class SwitchingScenes : MonoBehaviour
     {
 
         WWWForm form = new WWWForm();
-        form.AddField("Username", AbstractLogin.Username);
+        form.AddField("Username", mainInfo.Login.Username);
         form.AddField("Job","CheckPosition");
         WWW www = new WWW(mainInfo.URL, form);
 

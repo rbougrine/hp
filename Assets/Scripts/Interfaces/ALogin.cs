@@ -8,7 +8,7 @@ namespace Assets.Scripts.Interfaces
     class ALogin : ILoginVariables
     {
         private string currentMenu;
-        private string userName;
+        
         
 
         public string CurrentMenu
@@ -23,18 +23,6 @@ namespace Assets.Scripts.Interfaces
                 currentMenu = value;        
             }
         }
-
-        public string Username
-        {
-            get
-            {
-                return userName;
-            }
-
-            set
-            {
-                userName = value;
-            }
-        }
+        
     }
 }

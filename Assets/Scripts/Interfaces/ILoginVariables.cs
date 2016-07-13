@@ -14,13 +14,5 @@ namespace Assets.Scripts.Interfaces
             set;
         }
 
-        string Username
-        {
-            get;
-            set;
-        }
-
-
-
     }
 }

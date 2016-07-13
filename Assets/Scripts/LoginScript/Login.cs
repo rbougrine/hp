@@ -91,7 +91,7 @@ public class Login : MonoBehaviour
         GUI.Box(new Rect(235, 55, 225, 222), "Login");
 
         GUI.Label(new Rect(253, 86, 170, 21), "Username:");
-        AbstractLogin.Username = GUI.TextField(new Rect(253, 106, 170, 21), Username);
+        Username = GUI.TextField(new Rect(253, 106, 170, 21), Username);
 
         GUI.Label(new Rect(252, 128, 170, 23), "Password:");
 
