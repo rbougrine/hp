@@ -19,7 +19,7 @@ public class StatusBarView : MonoBehaviour, IBar
     private int score;
     public GUIStyle labelStyle, scorestyle;
     private MainInfo mainInfo;
-
+    private Login login;
 
 
     public int Score
@@ -39,7 +39,7 @@ public class StatusBarView : MonoBehaviour, IBar
 
     void Start()
     {
-
+        login = new Login();
         mainInfo = new MainInfo();
       
     }

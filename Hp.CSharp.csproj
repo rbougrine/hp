@@ -163,10 +163,12 @@
     <Compile Include="Assets\Scripts\GameScript\PipePanelChanger.cs" />
     <Compile Include="Assets\Scripts\GameScript\PointCounter.cs" />
     <Compile Include="Assets\Scripts\GameScript\StartButton.cs" />
+    <Compile Include="Assets\Scripts\GameScript\StatusBarView.cs" />
     <Compile Include="Assets\Scripts\GameScript\UIMan.cs" />
     <Compile Include="Assets\Scripts\GameScript\UserPosition.cs" />
     <Compile Include="Assets\Scripts\GameScript\Walk.cs" />
     <Compile Include="Assets\Scripts\Interfaces\AGarage.cs" />
+    <Compile Include="Assets\Scripts\Interfaces\IBar.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IGarageVariables.cs" />
     <Compile Include="Assets\Scripts\Interfaces\ILogin.cs" />
     <Compile Include="Assets\Scripts\LoginScript\ISwitchingScenes.cs" />
