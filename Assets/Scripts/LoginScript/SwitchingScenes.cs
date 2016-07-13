@@ -2,8 +2,9 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 using Assets.Scripts.Interfaces;
+using Assets.Scripts.LoginScript;
 
-public class SwitchingScenes : MonoBehaviour
+public class SwitchingScenes : MonoBehaviour, ISwitchingScenes
 {
     //private variables
     private MainInfo mainInfo;

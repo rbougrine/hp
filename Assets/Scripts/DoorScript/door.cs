@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using Assets.Scripts.DoorScript;
 
-public class Door : MonoBehaviour
+public class Door : MonoBehaviour, IDoor
 {
    //public variable
     public Animator anim;
@@ -130,7 +131,7 @@ public class Door : MonoBehaviour
    
      }
      //Opening and closing the doors
-    IEnumerator DoorMovement()
+   public IEnumerator DoorMovement()
     {    
 
         if (CameraLooking)

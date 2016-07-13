@@ -2,23 +2,22 @@
 using System.Collections;
 using System;
 using UnityEngine.SceneManagement;
+using Assets.Scripts.LoginScript;
 using Assets.Scripts.Interfaces;
 
-
-public class Login : MonoBehaviour
+public class Login : MonoBehaviour, ILogin
 {
     #region variables
 
     //Public Variables
     public bool logged;
-  
     public string Feedback = "";
     public Texture2D MessageBox = null;
     public string Username, CUsername;
     private MainInfo mainInfo;
-    private ALogin AbstractLogin;
 
     //Private Variables
+    private string currentMenu = "";
     private string password = "";
     private string cpassword = "";
     private string ConfirmPassword = "";
@@ -33,12 +32,24 @@ public class Login : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        AbstractLogin = new ALogin();
-        AbstractLogin.CurrentMenu = "Login";
+    
+        CurrentMenu = "Login";
         mainInfo = new MainInfo();
 
     }
 
+    public string CurrentMenu
+    {
+        get
+        {
+            return currentMenu;
+        }
+
+        set
+        {
+            currentMenu = value;
+        }
+    }
     public string Password
     {
         get
@@ -61,11 +72,11 @@ public class Login : MonoBehaviour
     {
         GUI.skin.box.normal.background = MessageBox;
 
-        if (AbstractLogin.CurrentMenu == "Login" && logged != true)
+        if (CurrentMenu == "Login" && logged != true)
         {
             LoginGUI();
         }
-        else if (AbstractLogin.CurrentMenu == "CreateAccount")
+        else if (CurrentMenu == "CreateAccount")
         {
             CreateAccountGUI();
         }
@@ -86,7 +97,7 @@ public class Login : MonoBehaviour
         }
     }
 
-    void LoginGUI()
+   public void LoginGUI()
     {
         GUI.Box(new Rect(235, 55, 225, 222), "Login");
 
@@ -106,11 +117,11 @@ public class Login : MonoBehaviour
 
         if (GUI.Button(new Rect(242, 223, 111, 25), "Create Account"))
         {
-            AbstractLogin.CurrentMenu = "CreateAccount";
+            CurrentMenu = "CreateAccount";
         }
     }
 
-    void CreateAccountGUI()
+    public void CreateAccountGUI()
     {
 
         GUI.Box(new Rect(235, 75, 225, 222), "Create Account");
@@ -138,13 +149,13 @@ public class Login : MonoBehaviour
 
         if (GUI.Button(new Rect(245, 243, 90, 25), "Back"))
         {
-            AbstractLogin.CurrentMenu = "Login";
+            CurrentMenu = "Login";
 
         }
 
     }
 
-    void FeedbackGUI()
+   public void FeedbackGUI()
     {
         GUI.Box(new Rect(235, 103, 225, 111), Feedback);
 

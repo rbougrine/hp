@@ -5,12 +5,12 @@ using Assets.Scripts.Interfaces;
 public class LoginController : MonoBehaviour {
 
     private MainInfo mainInfo;
-    private ALogin AbstractLogin;
+    private Login login;
 
     // Use this for initialization
     void Start()
     {
-        AbstractLogin = new ALogin();
+        login = new Login();
         mainInfo = new MainInfo();  
     }
 
@@ -56,7 +56,7 @@ public class LoginController : MonoBehaviour {
             if (www.text == "Login successful!")
             {
                 mainInfo.Login.logged = true;
-                AbstractLogin.CurrentMenu = null;
+                login.CurrentMenu = null;
                 
                 mainInfo.SwitchingScenes.CheckPosition();
                
@@ -85,7 +85,7 @@ public class LoginController : MonoBehaviour {
             if (www.text == "Registratie successful")
             {
                 mainInfo.Login.Feedback = www.text;
-                AbstractLogin.CurrentMenu = "Login";
+                login.CurrentMenu = "Login";
             }
             else
             {
