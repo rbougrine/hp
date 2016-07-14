@@ -70,6 +70,7 @@
     <Compile Include="Assets\Cardboard\Scripts\VRDevices\CardboardAndroidDevice.cs" />
     <Compile Include="Assets\Cardboard\Scripts\VRDevices\CardboardiOSDevice.cs" />
     <Compile Include="Assets\Cardboard\Scripts\VRDevices\UnityEditorDevice.cs" />
+    <Compile Include="Assets\Scripts\DoorScript\IDoor.cs" />
     <Compile Include="Assets\Scripts\DoorScript\door.cs" />
     <Compile Include="Assets\Scripts\GameScript\DoneButton.cs" />
     <Compile Include="Assets\Scripts\GameScript\ExerciseChanger.cs" />
@@ -85,9 +86,9 @@
     <Compile Include="Assets\Scripts\GameScript\StatusBarView.cs" />
     <Compile Include="Assets\Scripts\GameScript\UserPosition.cs" />
     <Compile Include="Assets\Scripts\GameScript\Walk.cs" />
-    <Compile Include="Assets\Scripts\Interfaces\ALogin.cs" />
-    <Compile Include="Assets\Scripts\Interfaces\ILoginVariables.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IBar.cs" />
+    <Compile Include="Assets\Scripts\Interfaces\ILogin.cs" />
+    <Compile Include="Assets\Scripts\LoginScript\ISwitchingScenes.cs" />
     <Compile Include="Assets\Scripts\LoginScript\Login.cs" />
     <Compile Include="Assets\Scripts\LoginScript\LoginController.cs" />
     <Compile Include="Assets\Scripts\LoginScript\MainInfo.cs" />
@@ -135,6 +136,7 @@
     <Compile Include="Assets\UnityTestTools\IntegrationTestsFramework\TestRunner\TestRunnerCallbackList.cs" />
     <Compile Include="Assets\UnityTestTools\IntegrationTestsFramework\TestRunner\TestRunnerConfigurator.cs" />
     <Compile Include="Assets\UnityTestTools\IntegrationTestsFramework\TestingAssets\CallTesting.cs" />
+    <None Include="Assets\config.json" />
     <None Include="Assets\Plugins\NatureStarterKit2\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
     <None Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\AngryBotsTests\Shaders\Fx\Cursor.shader" />
     <None Include="Assets\UnityTestTools\LICENSE.txt" />
@@ -182,6 +184,9 @@
     </Reference>
     <Reference Include="UnityEngine.Networking">
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="LitJson">
+      <HintPath>C:/Users/Anny/Desktop/hplab/Assets/LitJson.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

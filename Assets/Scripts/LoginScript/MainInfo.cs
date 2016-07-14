@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Configuration;
+using LitJson;
+using System.IO;
 
 public class MainInfo : MonoBehaviour
     {
@@ -24,12 +25,23 @@ public class MainInfo : MonoBehaviour
         private StatusBarView gameUI;
         private PointerCounterModel pointerCounterModel;
         private PlayedtimeModel playedTimeModel;
+        private string jsonstring;
+        private JsonData itemdata;
+    
 
         public MainInfo()
         {
-            ip = ConfigurationManager.AppSettings["IP"];
+      
 
-            url = "http://" + ip + "/Unity_apply/controller.php";
+
+             jsonstring = File.ReadAllText(Application.dataPath + "/config.json");       
+             itemdata = JsonMapper.ToObject(jsonstring);
+             
+
+             Debug.Log(itemdata["IP"][0]["ip"].ToString());
+             ip = itemdata["IP"][0]["ip"].ToString();
+              Debug.Log(ip);
+              url = "http://" + ip + "/Unity_apply/controller.php";
 
             loginScript = GameObject.Find("Login");
 
@@ -97,6 +109,7 @@ public class MainInfo : MonoBehaviour
             timer = GameObject.Find("Timer");
 
         }
+
 
 
         public string IP

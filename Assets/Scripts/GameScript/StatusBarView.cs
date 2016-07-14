@@ -49,16 +49,14 @@ public class StatusBarView : MonoBehaviour, IBar
 
     void OnGUI()
     {
-    
+       
         var CurrentMenu = login.CurrentMenu;
-
-        Debug.Log(login.CurrentMenu);
         if (CurrentMenu == null)
         {
-         
-          
+
+            
             Bar();
-         
+           
         }
 
 

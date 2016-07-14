@@ -26,6 +26,19 @@ public class PlayedTimeView : MonoBehaviour, IBar
 
     public DateTime starttime, endtime;
 
+    public int Score
+    {
+        get
+        {
+            throw new NotImplementedException();
+        }
+
+        set
+        {
+            
+        }
+    }
+
 
     // Use this for initialization
     void Start()
