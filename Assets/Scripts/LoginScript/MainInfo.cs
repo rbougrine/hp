@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using LitJson;
 using System.IO;
+using System;
 
 public class MainInfo : MonoBehaviour
     {
@@ -31,21 +32,27 @@ public class MainInfo : MonoBehaviour
 
         public MainInfo()
         {
+             loginScript = GameObject.Find("Login");
+             login = loginScript.GetComponent<Login>();
+              Readconfig();
+
+        try
+        {
+
+            ip = itemdata["IP"][0]["ip"].ToString();
+            url = "http://" + ip + "/Unity_apply/controller.php";
+
+        }
+        catch (NullReferenceException ex)
+
+        {
+            Login.Feedback = "Data not found";
+
+            // FileNotFoundExceptions are handled here.
+            Debug.Log(ex);
+
+        }
       
-
-
-             jsonstring = File.ReadAllText(Application.dataPath + "/config.json");       
-             itemdata = JsonMapper.ToObject(jsonstring);
-             
-
-             Debug.Log(itemdata["IP"][0]["ip"].ToString());
-             ip = itemdata["IP"][0]["ip"].ToString();
-              Debug.Log(ip);
-              url = "http://" + ip + "/Unity_apply/controller.php";
-
-            loginScript = GameObject.Find("Login");
-
-            login = loginScript.GetComponent<Login>();
             switchingScenes = loginScript.GetComponent<SwitchingScenes>();
             controller = loginScript.GetComponent<LoginController>();
 
@@ -60,6 +67,31 @@ public class MainInfo : MonoBehaviour
 
         }
 
+        void Readconfig() {
+         try
+        {
+            // Do not initialize this variable here.
+            jsonstring = File.ReadAllText(Application.dataPath + "/config.json");
+            itemdata = JsonMapper.ToObject(jsonstring);
+
+        }
+        catch (FileNotFoundException e)
+        {
+
+            Login.Feedback = "Configfile not found dumbass";
+            
+            // FileNotFoundExceptions are handled here.
+            Debug.Log(e);
+            Debug.Log(itemdata["IP"][0]["ip"].ToString());
+        }
+  
+
+
+    }
+
+
+
+     
 
         void InitializeScene()
         {
