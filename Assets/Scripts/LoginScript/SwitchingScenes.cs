@@ -47,9 +47,10 @@ public class SwitchingScenes : MonoBehaviour, ISwitchingScenes
         WWWForm form = new WWWForm();
         form.AddField("Username", mainInfo.Login.Username);
         form.AddField("Job","CheckPosition");
-        WWW www = new WWW(mainInfo.URL, form);
+        mainInfo.ServerConnection(form);
 
-        StartCoroutine(PositionStatus(www));
+        StartCoroutine(PositionStatus(mainInfo.WWW));
+
     }
 
     public void LoadingScenes(string levelName)

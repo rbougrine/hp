@@ -19,14 +19,14 @@ public class LoginController : MonoBehaviour {
     public void Authorization()
     {
       
-
         WWWForm form = new WWWForm();
         form.AddField("Username", mainInfo.Login.Username);
         form.AddField("Password", mainInfo.Login.Password);
         form.AddField("Job", "LoginAccount");
-        WWW www = new WWW(mainInfo.URL, form);
 
-        StartCoroutine(LoginAccount(www));
+        mainInfo.ServerConnection(form);
+
+        StartCoroutine(LoginAccount(mainInfo.WWW));
 
     }
 
@@ -37,9 +37,11 @@ public class LoginController : MonoBehaviour {
         form.AddField("Username", mainInfo.Login.CUsername);
         form.AddField("Password", mainInfo.Login.CPassword);
         form.AddField("Job", "RegisterAccount");
-        WWW www = new WWW(mainInfo.URL, form);
-        
-        StartCoroutine(CreateAccount(www));
+
+        mainInfo.ServerConnection(form);
+
+        StartCoroutine(CreateAccount(mainInfo.WWW));
+
     }
 
     IEnumerator LoginAccount(WWW www)

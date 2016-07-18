@@ -40,10 +40,12 @@ public class StatusBarModel : MonoBehaviour
         WWWForm form = new WWWForm();
         form.AddField("Username", username);
         form.AddField("Job", "GetInfo");
-        WWW www = new WWW(mainInfo.URL, form);
 
-        StartCoroutine(userInfo(www));
-    }
+        mainInfo.ServerConnection(form);
+
+        StartCoroutine(userInfo(mainInfo.WWW));
+
+      }
 
     /*
      * Fetches desired parts of the feedback string.

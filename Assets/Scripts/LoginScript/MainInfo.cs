@@ -2,10 +2,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using LitJson;
 using System.IO;
+using System.Configuration;
+using System;
+using System.Collections;
 
 public class MainInfo : MonoBehaviour
     {
 
+        private WWW www;
         private readonly string ip;
         private string url;
         private GameObject loginScript, userScript, score, door, statusBar, manager, GoodJob, start, Point, timer, doneButton;
@@ -27,21 +31,16 @@ public class MainInfo : MonoBehaviour
         private PlayedtimeModel playedTimeModel;
         private string jsonstring;
         private JsonData itemdata;
-    
+        
 
         public MainInfo()
         {
-      
 
+           jsonstring = File.ReadAllText(Application.dataPath + "/config.json");       
+           itemdata = JsonMapper.ToObject(jsonstring);
 
-             jsonstring = File.ReadAllText(Application.dataPath + "/config.json");       
-             itemdata = JsonMapper.ToObject(jsonstring);
-             
-
-             Debug.Log(itemdata["IP"][0]["ip"].ToString());
-             ip = itemdata["IP"][0]["ip"].ToString();
-              Debug.Log(ip);
-              url = "http://" + ip + "/Unity_apply/controller.php";
+            ip = itemdata["IP"][0]["ip"].ToString();
+            url = "http://" + ip + "/Unity_apply/controller.php";
 
             loginScript = GameObject.Find("Login");
 
@@ -110,9 +109,27 @@ public class MainInfo : MonoBehaviour
 
         }
 
+    public void ServerConnection(WWWForm form)
+    {
+        try
+        {
+           www = new WWW(url, form);
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e.Message);
+        }
+    }
 
+    public WWW WWW
+    {
+        get
+        {
+            return www;
+        }
 
-        public string IP
+    }
+    public string IP
         {
             get
             {

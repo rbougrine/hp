@@ -50,13 +50,13 @@ public class Door : MonoBehaviour, IDoor
             return seenObject;
         }
     }
-
+    
     //method called when clicked on a door
     public void ClickedOnDoor()
-    {   
+    {
         if (CameraLooking)
         {
-          
+
             if (SeenObject.parent.name == "Front_door")
             {
                 AskBoxFront.SetActive(true);
@@ -65,10 +65,14 @@ public class Door : MonoBehaviour, IDoor
             {
                 AskBox.SetActive(true);
             }
-             else
-                {
-                     StartCoroutine(DoorMovement());
-                }
+            else
+            {
+                StartCoroutine(DoorMovement());
+            }
+        }
+        else
+        {
+            mainInfo.Login.Feedback = "Camera is not working correctly";
         }
     }
 
@@ -93,7 +97,10 @@ public class Door : MonoBehaviour, IDoor
             mainInfo.SwitchingScenes.LoadingScenes("Garage");
         }
         else
+        {
             Debug.Log(SeenObject.name);
+        }
+
         if (SeenObject.name == "yes")
         {
           DoorTeleport();
@@ -107,10 +114,9 @@ public class Door : MonoBehaviour, IDoor
    }
 
     //Switching between garage and house
-   // while changing the position of the camera to the saved position from the database
+   //while changing the position of the camera to the saved position from the database
     void DoorTeleport()
     {
-
         mainInfo.UserPosition.collectInfo();
      
         if (mainInfo.UserPosition.sceneName == "Game")
@@ -130,7 +136,8 @@ public class Door : MonoBehaviour, IDoor
         }         
    
      }
-     //Opening and closing the doors
+
+   //Opening and closing the doors
    public IEnumerator DoorMovement()
     {    
 
@@ -156,17 +163,13 @@ public class Door : MonoBehaviour, IDoor
                     yield return new WaitForSeconds(5);
                     anim.Play("closeDoorRight");
                     doorisClosed = true;
-
                 }
             }
             else
             {
                 Debug.Log("Can't open a door thats already open");
-
             }
           
         }
-    }
-
- 
+    } 
 }

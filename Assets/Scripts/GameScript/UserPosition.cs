@@ -54,12 +54,14 @@ public class UserPosition : MonoBehaviour
     {
       
         WWWForm form = new WWWForm();
+
         form.AddField("x", x);
         form.AddField("y", y);
         form.AddField("z", z);
         form.AddField("username", username);
         form.AddField("scene", sceneName);
         form.AddField("Job","SavePosition");
+
         WWW www = new WWW(mainInfo.URL, form);
 
         StartCoroutine(saveInfo(www));
@@ -74,9 +76,10 @@ public class UserPosition : MonoBehaviour
         form.AddField("username", username);
         form.AddField("sceneName",sceneName);
         form.AddField("Job","RetrievePosition");
-        WWW www = new WWW(mainInfo.URL, form);
+        mainInfo.ServerConnection(form);
 
-        StartCoroutine(getInfo(www));
+        StartCoroutine(getInfo(mainInfo.WWW));
+    
 
     }
 
@@ -127,7 +130,4 @@ public class UserPosition : MonoBehaviour
            
          }
     }
-   
-   
-
 }

@@ -91,10 +91,11 @@ public class PlayedtimeModel : MonoBehaviour {
         form.AddField("Begintime", starttime.ToLongTimeString());
         form.AddField("Endtime", endtime.ToLongTimeString());
         form.AddField("Job", "SaveTime");
-        WWW www = new WWW(mainInfo.URL, form);
+       
+        mainInfo.ServerConnection(form);
 
-        StartCoroutine(saveInfo(www));
-
+        StartCoroutine(saveInfo(mainInfo.WWW));
+        
     }
 
     IEnumerator saveInfo(WWW www)

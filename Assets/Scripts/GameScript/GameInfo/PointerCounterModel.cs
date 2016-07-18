@@ -41,11 +41,11 @@ public class PointerCounterModel : MonoBehaviour
         form.AddField("Username", username);
         form.AddField("score", score);
         form.AddField("Job", "SaveScore");
-        WWW www = new WWW(mainInfo.URL, form);
 
-        StartCoroutine(saveInfo(www));
+        mainInfo.ServerConnection(form);
 
-    }
+        StartCoroutine(saveInfo(mainInfo.WWW));
+     }
 
     IEnumerator saveInfo(WWW www)
     {
