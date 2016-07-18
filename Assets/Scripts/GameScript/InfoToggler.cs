@@ -26,7 +26,7 @@ public class InfoToggler : MonoBehaviour {
 
 	public void ShowInfo()
 	{
-		Debug.Log ("clicked");
+	
 		info.SetActive(true);;
 	}
 
