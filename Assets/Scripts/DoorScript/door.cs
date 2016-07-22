@@ -130,7 +130,7 @@ public class Door : MonoBehaviour, IDoor
         {
            Debug.Log("Switching scenes to game");
 
-            mainInfo.SwitchingScenes.LoadingScenes("Game");
+           mainInfo.SwitchingScenes.LoadingScenes("Game");
 
             
         }         

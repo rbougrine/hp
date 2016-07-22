@@ -13,7 +13,7 @@ namespace Assets.Scripts.LoginScript
 
         void ChangeCameraPosition();
 
-        void changePosition();
+        void ChangePosition();
 
 
 

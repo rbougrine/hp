@@ -1,11 +1,21 @@
 ﻿{
-  "IP":[
-    {
-      "id":"1",
-      "ip": "145.24.222.160"
-
-     
-    }
+  
+  "IP": "145.24.222.160",
  
-  ]
+  //DefaultCoordinatesGameScene
+  "Game":
+    {
+      "x": 536.1,
+      "y": 12,
+      "z": 578
+     },
+
+  //DefaultCoordinatesGarageScene
+ "Garage":
+    {   
+      "x": -237,
+      "y": -38,
+      "z": -102
+    } 
+  
 }

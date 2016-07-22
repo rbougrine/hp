@@ -11,32 +11,44 @@ public class Login : MonoBehaviour, ILogin
 
     //Public Variables
     public bool logged;
-    public string Feedback = "";
-    public Texture2D MessageBox = null;
-    public string Username, CUsername;
+    public Texture2D messageBox;
+    public string cUsername;
     private MainInfo mainInfo;
 
     //Private Variables
     private string currentMenu;
+    private string feedback;
+    private string username = "";
     private string password = "";
     private string cpassword = "";
-    private string ConfirmPassword = "";
+    private string confirmPassword = "";
 
     #endregion variables
+
+    /// <summary>
+    /// Causes that attached GameObject Login
+    /// is still available when scene is changed
+    /// </summary>
 
     void Awake()
     {
         DontDestroyOnLoad(this);
     }
 
-    // Use this for initialization
+    /// <summary>
+    /// Used for initialization
+    /// </summary>
+   
     void Start()
-    {
-    
+    { 
         CurrentMenu = "Login";
         mainInfo = new MainInfo();
-
+        mainInfo.Initialize();
     }
+
+    /// <summary>
+    /// Get and set for other classes to gain acces to the variable needed.
+    /// </summary>
 
     public string CurrentMenu
     {
@@ -50,6 +62,29 @@ public class Login : MonoBehaviour, ILogin
             currentMenu = value;
         }
     }
+
+    public string Feedback
+    {
+        get
+        {
+            return feedback;
+        }
+
+        set
+        {
+            feedback = value;
+        }
+    }
+
+    public string Username
+    {
+        get
+        {
+            return username;
+        }
+
+    }
+
     public string Password
     {
         get
@@ -67,10 +102,13 @@ public class Login : MonoBehaviour, ILogin
         }
     }
 
-    //draws de GUI in unity when Currentmenu isnt empty
+    /// <summary>
+    /// Calls the needed GUI method when CurrentMenu and/or Feedback isn't null 
+    /// </summary>
+
     void OnGUI()
     {
-        GUI.skin.box.normal.background = MessageBox;
+        GUI.skin.box.normal.background = messageBox;
 
         if (CurrentMenu == "Login" && logged != true)
         {
@@ -81,14 +119,16 @@ public class Login : MonoBehaviour, ILogin
             CreateAccountGUI();
         }
 
-
-        if (Feedback != "")
+        if (Feedback != null)
         {
             FeedbackGUI();
         }
     }
 
-    //switches scene to users last visited one
+    /// <summary>
+    /// Switches scene to users last visited one
+    /// </summary>
+ 
     public void LoggedIn()
     {
         if (SceneManager.GetActiveScene().name == "Garage" && logged == true)
@@ -97,12 +137,17 @@ public class Login : MonoBehaviour, ILogin
         }
     }
 
-   public void LoginGUI()
+
+    /// <summary>
+    /// Draws the login screen.
+    /// </summary>
+
+    public void LoginGUI()
     {
         GUI.Box(new Rect(235, 55, 225, 222), "Login");
 
         GUI.Label(new Rect(253, 86, 170, 21), "Username:");
-        Username = GUI.TextField(new Rect(253, 106, 170, 21), Username);
+        username = GUI.TextField(new Rect(253, 106, 170, 21), username);
 
         GUI.Label(new Rect(252, 128, 170, 23), "Password:");
 
@@ -121,23 +166,27 @@ public class Login : MonoBehaviour, ILogin
         }
     }
 
+    /// <summary>
+    /// Draws the Register screen.
+    /// </summary>
+
     public void CreateAccountGUI()
     {
 
         GUI.Box(new Rect(235, 75, 225, 222), "Create Account");
 
         GUI.Label(new Rect(253, 86, 170, 21), "Name:");
-        CUsername = GUI.TextField(new Rect(253, 106, 170, 21), CUsername);
+        cUsername = GUI.TextField(new Rect(253, 106, 170, 21), cUsername);
 
         GUI.Label(new Rect(252, 128, 170, 23), "Password:");
         cpassword = GUI.PasswordField(new Rect(252, 151, 170, 23), cpassword, "*"[0], 25);
 
         GUI.Label(new Rect(252, 181, 170, 23), "Confirm Password:");
-        ConfirmPassword = GUI.PasswordField(new Rect(252, 209, 170, 23), ConfirmPassword, "*"[0], 25);
+        confirmPassword = GUI.PasswordField(new Rect(252, 209, 170, 23), confirmPassword, "*"[0], 25);
 
         if (GUI.Button(new Rect(344, 243, 111, 25), "Create Account"))
         {
-            if (CPassword == ConfirmPassword)
+            if (CPassword == confirmPassword)
             {
                 mainInfo.Controller.Authorization();
             }
@@ -155,13 +204,17 @@ public class Login : MonoBehaviour, ILogin
 
     }
 
-   public void FeedbackGUI()
+    /// <summary>
+    /// Draws the Feedback screen.
+    /// </summary>
+
+    public void FeedbackGUI()
     {
         GUI.Box(new Rect(235, 103, 225, 111), Feedback);
 
         if (GUI.Button(new Rect(287, 164, 111, 25), "Okay"))
         {
-            Feedback = "";
+            Feedback = null;
         }
     }
 

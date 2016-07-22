@@ -4,18 +4,25 @@ using Assets.Scripts.Interfaces;
 
 public class LoginController : MonoBehaviour {
 
+    //private variables
     private MainInfo mainInfo;
     private Login login;
 
-    // Use this for initialization
+    /// <summary>
+    /// Used for initialization
+    /// </summary>
+
     void Start()
     {
         login = new Login();
         mainInfo = new MainInfo();  
     }
 
+    /// <summary>
+    /// Sending the username and password to the database to verify the credentials.
+    /// Checks with ServerConnection if a valid IP is used before starting the Coroutine.
+    /// </summary>
 
-    //sending the username and password to the database to login into the game
     public void Authorization()
     {
       
@@ -30,11 +37,15 @@ public class LoginController : MonoBehaviour {
 
     }
 
-    //sending the new username and password to the database to register
+    /// <summary>
+    /// Sending the new username and password to the database to register
+    /// Checks with ServerConnection if a valid IP is used before starting the Coroutine.
+    /// </summary>
+
     public void Register()
     {
         WWWForm form = new WWWForm();
-        form.AddField("Username", mainInfo.Login.CUsername);
+        form.AddField("Username", mainInfo.Login.cUsername);
         form.AddField("Password", mainInfo.Login.CPassword);
         form.AddField("Job", "RegisterAccount");
 
@@ -44,11 +55,15 @@ public class LoginController : MonoBehaviour {
 
     }
 
+    /// <summary>
+    /// Waits for API to send feedback,
+    /// When its not an error it will go through with the login procedure.
+    /// </summary>
+
     IEnumerator LoginAccount(WWW www)
     {
         yield return www;
        
-        // check for errors
         if (www.error != null)
         {
              mainInfo.Login.Feedback = www.error;
@@ -60,24 +75,24 @@ public class LoginController : MonoBehaviour {
                 mainInfo.Login.logged = true;
                 login.CurrentMenu = null;
                 
-                mainInfo.SwitchingScenes.CheckPosition();
-               
+                mainInfo.SwitchingScenes.CheckPosition();              
             }
             else
             {
-
                 mainInfo.Login.Feedback = www.text;
             }
-
         }
-
     }
+
+    /// <summary>
+    /// Waits for API to send feedback,
+    /// When it's not an error it will go through with the register procedure.
+    /// </summary>
 
     IEnumerator CreateAccount(WWW www)
     {
         yield return www;
 
-        // check for errors
         if (www.error != null)
         {
             mainInfo.Login.Feedback = www.error;
@@ -94,7 +109,6 @@ public class LoginController : MonoBehaviour {
                 mainInfo.Login.Feedback = www.text;
             }
         }
-
     }
 
 }//End Class LoginController

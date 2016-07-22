@@ -5,12 +5,12 @@ using System.IO;
 using System.Configuration;
 using System;
 using System.Collections;
+using System.Linq;
 
 public class MainInfo : MonoBehaviour
     {
-
         private WWW www;
-        private readonly string ip;
+        private string ip;
         private string url;
         private GameObject loginScript, userScript, score, door, statusBar, manager, GoodJob, start, Point, timer, doneButton;
         private LoginController controller;
@@ -29,6 +29,7 @@ public class MainInfo : MonoBehaviour
         private StatusBarView gameUI;
         private PointerCounterModel pointerCounterModel;
         private PlayedtimeModel playedTimeModel;
+        private DefaultGameInformation defaultGameInformation;
         private string jsonstring;
         private JsonData itemdata;
         
@@ -37,27 +38,9 @@ public class MainInfo : MonoBehaviour
         {
              loginScript = GameObject.Find("Login");
              login = loginScript.GetComponent<Login>();
-              Readconfig();
 
-        try
-        {
-
-            ip = itemdata["IP"][0]["ip"].ToString();
-            url = "http://" + ip + "/Unity_apply/controller.php";
-
-        }
-        catch (NullReferenceException ex)
-
-        {
-            Login.Feedback = "Data not found";
-
-            // FileNotFoundExceptions are handled here.
-            Debug.Log(ex);
-
-        }
-      
-            switchingScenes = loginScript.GetComponent<SwitchingScenes>();
-            controller = loginScript.GetComponent<LoginController>();
+             switchingScenes = loginScript.GetComponent<SwitchingScenes>();
+             controller = loginScript.GetComponent<LoginController>();
 
             if (SceneManager.GetActiveScene().name != "Login")
             {
@@ -68,49 +51,28 @@ public class MainInfo : MonoBehaviour
                 InitializeScene();
             }
 
-        }
+        }//End contructor
 
-        void Readconfig() {
-         try
-        {
-            // Do not initialize this variable here.
-            jsonstring = File.ReadAllText(Application.dataPath + "/config.json");
-            itemdata = JsonMapper.ToObject(jsonstring);
-
-        }
-        catch (FileNotFoundException e)
-        {
-
-            Login.Feedback = "Configfile not found dumbass";
-            
-            // FileNotFoundExceptions are handled here.
-            Debug.Log(e);
-            Debug.Log(itemdata["IP"][0]["ip"].ToString());
-        }
-  
-
-
+    public void Initialize()
+    {
+        defaultGameInformation = new DefaultGameInformation();
+        ip = defaultGameInformation.IP;
     }
-
-
-
-     
-
-        void InitializeScene()
+      void InitializeScene()
+      {
+         if (SceneManager.GetActiveScene().name == "Game")
         {
-            if (SceneManager.GetActiveScene().name == "Game")
-            {
-                InitializeGame();
-
-
-            }
-            else if (SceneManager.GetActiveScene().name == "Garage")
-            {
-                InitializeGarage();
-            }
-
-
+            InitializeGame();
         }
+        else if (SceneManager.GetActiveScene().name == "Garage")
+        {
+            InitializeGarage();
+        }
+        else
+        {
+            Login.Feedback = "World is not found.";
+        }
+      }
 
 
         void InitializeGame()

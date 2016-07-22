@@ -106,6 +106,12 @@
     <Reference Include="System.configuration">
       <HintPath>Assets\System.configuration.dll</HintPath>
     </Reference>
+    <Reference Include="AssetStoreToolsExtra">
+      <HintPath>Assets\AssetStoreTools\Editor\AssetStoreToolsExtra.dll</HintPath>
+    </Reference>
+    <Reference Include="AssetStoreTools">
+      <HintPath>Assets\AssetStoreTools\Editor\AssetStoreTools.dll</HintPath>
+    </Reference>
     <Reference Include="Assembly-UnityScript-firstpass">
       <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
     </Reference>
