@@ -4,12 +4,10 @@ using System.Collections;
 public class PanelMan : MonoBehaviour
 {
 
-    /*
-     * Created by Randa Bougrine & Anny Aidinian.
-     * 
-     * Class managing changes in the panel
-     * 
-     */
+    /// <summary>
+    ///  Created by Randa Bougrine & Anny Aidinian.
+    ///  Class managing changes in the panel
+    /// </summary>
 
     public Texture[] texture;
     public int[] userInput;
@@ -19,12 +17,13 @@ public class PanelMan : MonoBehaviour
 
     public Texture one, two, three, four, five, six, seven, eight, nine, ten,
     eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, empty;
-
+    
+    /// <summary>
+    /// Used for initialization
+    /// </summary>
 
     void Start()
     {
-
-
         texture = new Texture[18];
 
         texture[0] = empty;
@@ -48,13 +47,6 @@ public class PanelMan : MonoBehaviour
 
     }
 
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public string Result
     {
         get
@@ -65,8 +57,6 @@ public class PanelMan : MonoBehaviour
         {
             result = value;
         }
-
-
     }
 
     public Texture GiveTexture(int indicator)
@@ -74,10 +64,9 @@ public class PanelMan : MonoBehaviour
         return texture[indicator];
     }
 
-
-    /*
-    * Resolves the puzzel when triggered  
-    */
+    /// <summary>
+    /// Resolves the puzzel when triggered  
+    /// </summary>
 
     public void CheatState(int[] exercise)
     {
@@ -92,11 +81,10 @@ public class PanelMan : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Fetch currentstatus state  of user input.
+    /// </summary>
 
-
-    /*
-    * Fetch currentstatus state  of user input.
-    */
     public void ReadState()
     {
         Transform[] allChildren = GetComponentsInChildren<Transform>();
@@ -105,20 +93,14 @@ public class PanelMan : MonoBehaviour
 
         for (int i = 1; i < allChildren.Length; i++)
         {
-
             userInput[i - 1] = allChildren[i].GetComponent<PipePanelChanger>().currentStatus;
         }
-
-
     }
 
-
-
-
-    /*
-    * Checks if exerciese is done right
-    * by checking user input answer length equals excersie length answer.
-    */
+    /// <summary>
+    /// Checks if exerciese is done right
+    /// by checking user input answer length equals excersie length answer.
+    /// </summary>
 
     public bool CheckArray(int[] userInput, int[] exercise)
     {
@@ -159,14 +141,7 @@ public class PanelMan : MonoBehaviour
                 countGood = 0;
                 return false;
             }
-
-
         }
-
-
-
     }
-
-
 }
 

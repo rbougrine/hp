@@ -6,14 +6,10 @@ using System;
 
 public class StatusBarView : MonoBehaviour, IBar
 {
-
-    /*
-   * Created by Anny Aidinian.
-   * 
-   * Class that creates the statusbar Gui
-   * 
-   */
-
+    /// <summary>
+    /// Created by Anny Aidinian.
+    /// Class that creates the statusbar GUI
+    /// </summary>
 
     public string InfoStatusbar, InfoStatusbarScore;
     private int score;
@@ -21,52 +17,33 @@ public class StatusBarView : MonoBehaviour, IBar
     private MainInfo mainInfo;
     private Login login;
 
-
-    public int Score
-    {
-        get
-        {
-            return score;
-        }
-        set {
-
-            score = value;
-        }
-
-    }
-
-   
+    /// <summary>
+    /// Used for initialization
+    /// </summary>
 
     void Start()
     {
         login = new Login();
-        mainInfo = new MainInfo();
-      
+        mainInfo = new MainInfo(); 
     }
 
-
-
+    /// <summary>
+    /// Generates the GUI every frame
+    /// </summary>
 
     void OnGUI()
-    {
-       
+    {      
         var CurrentMenu = login.CurrentMenu;
         if (CurrentMenu == null)
-        {
-
-            
-            Bar();
-           
+        {           
+            Bar();       
         }
-
-
     }
 
-    /*
-     * Draws the GUI of the statusbar with userinformation.
-     * Whichever condition is met, the score is fetches from other classes.
-    */
-
+    /// <summary>
+    /// Draws the GUI of the statusbar with userinformation.
+    /// Whichever condition is met, the score is fetches from other classes.
+    /// </summary>
 
     public void Bar()
     {
@@ -74,26 +51,29 @@ public class StatusBarView : MonoBehaviour, IBar
         GUI.Box(new Rect(250, 150, 260, 20), InfoStatusbar, labelStyle);
 
         if (SceneManager.GetActiveScene().name == "Game")
-
         {
             Score = mainInfo.StatusBarModel.score;
             GUI.Label(new Rect(250, 150, 260, 20), score.ToString(), scorestyle);
-
-
         }
-        else {
-
+        else
+        {
             Score = mainInfo.Points.score;
             GUI.Label(new Rect(250, 150, 260, 20), score.ToString(), scorestyle);
-
-
         }
-
     }
 
-    public void TimerDisplay()
+    public void TimerDisplay(){}
+ 
+    public int Score
     {
-        
+        get
+        {
+            return score;
+        }
+        set
+        {
+            score = value;
+        }
     }
 }
 

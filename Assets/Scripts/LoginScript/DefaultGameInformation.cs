@@ -12,19 +12,19 @@ public class DefaultGameInformation
     private MainInfo mainInfo;
     private float X, Y, Z;
 
+    /// <summary>
+    /// Contructor to start reading config file 
+    /// </summary>
+
     public DefaultGameInformation()
     {
         mainInfo = new MainInfo();
         ReadConfig();
     }
 
-    public string IP
-    {
-        get
-        {
-            return ip;
-        }
-    }
+    /// <summary>
+    /// Read config file
+    /// </summary>
 
     void ReadConfig()
     {
@@ -43,6 +43,10 @@ public class DefaultGameInformation
 
     }
 
+    /// <summary>
+    /// Looping through the config file to put the coordinates into the variable
+    /// </summary>
+
     public void GetCoordinates(string sceneName)
     {
         try
@@ -58,9 +62,11 @@ public class DefaultGameInformation
             login.Feedback = "Data not found";
             Debug.Log(ex);
         }
-
-
     }
+
+    /// <summary>
+    /// Coordinates variables
+    /// </summary>
 
     void Coordinates(int index, float coor)
     {
@@ -75,8 +81,15 @@ public class DefaultGameInformation
             case 2:
                 mainInfo.SwitchingScenes.Z = coor;
                 break;
-
-
         }
     }
+
+    public string IP
+    {
+        get
+        {
+            return ip;
+        }
+    }
+
 }

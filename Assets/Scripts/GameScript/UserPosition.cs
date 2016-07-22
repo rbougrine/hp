@@ -13,6 +13,10 @@ public class UserPosition : MonoBehaviour
     private ConfigureServer configureServer;
     private MainInfo mainInfo;
 
+    /// <summary>
+    /// Used for initialization
+    /// </summary>
+
     void Start()
     {
         mainInfo = new MainInfo();
@@ -20,25 +24,20 @@ public class UserPosition : MonoBehaviour
         mainInfo.SwitchingScenes.newScene = true;
     }
 
+    /// <summary>
+    /// Update is called once per frame
+    /// </summary>
+
     void Update()
     {
         cameraPosition = GameObject.Find("CardboardMain").transform.position;        
     }
-  
-    public Vector3 CameraPosition
-    {
-        get
-        {
-            return cameraPosition;
-        }
-        set
-        {
-            cameraPosition = value; 
-        }
-    }
-  
-    // Collect all the recent new information about the position, active scene
-   // and the username which will be send to retrieveInfo()
+
+    /// <summary>
+    /// Collect all the recent new information about the position, active scene
+    /// and the username which will be send to retrieveInfo()
+    /// </summary>
+
     public void collectInfo()
     {             
         x = CameraPosition.x.ToString("0.00");
@@ -51,10 +50,12 @@ public class UserPosition : MonoBehaviour
         retrieveInfo();
     }
 
-    //Save the new position data to the database to be saved with the current scene name.
+    /// <summary>
+    /// Save the new position data to the database to be saved with the current scene name.
+    /// </summary>
+
     void sendInfo()
-    {
-      
+    {      
         WWWForm form = new WWWForm();
 
         form.AddField("x", x);
@@ -67,30 +68,32 @@ public class UserPosition : MonoBehaviour
         WWW www = new WWW(configureServer.URL, form);
 
         StartCoroutine(saveInfo(configureServer.WWW));
-
     }
 
-    //Get the recent saved position data from the database
+    /// <summary>
+    /// Get the recent saved position data from the database
+    /// </summary>
+
     void retrieveInfo()
-    {
-       
+    {      
         WWWForm form = new WWWForm();
         form.AddField("username", username);
         form.AddField("sceneName",sceneName);
         form.AddField("Job","RetrievePosition");
+
         configureServer.ServerConnection(form);
 
         StartCoroutine(getInfo(configureServer.WWW));
-    
-
     }
 
-    //Save new position to the database
+    /// <summary>
+    /// Save new position to the database
+    /// </summary>
+
     IEnumerator saveInfo(WWW www)
     {
         yield return www;
 
-        // check for errors
         if (www.error != null)
         {
             Debug.Log(www.error);
@@ -102,8 +105,11 @@ public class UserPosition : MonoBehaviour
 
     }
 
-    //Receive data from the database and check if the data is empty 
-    //or its from the same scene or the data is from the scene you about the enter
+    /// <summary>
+    /// Receive data from the database and check if the data is empty 
+    /// or its from the same scene or the data is from the scene you about the enter
+    /// </summary>
+
     IEnumerator getInfo(WWW www)
     {
         yield return www;
@@ -122,14 +128,24 @@ public class UserPosition : MonoBehaviour
             {
                 string[] position = www.text.Split(',');
 
-                //assign the numbers to new position camera variables
                 X = float.Parse(position[0]);
                 Y = float.Parse(position[1]);
                 Z = float.Parse(position[2]);
 
                 sendInfo();
             }
-           
          }
+    }
+
+    public Vector3 CameraPosition
+    {
+        get
+        {
+            return cameraPosition;
+        }
+        set
+        {
+            cameraPosition = value;
+        }
     }
 }

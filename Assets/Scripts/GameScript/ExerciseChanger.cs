@@ -3,26 +3,18 @@ using System.Collections;
 
 public class ExerciseChanger : MonoBehaviour
 {
-
-    /*
-     * Created by Randa Bougrine & Anny Aidinian.
-     * 
-     * Class that changes the puzzles pieces of the game.
-     * 
-     */
-
+    /// <summary>
+    /// Created by Randa Bougrine & Anny Aidinian.
+    /// Class that changes the puzzles pieces of the game.
+    /// </summary>
 
     public int currentExercise;
     public GameObject manager;
 
+    /// <summary>
+    ///  Update is called once per frame
+    /// </summary>
 
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
         Texture texture = manager.GetComponent<StartButton>().GiveTexture(currentExercise);

@@ -4,14 +4,10 @@ using UnityEngine.SceneManagement;
 
 public class StatusBarModel : MonoBehaviour
 {
-
-    /*
-    * Created by Anny Aidinian.
-    * 
-    * Class that retrieves data from the database. 
-    * And sends it to the class that request the data.
-    */
-
+    /// <summary>
+    /// Class that retrieves data from the database. 
+    /// And sends it to the class that request the data.
+    /// </summary>
 
     private MainInfo mainInfo;
     private ConfigureServer configureServer;
@@ -19,7 +15,9 @@ public class StatusBarModel : MonoBehaviour
     public int score;
     public string username, InfoStatusbar, InfoStatusbarScore;
 
-
+    /// <summary>
+    /// Used for initialization
+    /// </summary>
 
     void Start()
     {
@@ -28,15 +26,13 @@ public class StatusBarModel : MonoBehaviour
         Getinfo();
     }
 
-
-    /*
-     * Fetches the data using the username.
-     * Given by the login class
-     */
+    /// <summary>
+    /// Fetches the data using the username.
+    /// Given by the login class
+    /// </summary>
 
     void Getinfo()
     {
-
         username = mainInfo.Login.Username;
 
         WWWForm form = new WWWForm();
@@ -46,12 +42,11 @@ public class StatusBarModel : MonoBehaviour
         configureServer.ServerConnection(form);
 
         StartCoroutine(userInfo(configureServer.WWW));
-
       }
 
-    /*
-     * Fetches desired parts of the feedback string.
-     */
+    /// <summary>
+    /// Fetches desired parts of the feedback string.
+    /// </summary>
 
     IEnumerator userInfo(WWW www)
     {
@@ -59,29 +54,21 @@ public class StatusBarModel : MonoBehaviour
 
         if (www.error != null)
         {
-
             Feedback = www.error;
-
         }
         else
         {
-
             Feedback = www.text;
             string[] position = Feedback.Split(',');
             InfoStatusbar = (position[0]);
             InfoStatusbarScore = (position[1]);
 
             score = int.Parse(position[1]);
-             if (SceneManager.GetActiveScene().name == "Garage")
+
+            if (SceneManager.GetActiveScene().name == "Garage")
             {
-                mainInfo.Points.Getinformation();
-              
+                mainInfo.Points.Getinformation();             
             }
-           
-
-
         }
-    }
-
-    
+    }   
 }

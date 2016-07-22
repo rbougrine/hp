@@ -5,134 +5,67 @@ using Assets.Scripts.Interfaces;
 
 public class PlayedTimeView : MonoBehaviour, IBar
 {
+    /// <summary>
+    /// Created by Anny Aidinian.
+    /// Class that draws the GUI of the timer
+    /// </summary>
 
-    /*
-    * Created by Anny Aidinian.
-    * 
-    * Class that draws the GUI of the timer
-    * 
-    */
-    private int playtime = 0;
-    private int seconds = 0;
-    private int minutes = 0;
-    private int hours = 0;
+    public bool timerBool;
+    private int playtime;
+    private int seconds;
+    private int minutes ;
+    private int hours;
     private MainInfo mainInfo;
     public GUIStyle timetyle;
-  
-    private IEnumerator timer;
-    private string time;
-    public string Username;
-    
+    private PlayedtimeModel playedtimeModel;
 
-    public DateTime starttime, endtime;
+    /// <summary>
+    /// Used for initialization
+    /// </summary>
+
+    void Start()
+    {
+        mainInfo = new MainInfo();
+    }
+
+    /// <summary>
+    /// Get and set method for score
+    /// </summary>
 
     public int Score
     {
-        get
-        {
-            throw new NotImplementedException();
-        }
+        get;
+        set;
+     }
 
-        set
-        {
-            
-        }
-    }
+    /// <summary>
+    /// empty class from the interface, isn't used
+    /// </summary>
 
+     public void Bar() { }
 
-    // Use this for initialization
-    void Start()
-    {
-        timer = Playtimer();
-        mainInfo = new MainInfo();
-
-    }
-
-    /*
-   * Triggers when the user clicks on the Start game object.
-   * current time is selected as starttime
-   */
-    public void StartTimer()
-    {
-        starttime = DateTime.Now;
-        StartCoroutine(timer);
-        starttime.ToLongDateString();
-
-    }
-
-
-
-    /*
-    * Triggers when the user succesfully is done with the exercise.
-    * current time is selected as endtime
-    */
-
-    public void Donetime()
-    {
-
-        StopCoroutine(timer);
-        endtime = DateTime.Now;
-
-
-     
-        time = hours.ToString() + minutes.ToString() + seconds.ToString();
-
-        mainInfo.Time.SendInfo();
-
-  
-        Debug.Log(endtime - starttime);
-
-
-    }
-
-    /*
-    * Timer for the GUI is created and when puzzel game is started
-    *
-    */
-    public IEnumerator Playtimer()
-    {
-
-        while (true)
-        {
-            yield return new WaitForSeconds(1);
-            playtime += 1;
-            seconds = (playtime % 60);
-            minutes = (playtime / 60) % 60;
-            hours = (playtime / 3600) % 24;
-
-
-        }
-
-    }
-
-
-
+    /// <summary>
+    /// When bool is true show the GUI
+    /// </summary>
 
     void OnGUI()
     {
-
-        TimerDisplay();
-
-
+        if (timerBool != false)
+        {
+            TimerDisplay();
+        }
     }
 
+    /// <summary>
+    /// Fetches the time
+    /// Draws the GUI
+    /// </summary>
 
-/*
- * Fetches the time.
- * Draws the GUI.
- */
-
-public void TimerDisplay()
+    public void TimerDisplay()
     {
-
-
+        hours = mainInfo.PlaytimeModel.hours;
+        minutes = mainInfo.PlaytimeModel.minutes;
+        seconds = mainInfo.PlaytimeModel.seconds;
         GUI.Box(new Rect(250, 150, 260, 20), "PlayedTime = " + hours.ToString() + " Hours:  " + minutes.ToString() + " Minutes:  " + seconds.ToString() + " Secondes  ", timetyle);
-
-
-    }
-
-    public void Bar()
-    {
-       
-    }
+    }     
 }

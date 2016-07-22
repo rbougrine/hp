@@ -87,6 +87,8 @@
      <Compile Include="Assets\Scripts\GameScript\Walk.cs" />
      <Compile Include="Assets\Scripts\Interfaces\IBar.cs" />
      <Compile Include="Assets\Scripts\Interfaces\ILogin.cs" />
+     <Compile Include="Assets\Scripts\LoginScript\ConfigureServer.cs" />
+     <Compile Include="Assets\Scripts\LoginScript\DefaultGameInformation.cs" />
      <Compile Include="Assets\Scripts\LoginScript\ISwitchingScenes.cs" />
      <Compile Include="Assets\Scripts\LoginScript\Login.cs" />
      <Compile Include="Assets\Scripts\LoginScript\LoginController.cs" />

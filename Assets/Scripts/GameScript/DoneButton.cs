@@ -3,14 +3,11 @@ using System.Collections;
 
 public class DoneButton : MonoBehaviour
 {
-
-    /*
-    * Created by Randa & Anny Aidinian.
-    * 
-    * Class that managing ending process of game 
-    * Triggerd when done button is pressed 
-    */
-
+    /// <summary>
+    /// Created by Randa & Anny Aidinian.
+    /// Class that managing ending process of game 
+    /// Triggerd when done button is pressed 
+    /// </summary>
 
     public int[] exerciseOne;
     public int[] exerciseTwo;
@@ -21,7 +18,10 @@ public class DoneButton : MonoBehaviour
     public GameObject GoodJob;
     string result;
 
-    // Use this for initialization
+    /// <summary>
+    /// Used for initialization
+    /// </summary>
+    
     void Start()
     {
         mainInfo = new MainInfo();
@@ -30,15 +30,19 @@ public class DoneButton : MonoBehaviour
         exerciseThree = new int[] { 7, 11, 4, 11, 5, 16, 0, 0, 0, 16, 12, 11, 14, 17, 13, 16, 0, 0, 0, 16, 8, 11, 14, 11, 6 };
     }
 
+    /// <summary>
+    /// Activates the cheat state given the current exercise used.
+    /// </summary>
+
     public void CheatButton()
-    {
+    {   
        mainInfo.PanelManager.CheatState(mainInfo.StartButton.currentExercise);
     }
 
-    /*
-    * Checks if excersie is done right 
-    *Triggerd when done button clicked.
-    */
+    /// <summary>
+    /// Checks if excersie is done right 
+    /// Triggerd when done button clicked.
+    /// </summary>
 
     public void FinalState()
     {
@@ -59,20 +63,20 @@ public class DoneButton : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Asked the user if they want to continue with another exercise 
+    /// </summary>
+
     public void GoodJobButton()
     {
-        Debug.Log(mainInfo.Door.SeenObject.name);
-
         if (mainInfo.Door.SeenObject.name == "next")
         {
             GoodJob.SetActive(false);
             mainInfo.StartButton.BeginState();
-
         }
         else
         {
             GoodJob.SetActive(false);
         }
-
     }
 }

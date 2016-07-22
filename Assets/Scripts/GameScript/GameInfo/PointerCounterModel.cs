@@ -4,18 +4,18 @@ using System.Collections;
 public class PointerCounterModel : MonoBehaviour
 {
 
-
-    /*
-    * Created by Anny Aidinian.
-    * 
-    * Class that sends the score back to the database
-    * 
-    */
+    /// <summary>
+    ///  Class that sends the score back to the database
+    /// </summary>
 
     public string username;
     public int score;
     private MainInfo mainInfo;
     private ConfigureServer configureServer;
+
+    /// <summary>
+    /// Used for initialization
+    /// </summary>
 
     void Start()
     {
@@ -23,19 +23,16 @@ public class PointerCounterModel : MonoBehaviour
         configureServer = new ConfigureServer();
     }
 
-    /*
-    * Sends back the points obtained by the user
-    * Triggered when user succesfully achieves excerise  
-    */
+    /// <summary>
+    /// Sends back the points obtained by the user
+    /// Triggered when user succesfully achieves excerise  
+    /// </summary>
 
     public void SendInfo()
     {
-      
-  
         username = mainInfo.Login.Username;
         score = mainInfo.Points.score;
 
-   
         WWWForm form = new WWWForm();
 
         form.AddField("Username", username);
@@ -47,11 +44,15 @@ public class PointerCounterModel : MonoBehaviour
         StartCoroutine(saveInfo(configureServer.WWW));
      }
 
+    /// <summary>
+    /// Waits for API to send feedback,
+    /// When it's not an error it will send a message confirming the transaction succes.
+    /// </summary>
+
     IEnumerator saveInfo(WWW www)
     {
         yield return www;
 
-        // check for errors
         if (www.error != null)
         {
             Debug.Log(www.error);

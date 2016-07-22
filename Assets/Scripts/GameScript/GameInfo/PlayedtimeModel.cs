@@ -2,7 +2,8 @@
 using System.Collections;
 using System;
 
-public class PlayedtimeModel : MonoBehaviour {
+public class PlayedtimeModel : MonoBehaviour
+{
 
     public DateTime starttime, endtime;
     private ConfigureServer configureServer;
@@ -12,58 +13,51 @@ public class PlayedtimeModel : MonoBehaviour {
     public int hours = 0;
     private string Username;
     private MainInfo mainInfo;
-    private IEnumerator timer;
     private string time;
 
 
-    // Use this for initialization
-    void Start ()
+    /// <summary>
+    /// Used for initialization
+    /// </summary>
+    
+    void Start()
     {
         mainInfo = new MainInfo();
         configureServer = new ConfigureServer();
-        timer = Playtimer();
         Username = mainInfo.Login.Username;
     }
+    /// <summary>
+    /// Starts the timer, called in the class StartButton
+    /// </summary>
 
-
-    /*
-  * Triggers when the user clicks on the Start game object.
-  * current time is selected as starttime
-  */
     public void StartTimer()
     {
         starttime = DateTime.Now;
-        StartCoroutine(timer);
+        StartCoroutine(Playtimer());
+        mainInfo.GarageGUI.timerBool = true;
         starttime.ToLongDateString();
 
     }
 
-
-    /*
-    * Triggers when the user succesfully is done with the exercise.
-    * current time is selected as endtime
-    */
+    /// <summary>
+    /// Triggers when the user succesfully is done with the exercise,
+    /// current time is selected as endtime which is used to calculate the  time used for the exercise
+    /// </summary>
 
     public void Donetime()
     {
-
-        StopCoroutine(timer);
+        StopCoroutine(Playtimer());
         endtime = DateTime.Now;
         time = hours.ToString() + minutes.ToString() + seconds.ToString();
-    
         SendInfo();
-        Debug.Log(endtime - starttime);
-
-
     }
 
-    /*
-    * Timer for the GUI is created and when puzzel game is started
-    *
-    */
+    /// <summary>
+    /// Timer for the GUI is created and when puzzel game is started
+    /// </summary>
+
     public IEnumerator Playtimer()
     {
-
         while (true)
         {
             yield return new WaitForSeconds(1);
@@ -71,22 +65,18 @@ public class PlayedtimeModel : MonoBehaviour {
             seconds = (playtime % 60);
             minutes = (playtime / 60) % 60;
             hours = (playtime / 3600) % 24;
-
-
         }
 
     }
 
+    /// <summary>
+    /// Sending the score bacck to database with including username and score
+    /// </summary>
 
-    // Sending the score bacck to database with including username and score
     public void SendInfo()
     {
-
         Username = mainInfo.Login.Username;
-       
 
-        // php file from server where savingtime is processing
-     
         WWWForm form = new WWWForm();
 
         form.AddField("Username", Username);
@@ -97,7 +87,7 @@ public class PlayedtimeModel : MonoBehaviour {
         configureServer.ServerConnection(form);
 
         StartCoroutine(saveInfo(configureServer.WWW));
-        
+
     }
 
     IEnumerator saveInfo(WWW www)
@@ -111,10 +101,7 @@ public class PlayedtimeModel : MonoBehaviour {
         }
         else
         {
-             Debug.Log(www.text + "saveInfo");
+            Debug.Log(www.text + "saveInfo");
         }
-
     }
-
-
 }

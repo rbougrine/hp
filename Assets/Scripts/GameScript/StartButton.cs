@@ -4,12 +4,10 @@ using System.Collections;
 public class StartButton : MonoBehaviour
 {
 
-    /*
-   * Created by Randa Bougrine & Anny Aidinian.
-   * 
-   * Class that managed the randomizing process
-   * 
-   */
+    /// <summary>
+    /// Created by Randa Bougrine & Anny Aidinian.
+    /// Class that managed the randomizing process
+    /// </summary>
 
     public Texture[] exercise;
     public int[] currentExercise;
@@ -19,56 +17,55 @@ public class StartButton : MonoBehaviour
     private int randomnumber;
     private MainInfo mainInfo;
 
+    /// <summary>
+    /// Used for initialization
+    /// </summary>
+
     void Start()
     {
-
         mainInfo = new MainInfo();
         exercise = new Texture[4];
         exercise[0] = begin;
         exercise[1] = one;
         exercise[2] = two;
         exercise[3] = three;
-
-
     }
 
-    
+    /// <summary>
+    /// Gives the needed texture when given the index
+    /// </summary>
 
     public Texture GiveTexture(int indicator)
     {
         return exercise[indicator];
     }
 
-
-
+    /// <summary>
+    /// Starts the timer
+    /// </summary>
 
     public void Starttijd()
     {
         mainInfo.PlaytimeModel.StartTimer();
     }
 
-
-    /*
-    * Randomizing the excercises that will be shown
-    */
+    /// <summary>
+    /// Randomizing the excercises that will be shown
+    /// </summary>
 
     public void BeginState()
     {
-
         randomnumber = Random.Range(1, 4);
         ExerciseChooser();
         mainInfo.Changer.currentExercise = randomnumber;
-
     }
 
-
-    /*
-    * Manages which exercise is assigned to the random number 
-    */
+    /// <summary>
+    /// Manages which exercise is assigned to the random number 
+    /// </summary>
 
     public void ExerciseChooser()
     {
-
         switch (randomnumber)
         {
             case 1:
@@ -80,12 +77,8 @@ public class StartButton : MonoBehaviour
             case 3:
                 currentExercise = mainInfo.Done.exerciseThree;
                 break;
-        }
-
-     
-
+        } 
     }
-
 }
 
 

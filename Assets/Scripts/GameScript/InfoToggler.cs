@@ -5,14 +5,22 @@ public class InfoToggler : MonoBehaviour {
 	public GameObject info;
 
 
-	//Use this for initialization
-	void Start()
+    //Use this for initialization
+
+    /// <summary>
+    /// Used for initialization
+    /// </summary>
+
+    void Start()
 	{
 		HideInfo();
 	}
 
-	//Toggles the visibility
-	public void ToggleInfo()
+    /// <summary>
+    /// Toggles the visibility
+    /// </summary>
+
+    public void ToggleInfo()
 	{
 		if (info.activeSelf)
 		{
@@ -23,10 +31,12 @@ public class InfoToggler : MonoBehaviour {
 		}
 	}
 
+    /// <summary>
+    /// Show information
+    /// </summary>
 
 	public void ShowInfo()
 	{
-	
 		info.SetActive(true);;
 	}
 

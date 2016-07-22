@@ -3,33 +3,27 @@ using System.Collections;
 
 public class PipePanelChanger : MonoBehaviour
 {
-
-
-    /*
-    * Created by Randa Bougrine & Anny Aidinian.
-    * 
-    * Manages changing of puzzel part when cliced on one 
-    * 
-    */
+    /// <summary>
+    /// Created by Randa Bougrine & Anny Aidinian.
+    /// Manages changing of puzzel part when cliced on one 
+    /// </summary>
 
     public GameObject manager;
     public int originalStatus, currentStatus;
 
+    /// <summary>
+    /// Update is called once per frame
+    /// </summary>
 
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
         Texture texture = manager.GetComponent<PanelMan>().GiveTexture(currentStatus);
         GetComponent<Renderer>().material.mainTexture = texture;
     }
 
-
+    /// <summary>
+    /// Add the mouse count
+    /// </summary>
 
     public void OnMouseClick()
     {
