@@ -2,7 +2,8 @@
 using System.Collections;
 using System;
 
-public class PlayedtimeModel : MonoBehaviour {
+public class PlayedtimeModel : MonoBehaviour
+{
 
     public DateTime starttime, endtime;
     private ConfigureServer configureServer;
@@ -17,7 +18,7 @@ public class PlayedtimeModel : MonoBehaviour {
 
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         mainInfo = new MainInfo();
         configureServer = new ConfigureServer();
@@ -50,7 +51,7 @@ public class PlayedtimeModel : MonoBehaviour {
         StopCoroutine(timer);
         endtime = DateTime.Now;
         time = hours.ToString() + minutes.ToString() + seconds.ToString();
-    
+
         SendInfo();
         Debug.Log(endtime - starttime);
 
@@ -83,10 +84,10 @@ public class PlayedtimeModel : MonoBehaviour {
     {
 
         Username = mainInfo.Login.Username;
-       
+
 
         // php file from server where savingtime is processing
-     
+
         WWWForm form = new WWWForm();
 
         form.AddField("Username", Username);
@@ -97,7 +98,7 @@ public class PlayedtimeModel : MonoBehaviour {
         configureServer.ServerConnection(form);
 
         StartCoroutine(saveInfo(configureServer.WWW));
-        
+
     }
 
     IEnumerator saveInfo(WWW www)
@@ -111,7 +112,7 @@ public class PlayedtimeModel : MonoBehaviour {
         }
         else
         {
-             Debug.Log(www.text + "saveInfo");
+            Debug.Log(www.text + "saveInfo");
         }
 
     }

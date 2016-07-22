@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using UnityEngine;
 
 class ConfigureServer
 {
-
     private string ip;
     private string url;
     private WWW www;
@@ -18,7 +14,6 @@ class ConfigureServer
         defaultGameInformation = new DefaultGameInformation();
         ip = defaultGameInformation.IP;
         url = "http://" + ip + "/Unity_apply/controller.php";
-
     }
 
     public void ServerConnection(WWWForm form)
@@ -32,8 +27,7 @@ class ConfigureServer
             Debug.LogError(e.Message);
         }
     }
-
-
+    
     public string IP
     {
         get
@@ -60,16 +54,6 @@ class ConfigureServer
         }
 
     }
-
-
-
-
-
-
-
-
-
-
 
 }
 

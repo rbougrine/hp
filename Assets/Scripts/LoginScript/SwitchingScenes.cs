@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
-using Assets.Scripts.Interfaces;
 using Assets.Scripts.LoginScript;
 
 public class SwitchingScenes : MonoBehaviour, ISwitchingScenes
@@ -19,7 +18,6 @@ public class SwitchingScenes : MonoBehaviour, ISwitchingScenes
 
     //camera position
     private float x,y,z;
-
 
     /// <summary>
     /// Causes that attached GameObject Login
@@ -97,7 +95,6 @@ public class SwitchingScenes : MonoBehaviour, ISwitchingScenes
 
     public void CheckPosition()
     {
-
         WWWForm form = new WWWForm();
         form.AddField("Username", mainInfo.Login.Username);
         form.AddField("Job","CheckPosition");
@@ -171,7 +168,6 @@ public class SwitchingScenes : MonoBehaviour, ISwitchingScenes
         else
         {
             mainInfo.Login.Feedback = "Waiting for scene to be loaded";
-            Debug.Log(SceneManager.GetActiveScene().name);
         }
     }
 

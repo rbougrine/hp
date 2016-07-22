@@ -1,28 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿/// <summary>
+/// Interface that represents the status bar.
+/// </summary>
 
-namespace Assets.Scripts.Interfaces
+interface IBar
 {
-    interface IBar
+
+    int Score
     {
-
-        int Score
-        {
-            get;
-            set;
-
-        }
-
-        void Bar();
-        void TimerDisplay();
-
+        get;
+        set;
     }
 
+    void Bar();
 
-
-
-
+    void TimerDisplay();
 
 }

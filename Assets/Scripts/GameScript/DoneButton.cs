@@ -32,7 +32,8 @@ public class DoneButton : MonoBehaviour
 
     public void CheatButton()
     {
-       mainInfo.PanelManager.CheatState(mainInfo.StartButton.currentExercise);
+        Debug.Log(mainInfo.StartButton.test);
+        mainInfo.PanelManager.CheatState(mainInfo.StartButton.currentExercise);  
     }
 
     /*

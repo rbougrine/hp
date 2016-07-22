@@ -2,24 +2,23 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
+
+/// <summary>
+/// Class that retrieves data from the database 
+/// and sends it to the class that request the data.
+/// 
+/// Created by Anny Aidinian.
+/// </summary>
+
 public class StatusBarModel : MonoBehaviour
 {
 
-    /*
-    * Created by Anny Aidinian.
-    * 
-    * Class that retrieves data from the database. 
-    * And sends it to the class that request the data.
-    */
-
+    public string Feedback = null;
+    public string username, InfoStatusbar, InfoStatusbarScore;
+    public int score;
 
     private MainInfo mainInfo;
     private ConfigureServer configureServer;
-    public string Feedback = null;
-    public int score;
-    public string username, InfoStatusbar, InfoStatusbarScore;
-
-
 
     void Start()
     {
@@ -27,7 +26,6 @@ public class StatusBarModel : MonoBehaviour
         configureServer = new ConfigureServer();
         Getinfo();
     }
-
 
     /*
      * Fetches the data using the username.
@@ -56,32 +54,22 @@ public class StatusBarModel : MonoBehaviour
     IEnumerator userInfo(WWW www)
     {
         yield return www;
-
         if (www.error != null)
         {
-
             Feedback = www.error;
-
         }
         else
         {
-
             Feedback = www.text;
             string[] position = Feedback.Split(',');
             InfoStatusbar = (position[0]);
             InfoStatusbarScore = (position[1]);
-
             score = int.Parse(position[1]);
-             if (SceneManager.GetActiveScene().name == "Garage")
+            if (SceneManager.GetActiveScene().name == "Garage")
             {
                 mainInfo.Points.Getinformation();
-              
             }
-           
-
-
         }
     }
-
     
 }

@@ -18,18 +18,16 @@ public class StartButton : MonoBehaviour
     public Texture one, two, three;
     private int randomnumber;
     private MainInfo mainInfo;
-
+    public int test = 4;
     void Start()
     {
-
         mainInfo = new MainInfo();
         exercise = new Texture[4];
+
         exercise[0] = begin;
         exercise[1] = one;
         exercise[2] = two;
         exercise[3] = three;
-
-
     }
 
     
