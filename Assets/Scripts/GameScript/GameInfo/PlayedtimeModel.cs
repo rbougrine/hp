@@ -5,6 +5,7 @@ using System;
 public class PlayedtimeModel : MonoBehaviour {
 
     public DateTime starttime, endtime;
+    private ConfigureServer configureServer;
     public int playtime = 0;
     public int seconds = 0;
     public int minutes = 0;
@@ -19,6 +20,7 @@ public class PlayedtimeModel : MonoBehaviour {
     void Start ()
     {
         mainInfo = new MainInfo();
+        configureServer = new ConfigureServer();
         timer = Playtimer();
         Username = mainInfo.Login.Username;
     }
@@ -91,10 +93,10 @@ public class PlayedtimeModel : MonoBehaviour {
         form.AddField("Begintime", starttime.ToLongTimeString());
         form.AddField("Endtime", endtime.ToLongTimeString());
         form.AddField("Job", "SaveTime");
-       
-        mainInfo.ServerConnection(form);
 
-        StartCoroutine(saveInfo(mainInfo.WWW));
+        configureServer.ServerConnection(form);
+
+        StartCoroutine(saveInfo(configureServer.WWW));
         
     }
 

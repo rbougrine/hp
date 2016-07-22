@@ -2,10 +2,12 @@
 using System.Collections;
 using Assets.Scripts.Interfaces;
 
-public class LoginController : MonoBehaviour {
+public class LoginController : MonoBehaviour
+{
 
     //private variables
     private MainInfo mainInfo;
+    private ConfigureServer configureServer;
     private Login login;
 
     /// <summary>
@@ -15,7 +17,9 @@ public class LoginController : MonoBehaviour {
     void Start()
     {
         login = new Login();
-        mainInfo = new MainInfo();  
+        mainInfo = new MainInfo();
+        configureServer = new ConfigureServer();
+
     }
 
     /// <summary>
@@ -25,15 +29,15 @@ public class LoginController : MonoBehaviour {
 
     public void Authorization()
     {
-      
+
         WWWForm form = new WWWForm();
         form.AddField("Username", mainInfo.Login.Username);
         form.AddField("Password", mainInfo.Login.Password);
         form.AddField("Job", "LoginAccount");
 
-        mainInfo.ServerConnection(form);
+        configureServer.ServerConnection(form);
 
-        StartCoroutine(LoginAccount(mainInfo.WWW));
+        StartCoroutine(LoginAccount(configureServer.WWW));
 
     }
 
@@ -49,9 +53,9 @@ public class LoginController : MonoBehaviour {
         form.AddField("Password", mainInfo.Login.CPassword);
         form.AddField("Job", "RegisterAccount");
 
-        mainInfo.ServerConnection(form);
+        configureServer.ServerConnection(form);
 
-        StartCoroutine(CreateAccount(mainInfo.WWW));
+        StartCoroutine(CreateAccount(configureServer.WWW));
 
     }
 
@@ -63,10 +67,10 @@ public class LoginController : MonoBehaviour {
     IEnumerator LoginAccount(WWW www)
     {
         yield return www;
-       
+
         if (www.error != null)
         {
-             mainInfo.Login.Feedback = www.error;
+            mainInfo.Login.Feedback = www.error;
         }
         else
         {
@@ -74,8 +78,8 @@ public class LoginController : MonoBehaviour {
             {
                 mainInfo.Login.logged = true;
                 login.CurrentMenu = null;
-                
-                mainInfo.SwitchingScenes.CheckPosition();              
+
+                mainInfo.SwitchingScenes.CheckPosition();
             }
             else
             {

@@ -10,11 +10,13 @@ public class UserPosition : MonoBehaviour
 
     //private variable
     private Vector3 cameraPosition;
+    private ConfigureServer configureServer;
     private MainInfo mainInfo;
 
     void Start()
     {
         mainInfo = new MainInfo();
+        configureServer = new ConfigureServer();
         mainInfo.SwitchingScenes.newScene = true;
     }
 
@@ -62,9 +64,9 @@ public class UserPosition : MonoBehaviour
         form.AddField("scene", sceneName);
         form.AddField("Job","SavePosition");
 
-        WWW www = new WWW(mainInfo.URL, form);
+        WWW www = new WWW(configureServer.URL, form);
 
-        StartCoroutine(saveInfo(www));
+        StartCoroutine(saveInfo(configureServer.WWW));
 
     }
 
@@ -76,9 +78,9 @@ public class UserPosition : MonoBehaviour
         form.AddField("username", username);
         form.AddField("sceneName",sceneName);
         form.AddField("Job","RetrievePosition");
-        mainInfo.ServerConnection(form);
+        configureServer.ServerConnection(form);
 
-        StartCoroutine(getInfo(mainInfo.WWW));
+        StartCoroutine(getInfo(configureServer.WWW));
     
 
     }

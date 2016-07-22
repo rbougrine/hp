@@ -15,12 +15,12 @@ public class PointerCounterModel : MonoBehaviour
     public string username;
     public int score;
     private MainInfo mainInfo;
-
+    private ConfigureServer configureServer;
 
     void Start()
     {
         mainInfo = new MainInfo();
-
+        configureServer = new ConfigureServer();
     }
 
     /*
@@ -42,9 +42,9 @@ public class PointerCounterModel : MonoBehaviour
         form.AddField("score", score);
         form.AddField("Job", "SaveScore");
 
-        mainInfo.ServerConnection(form);
+        configureServer.ServerConnection(form);
 
-        StartCoroutine(saveInfo(mainInfo.WWW));
+        StartCoroutine(saveInfo(configureServer.WWW));
      }
 
     IEnumerator saveInfo(WWW www)

@@ -14,6 +14,7 @@ public class StatusBarModel : MonoBehaviour
 
 
     private MainInfo mainInfo;
+    private ConfigureServer configureServer;
     public string Feedback = null;
     public int score;
     public string username, InfoStatusbar, InfoStatusbarScore;
@@ -23,6 +24,7 @@ public class StatusBarModel : MonoBehaviour
     void Start()
     {
         mainInfo = new MainInfo();
+        configureServer = new ConfigureServer();
         Getinfo();
     }
 
@@ -41,9 +43,9 @@ public class StatusBarModel : MonoBehaviour
         form.AddField("Username", username);
         form.AddField("Job", "GetInfo");
 
-        mainInfo.ServerConnection(form);
+        configureServer.ServerConnection(form);
 
-        StartCoroutine(userInfo(mainInfo.WWW));
+        StartCoroutine(userInfo(configureServer.WWW));
 
       }
 

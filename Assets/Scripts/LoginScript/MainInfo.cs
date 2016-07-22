@@ -9,9 +9,6 @@ using System.Linq;
 
 public class MainInfo : MonoBehaviour
     {
-        private WWW www;
-        private string ip;
-        private string url;
         private GameObject loginScript, userScript, score, door, statusBar, manager, GoodJob, start, Point, timer, doneButton;
         private LoginController controller;
         private SwitchingScenes switchingScenes;
@@ -53,12 +50,7 @@ public class MainInfo : MonoBehaviour
 
         }//End contructor
 
-    public void Initialize()
-    {
-        defaultGameInformation = new DefaultGameInformation();
-        ip = defaultGameInformation.IP;
-    }
-      void InitializeScene()
+    void InitializeScene()
       {
          if (SceneManager.GetActiveScene().name == "Game")
         {
@@ -104,44 +96,6 @@ public class MainInfo : MonoBehaviour
             door = GameObject.Find("Front_door");
             doneButton = GameObject.Find("Done");
             timer = GameObject.Find("Timer");
-
-        }
-
-    public void ServerConnection(WWWForm form)
-    {
-        try
-        {
-           www = new WWW(url, form);
-        }
-        catch (Exception e)
-        {
-            Debug.LogError(e.Message);
-        }
-    }
-
-    public WWW WWW
-    {
-        get
-        {
-            return www;
-        }
-
-    }
-    public string IP
-        {
-            get
-            {
-                return ip;
-            }
-
-        }
-
-        public string URL
-        {
-            get
-            {
-                return url;
-            }
 
         }
 

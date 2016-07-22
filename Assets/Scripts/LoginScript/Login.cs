@@ -13,7 +13,7 @@ public class Login : MonoBehaviour, ILogin
     public bool logged;
     public Texture2D messageBox;
     public string cUsername;
-    private MainInfo mainInfo;
+    public MainInfo mainInfo;
 
     //Private Variables
     private string currentMenu;
@@ -43,7 +43,6 @@ public class Login : MonoBehaviour, ILogin
     { 
         CurrentMenu = "Login";
         mainInfo = new MainInfo();
-        mainInfo.Initialize();
     }
 
     /// <summary>

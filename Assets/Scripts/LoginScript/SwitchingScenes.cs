@@ -14,6 +14,7 @@ public class SwitchingScenes : MonoBehaviour, ISwitchingScenes
 
     //private variables
     private MainInfo mainInfo;
+    private ConfigureServer configureServer;
     private DefaultGameInformation defaultGameInformation;
 
     //camera position
@@ -37,7 +38,8 @@ public class SwitchingScenes : MonoBehaviour, ISwitchingScenes
     void Start()
     {
         mainInfo = new MainInfo();
-      
+        configureServer = new ConfigureServer();
+
     }
 
     /// <summary>
@@ -100,9 +102,9 @@ public class SwitchingScenes : MonoBehaviour, ISwitchingScenes
         form.AddField("Username", mainInfo.Login.Username);
         form.AddField("Job","CheckPosition");
 
-        mainInfo.ServerConnection(form);
+        configureServer.ServerConnection(form);
 
-        StartCoroutine(PositionStatus(mainInfo.WWW));
+        StartCoroutine(PositionStatus(configureServer.WWW));
     }
 
     /// <summary>
