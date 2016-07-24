@@ -1,24 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿/// <summary>
+/// Interface that handles logging into the game.
+/// </summary>
 
-namespace Assets.Scripts.LoginScript
+interface ILogin
 {
-    interface ILogin
+
+    string CurrentMenu
     {
-        string CurrentMenu
-        {
-            get;
-            set;
-        }
-
-        void LoggedIn();
-
-        void LoginGUI();
-
-        void CreateAccountGUI();
-
-        void FeedbackGUI();
+        get;
+        set;
     }
+
+    void LoginGUI();
+
+    void CreateAccountGUI();
+
+    void FeedbackGUI();
+
 }

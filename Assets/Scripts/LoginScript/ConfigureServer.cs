@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using UnityEngine;
 
 class ConfigureServer
 {
-
     private string ip;
     private string url;
     private WWW www;
@@ -38,8 +34,7 @@ class ConfigureServer
             Debug.LogError(e.Message);
         }
     }
-
-
+    
     public string IP
     {
         get
@@ -66,16 +61,6 @@ class ConfigureServer
         }
 
     }
-
-
-
-
-
-
-
-
-
-
 
 }
 

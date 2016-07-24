@@ -25,6 +25,7 @@ public class StartButton : MonoBehaviour
     {
         mainInfo = new MainInfo();
         exercise = new Texture[4];
+
         exercise[0] = begin;
         exercise[1] = one;
         exercise[2] = two;

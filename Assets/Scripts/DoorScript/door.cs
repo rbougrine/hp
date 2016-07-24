@@ -1,26 +1,31 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
-using Assets.Scripts.DoorScript;
+
+
+/// <summary>
+/// Interface that handles door interaction.
+/// Implements the interface IDoor.
+/// </summary>
 
 public class Door : MonoBehaviour, IDoor
 {
-   //public variable
-    public Animator anim;
-    public GameObject Camera, AskBox, AskBoxFront;
-    public string sceneName, Message;
-    static RaycastHit hit;
 
-    //private variable
-    private bool cameraLooking;
+    //Public Variables
+    public Animator animator;
+    public GameObject Camera, AskBox, AskBoxFront;
+    static RaycastHit hit;
+    public string sceneName, Message;
+
+    //Private Variables
     private MainInfo mainInfo;
     private Transform seenObject;
+    private bool cameraLooking;
     private bool doorisClosed = true;
-  
 
     void Awake()
     {
-        anim = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
 
     void Start()
@@ -28,35 +33,25 @@ public class Door : MonoBehaviour, IDoor
         mainInfo = new MainInfo();
     }
 
+    /// <summary>
+    /// Updates the camera raycast and the seenObject value.
+    /// </summary>
+
     void Update()
     {
         cameraLooking = Physics.Raycast(Camera.transform.position, Camera.transform.forward, out hit, Mathf.Infinity);
         seenObject = hit.collider.gameObject.transform;
     }
 
-   public bool CameraLooking
-    {
-        get
-        {
-            return cameraLooking;
-        }
-    }
+    /// <summary>
+    /// Called when a Door object is clicked.
+    /// Starts the door animation or another specific action.
+    /// </summary>
 
-
-  public Transform SeenObject
-    { 
-        get
-        {
-            return seenObject;
-        }
-    }
-    
-    //method called when clicked on a door
     public void ClickedOnDoor()
     {
         if (CameraLooking)
         {
-
             if (SeenObject.parent.name == "Front_door")
             {
                 AskBoxFront.SetActive(true);
@@ -76,100 +71,109 @@ public class Door : MonoBehaviour, IDoor
         }
     }
 
-    public void exitGame()
+    /// <summary>
+    /// Exits the game if the user confirms so.
+    /// </summary>
+
+    public void ExitGame()
     {
         if (SeenObject.name == "yes")
         {
             mainInfo.Login.logged = false;
-            SceneManager.LoadScene("Login");           
+            SceneManager.LoadScene("Login");
         }
-
         else
         {
-             AskBoxFront.SetActive(false);
+            AskBoxFront.SetActive(false);
         }
     }
 
-    public void toRoom()
-    {
-        if (SceneManager.GetActiveScene().name == "Game")
-        {
-            mainInfo.SwitchingScenes.LoadingScenes("Garage");
-        }
-        else
-        {
-            Debug.Log(SeenObject.name);
-        }
+    /// <summary>
+    /// Teleports the player if he/she confirms.
+    /// </summary>
 
+    public void ToRoom()
+    {
         if (SeenObject.name == "yes")
         {
-          DoorTeleport();
+            DoorTeleport();
         }
         else
         {
-            Debug.Log(SeenObject.name);
             AskBox.SetActive(false);
         }
+    }
 
-   }
-
-    //Switching between garage and house
-   //while changing the position of the camera to the saved position from the database
+    /// <summary>
+    /// Switches scenes from the garage to the house and vice versa.
+    /// While changing the position of the camera to the saved position from the database.
+    /// </summary>
+    
     void DoorTeleport()
     {
         mainInfo.UserPosition.collectInfo();
-     
         if (mainInfo.UserPosition.sceneName == "Game")
         {
-            Debug.Log("Switching scenes to garage");
-
             mainInfo.SwitchingScenes.LoadingScenes("Garage");
-           
         }
         else
         {
-           Debug.Log("Switching scenes to game");
+            mainInfo.SwitchingScenes.LoadingScenes("Game");
+        }
+    }
 
-           mainInfo.SwitchingScenes.LoadingScenes("Game");
+    /// <summary>
+    /// Opens and closes the door automatically.
+    /// </summary>
+    /// <returns>An IEnumerator value</returns>
 
-            
-        }         
-   
-     }
-
-   //Opening and closing the doors
-   public IEnumerator DoorMovement()
-    {    
-
+    public IEnumerator DoorMovement()
+    {
         if (CameraLooking)
         {
-          
             if (doorisClosed == true)
             {
                 if (SeenObject.parent.name == "Door_left")
                 {
-
-                    anim.Play("openDoor");
+                    animator.Play("openDoor");
                     doorisClosed = false;
                     yield return new WaitForSeconds(5);
-                    anim.Play("closeDoor");
+                    animator.Play("closeDoor");
                     doorisClosed = true;
-
                 }
                 else
                 {
-                    anim.Play("openDoorRight");
+                    animator.Play("openDoorRight");
                     doorisClosed = false;
                     yield return new WaitForSeconds(5);
-                    anim.Play("closeDoorRight");
+                    animator.Play("closeDoorRight");
                     doorisClosed = true;
                 }
             }
-            else
-            {
-                Debug.Log("Can't open a door thats already open");
-            }
-          
         }
-    } 
+    }
+
+    /// <summary>
+    /// Getter for the CameraLooking boolean.
+    /// </summary>
+
+    public bool CameraLooking
+    {
+        get
+        {
+            return cameraLooking;
+        }
+    }
+
+    /// <summary>
+    /// Getter for the SeenObject Transform object.
+    /// </summary>
+    public Transform SeenObject
+    {
+        get
+        {
+            return seenObject;
+        }
+    }
+
 }
