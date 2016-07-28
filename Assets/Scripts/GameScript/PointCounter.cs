@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+
 
 public class PointCounter : MonoBehaviour
 {
@@ -22,7 +22,7 @@ public class PointCounter : MonoBehaviour
     }
 
     /// <summary>
-    ///  Fetches the user information from the Statusbar
+    /// Fetches the user information from the Statusbar
     /// </summary>
 
     public void Getinformation()

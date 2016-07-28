@@ -4,7 +4,8 @@ using UnityEngine.SceneManagement;
 
 
 /// <summary>
-/// Interface that handles door interaction.
+/// Created by Randa Bougrine
+/// Class that handles door interaction.
 /// Implements the interface IDoor.
 /// </summary>
 
@@ -13,9 +14,9 @@ public class Door : MonoBehaviour, IDoor
 
     //Public Variables
     public Animator animator;
-    public GameObject Camera, AskBox, AskBoxFront;
+    public GameObject Camera, askBox, askBoxFront;
     static RaycastHit hit;
-    public string sceneName, Message;
+    public string sceneName, message;
 
     //Private Variables
     private MainInfo mainInfo;
@@ -23,10 +24,18 @@ public class Door : MonoBehaviour, IDoor
     private bool cameraLooking;
     private bool doorisClosed = true;
 
+    /// <summary>
+    /// Initialize the animator
+    /// </summary>
+
     void Awake()
     {
         animator = GetComponent<Animator>();
     }
+
+    /// <summary>
+    /// Used for initialization.
+    /// </summary>
 
     void Start()
     {
@@ -54,11 +63,11 @@ public class Door : MonoBehaviour, IDoor
         {
             if (SeenObject.parent.name == "Front_door")
             {
-                AskBoxFront.SetActive(true);
+                askBoxFront.SetActive(true);
             }
             else if (SeenObject.parent.name == "Back_door")
             {
-                AskBox.SetActive(true);
+                askBox.SetActive(true);
             }
             else
             {
@@ -84,7 +93,7 @@ public class Door : MonoBehaviour, IDoor
         }
         else
         {
-            AskBoxFront.SetActive(false);
+            askBoxFront.SetActive(false);
         }
     }
 
@@ -100,7 +109,7 @@ public class Door : MonoBehaviour, IDoor
         }
         else
         {
-            AskBox.SetActive(false);
+            askBox.SetActive(false);
         }
     }
 
@@ -108,7 +117,7 @@ public class Door : MonoBehaviour, IDoor
     /// Switches scenes from the garage to the house and vice versa.
     /// While changing the position of the camera to the saved position from the database.
     /// </summary>
-    
+
     void DoorTeleport()
     {
         mainInfo.UserPosition.collectInfo();
@@ -154,7 +163,7 @@ public class Door : MonoBehaviour, IDoor
     }
 
     /// <summary>
-    /// Getter for the CameraLooking boolean.
+    /// Getter for the cameraLooking boolean.
     /// </summary>
 
     public bool CameraLooking

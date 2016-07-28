@@ -1,14 +1,12 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.SceneManagement;
-using Assets.Scripts.Interfaces;
-using System;
 
 public class StatusBarView : MonoBehaviour, IBar
 {
     /// <summary>
     /// Created by Anny Aidinian.
     /// Class that creates the statusbar GUI
+    /// Implements the interface IBar
     /// </summary>
 
     public string InfoStatusbar, InfoStatusbarScore;
@@ -28,7 +26,7 @@ public class StatusBarView : MonoBehaviour, IBar
     }
 
     /// <summary>
-    /// Generates the GUI every frame
+    /// Generates the GUI
     /// </summary>
 
     void OnGUI()
@@ -47,7 +45,7 @@ public class StatusBarView : MonoBehaviour, IBar
 
     public void Bar()
     {
-        InfoStatusbar = mainInfo.StatusBarModel.InfoStatusbar;
+        InfoStatusbar = mainInfo.StatusBarModel.infoStatusbar;
         GUI.Box(new Rect(250, 150, 260, 20), InfoStatusbar, labelStyle);
 
         if (SceneManager.GetActiveScene().name == "Game")
@@ -57,13 +55,22 @@ public class StatusBarView : MonoBehaviour, IBar
         }
         else
         {
-            Score = mainInfo.Points.score;
+            Score = mainInfo.PointCounter.score;
             GUI.Label(new Rect(250, 150, 260, 20), score.ToString(), scorestyle);
         }
     }
 
+    /// <summary>
+    /// Method from the interface IBar
+    /// its not used in this class
+    /// </summary>
+
     public void TimerDisplay(){}
  
+    /// <summary>
+    /// Getter and Setter for the int Score
+    /// </summary>
+
     public int Score
     {
         get

@@ -4,6 +4,12 @@ using UnityEngine.SceneManagement;
 
 public class UserPosition : MonoBehaviour
 {
+    /// <summary>
+    /// Created by Randa Bougrine
+    /// Class handles the position of the user
+    /// when switching from scene and logging into the game
+    /// </summary>
+
     //public variable
     public string sceneName, username, x, y, z;
     public float X, Y, Z;
@@ -136,6 +142,10 @@ public class UserPosition : MonoBehaviour
             }
          }
     }
+
+    /// <summary>
+    /// Getter and Setter for the Vector3 CameraPosition
+    /// </summary>
 
     public Vector3 CameraPosition
     {

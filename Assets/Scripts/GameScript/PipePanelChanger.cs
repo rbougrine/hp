@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
-using System.Collections;
+
 
 public class PipePanelChanger : MonoBehaviour
 {
     /// <summary>
     /// Created by Randa Bougrine & Anny Aidinian.
-    /// Manages changing of puzzel part when cliced on one 
+    /// Manages changing of puzzel part when clicked on one 
     /// </summary>
 
     public GameObject manager;
@@ -17,7 +17,7 @@ public class PipePanelChanger : MonoBehaviour
 
     void Update()
     {
-        Texture texture = manager.GetComponent<PanelMan>().GiveTexture(currentStatus);
+        Texture texture = manager.GetComponent<PanelManager>().GiveTexture(currentStatus);
         GetComponent<Renderer>().material.mainTexture = texture;
     }
 
@@ -32,6 +32,4 @@ public class PipePanelChanger : MonoBehaviour
         else
             currentStatus++;
     }
-
-
 }

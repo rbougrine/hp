@@ -60,7 +60,7 @@ public class NewEditorTest {
 
 
 
-
+    /*
         [Test]
         public void cheatest()
         {
@@ -74,7 +74,7 @@ public class NewEditorTest {
             Assert.AreEqual(false, test);
 
         }
-
+        */
 
     }
 

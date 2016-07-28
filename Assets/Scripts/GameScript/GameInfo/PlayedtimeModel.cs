@@ -4,6 +4,11 @@ using System;
 
 public class PlayedtimeModel : MonoBehaviour
 {
+    /// <summary>
+    /// Created by Anny Aidinian
+    /// Class that handles the time when the game is played
+    /// Sends time to be saved in the database
+    /// </summary>
 
     public DateTime starttime, endtime;
     private ConfigureServer configureServer;
@@ -11,7 +16,7 @@ public class PlayedtimeModel : MonoBehaviour
     public int seconds = 0;
     public int minutes = 0;
     public int hours = 0;
-    private string Username;
+    private string username;
     private MainInfo mainInfo;
     private string time;
 
@@ -24,7 +29,7 @@ public class PlayedtimeModel : MonoBehaviour
     {
         mainInfo = new MainInfo();
         configureServer = new ConfigureServer();
-        Username = mainInfo.Login.Username;
+        username = mainInfo.Login.Username;
     }
     /// <summary>
     /// Starts the timer, called in the class StartButton
@@ -70,16 +75,14 @@ public class PlayedtimeModel : MonoBehaviour
     }
 
     /// <summary>
-    /// Sending the score bacck to database with including username and score
+    /// Sending the score back to database including username and achieved score
     /// </summary>
 
     public void SendInfo()
     {
-        Username = mainInfo.Login.Username;
-
         WWWForm form = new WWWForm();
 
-        form.AddField("Username", Username);
+        form.AddField("Username", username);
         form.AddField("Begintime", starttime.ToLongTimeString());
         form.AddField("Endtime", endtime.ToLongTimeString());
         form.AddField("Job", "SaveTime");
@@ -90,18 +93,22 @@ public class PlayedtimeModel : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Waits for feedback from the serverside
+    /// Shows error when it isn't succesful
+    /// </summary>
+
     IEnumerator saveInfo(WWW www)
     {
         yield return www;
 
-        // check for errors
         if (www.error != null)
         {
             Debug.Log(www.error);
         }
         else
         {
-            Debug.Log(www.text + "saveInfo");
+            Debug.Log(www.text);
         }
     }
 }

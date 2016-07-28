@@ -1,9 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Assets.Scripts.Interfaces;
+
 
 public class LoginController : MonoBehaviour
 {
+    /// <summary>
+    /// Created by Randa Bougrine
+    /// Class data confirms the data when user wants to login
+    /// or register
+    /// </summary>
 
     //private variables
     private MainInfo mainInfo;

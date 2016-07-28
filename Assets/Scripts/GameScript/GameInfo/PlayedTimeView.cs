@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
-using Assets.Scripts.Interfaces;
+
 
 public class PlayedTimeView : MonoBehaviour, IBar
 {
@@ -66,6 +66,7 @@ public class PlayedTimeView : MonoBehaviour, IBar
         hours = mainInfo.PlaytimeModel.hours;
         minutes = mainInfo.PlaytimeModel.minutes;
         seconds = mainInfo.PlaytimeModel.seconds;
+
         GUI.Box(new Rect(250, 150, 260, 20), "PlayedTime = " + hours.ToString() + " Hours:  " + minutes.ToString() + " Minutes:  " + seconds.ToString() + " Secondes  ", timetyle);
     }     
 }

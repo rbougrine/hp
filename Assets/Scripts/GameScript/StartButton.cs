@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+
 
 public class StartButton : MonoBehaviour
 {
@@ -58,7 +58,7 @@ public class StartButton : MonoBehaviour
     {
         randomnumber = Random.Range(1, 4);
         ExerciseChooser();
-        mainInfo.Changer.currentExercise = randomnumber;
+        mainInfo.ExerciseChanger.currentExercise = randomnumber;
     }
 
     /// <summary>
@@ -70,13 +70,13 @@ public class StartButton : MonoBehaviour
         switch (randomnumber)
         {
             case 1:
-                currentExercise = mainInfo.Done.exerciseOne;
+                currentExercise = mainInfo.DoneButton.exerciseOne;
                 break;
             case 2:
-                currentExercise = mainInfo.Done.exerciseTwo;
+                currentExercise = mainInfo.DoneButton.exerciseTwo;
                 break;
             case 3:
-                currentExercise = mainInfo.Done.exerciseThree;
+                currentExercise = mainInfo.DoneButton.exerciseThree;
                 break;
         } 
     }

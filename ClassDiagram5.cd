@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PanelManager">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CEAAgIAAACAQSAQQhIAAFIQiBABACgAQBQQAAACABAA=</HashCode>
+      <FileName>Assets\Scripts\GameScript\PanelManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PipePanelChanger">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAQAAAAAAgAAAAAAAAEAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\GameScript\PipePanelChanger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StartButton">
+    <Position X="2.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACgAAAACAQAQAAAABAAAAQAABACQAAAABAAAAAAAQ=</HashCode>
+      <FileName>Assets\Scripts\GameScript\StartButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DoneButton">
+    <Position X="5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAQACAAAQAABABAACAAAAQQARAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\GameScript\DoneButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PointCounter">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAACAAAAAAAABIAAEBAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\GameScript\PointCounter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PointerCounterModel">
+    <Position X="6.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACACAAAAAABIAAEABAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\GameScript\GameInfo\PointerCounterModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayedTimeView">
+    <Position X="12.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABBAAAChAIAkAgABAAAAAAAAAAAAAAACAAAAAAQA=</HashCode>
+      <FileName>Assets\Scripts\GameScript\GameInfo\PlayedTimeView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PlayedtimeModel">
+    <Position X="14.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABABAAACDCAAAAgQBgAAAABQAgAAAIAAAAAgAAAQA=</HashCode>
+      <FileName>Assets\Scripts\GameScript\GameInfo\PlayedtimeModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MainInfo">
+    <Position X="8.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EEVJDCCBSQQogBUihAAYAIAEACARIAkAgAIwABAAFQw=</HashCode>
+      <FileName>Assets\Scripts\LoginScript\MainInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ConfigureServer">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAABAAAAAAAAAAAAAAAAMCAIEAAAAAAgAAAAEAA=</HashCode>
+      <FileName>Assets\Scripts\LoginScript\ConfigureServer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DefaultGameInformation">
+    <Position X="10.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAEAAAhAAAAAIAAAAAACAQAgAAAAcAE=</HashCode>
+      <FileName>Assets\Scripts\LoginScript\DefaultGameInformation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ExerciseChanger">
+    <Position X="14.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAgAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\GameScript\ExerciseChanger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Login">
+    <Position X="17" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAggAAAgACAEgAICAYBCAAEAAAAAAAACAACAAgCABEA=</HashCode>
+      <FileName>Assets\Scripts\LoginScript\Login.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Left" Position="0.1" />
+  </Class>
+  <Class Name="StatusBarModel">
+    <Position X="19" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAgCAAAAAAAABKAAEAUAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\GameScript\GameInfo\StatusBarModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,22 +1,57 @@
 ﻿using System;
 using UnityEngine;
+using LitJson;
+using System.IO;
 
 class ConfigureServer
 {
-    private string ip;
-    private string url;
+    /// <summary>
+    /// Created by Randa Bougrine
+    /// Class that gets the needed information from the config file 
+    /// </summary>
+
+    private readonly string url;
+    private string jsonString;
+    private JsonData itemData;
     private WWW www;
+    private Login login;
     private DefaultGameInformation defaultGameInformation;
 
     /// <summary>
-    /// Constructor fills the ip from defaultGameInformation class
+    /// Constructor initializes the url when bool is true
     /// </summary>
 
     public ConfigureServer()
     {
-        defaultGameInformation = new DefaultGameInformation();
-        ip = defaultGameInformation.IP;
-        url = "http://" + ip + "/Unity_apply/controller.php";
+        ReadConfig();
+
+        if (ReadConfig())
+        {
+            url = itemData["IP"].ToString() + itemData["URL"].ToString();
+        }
+
+     }
+
+    /// <summary>
+    /// Method reads the json config file
+    /// returns true when succeeded
+    /// </summary>
+
+    bool ReadConfig()
+    {
+        try
+        {
+            jsonString = File.ReadAllText(Application.dataPath + "/config.json");
+            itemData = JsonMapper.ToObject(jsonString);
+        }
+        catch (FileNotFoundException e)
+        {
+            login = new Login();
+            login.Feedback = "Config file not found.";
+            Debug.Log(e.Message);
+            return false;
+        }
+        return true;
     }
 
     /// <summary>
@@ -27,22 +62,19 @@ class ConfigureServer
     {
         try
         {
-            www = new WWW(URL, form);
+            www = new WWW(url, form);
         }
         catch (Exception e)
         {
+            login = new Login();
+            login.Feedback = "Can't make connection with the server" + e.Message;
             Debug.LogError(e.Message);
         }
     }
-    
-    public string IP
-    {
-        get
-        {
-            return ip;
-        }
 
-    }
+    /// <summary>
+    /// Getter for the string URL
+    /// </summary>
 
     public string URL
     {
@@ -52,6 +84,10 @@ class ConfigureServer
         }
 
     }
+
+    /// <summary>
+    /// Getter for the WWW
+    /// </summary>
 
     public WWW WWW
     {

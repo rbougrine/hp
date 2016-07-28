@@ -2,6 +2,7 @@
 
 
 /// <summary>
+/// Created by Randa Bougrine
 /// Class that handles logging into the game.
 /// Implements the interface ILogin.
 /// </summary>
@@ -79,7 +80,7 @@ public class Login : MonoBehaviour, ILogin
         password = GUI.PasswordField(new Rect(252, 151, 170, 23), password, "*"[0], 25);
         if (GUI.Button(new Rect(357, 223, 90, 25), "Log in"))
         {
-            mainInfo.Controller.Authorization();
+            mainInfo.LoginController.Authorization();
         }
         if (GUI.Button(new Rect(242, 223, 111, 25), "Create Account"))
         {
@@ -104,7 +105,7 @@ public class Login : MonoBehaviour, ILogin
         {
             if (CPassword == confirmPassword)
             {
-                mainInfo.Controller.Authorization();
+                mainInfo.LoginController.Authorization();
             }
             else
             {

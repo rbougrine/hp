@@ -1,13 +1,16 @@
 ﻿using System;
 using LitJson;
-using System.IO;
 using UnityEngine;
 
 public class DefaultGameInformation
 {
+    /// <summary>
+    /// Created by Randa Bougrine
+    /// Class that initializes the default information from the config file
+    /// </summary>
+
     private string jsonString;
     private JsonData itemData;
-    private string ip;
     private Login login;
     private MainInfo mainInfo;
     private float X, Y, Z;
@@ -19,32 +22,12 @@ public class DefaultGameInformation
     public DefaultGameInformation()
     {
         mainInfo = new MainInfo();
-        ReadConfig();
     }
 
     /// <summary>
-    /// Read config file
-    /// </summary>
-
-    void ReadConfig()
-    {
-        try
-        {
-            jsonString = File.ReadAllText(Application.dataPath + "/config.json");
-            itemData = JsonMapper.ToObject(jsonString);
-            ip = itemData["IP"].ToString();
-        }
-        catch (FileNotFoundException e)
-        {
-            login = new Login();
-            login.Feedback = "Config file not found.";
-            Debug.Log(e);
-        }
-
-    }
-
-    /// <summary>
-    /// Looping through the config file to put the coordinates into the variable
+    /// Looping through the config file 
+    /// to put the coordinates into the variable
+    /// in the methode Coordinates()
     /// </summary>
 
     public void GetCoordinates(string sceneName)
@@ -65,7 +48,8 @@ public class DefaultGameInformation
     }
 
     /// <summary>
-    /// Coordinates variables
+    /// Coordinates variables being filled 
+    /// given from the methode GetCoordinates()
     /// </summary>
 
     void Coordinates(int index, float coor)
@@ -83,13 +67,4 @@ public class DefaultGameInformation
                 break;
         }
     }
-
-    public string IP
-    {
-        get
-        {
-            return ip;
-        }
-    }
-
-}
+ }

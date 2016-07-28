@@ -78,21 +78,6 @@ namespace UnityTest
         }
 
         [Test]
-        public void arrayTest()
-        {
-            var PanelMan = new PanelMan();
-            var question = new DoneButton();
-
-            var exerciseOne = new int[] { 7, 11, 4, 11, 5, 16, 0, 0, 0, 16, 2, 0, 0, 0, 16, 8, 11, 14, 11, 6, 0, 0, 0, 0, 0 };
-            var userinput = new int[] { 7, 11, 4, 11, 5, 16, 0, 0, 0, 1, 15, 0, 0, 0, 16, 16, 0, 0, 0, 2, 8, 11, 11, 14, 11, 6 };
-            
-            var test = PanelMan.CheckArray(userinput, exerciseOne);
-
-            Assert.AreEqual(false, test);
-
-        }
-
-        [Test]
         public void Login()
         {
           //  var login = new Login();

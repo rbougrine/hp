@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Login">
+    <Position X="1" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAggAAAgACAEgAICAYBCAAEAAAAAAAACAACAAgCABEA=</HashCode>
+      <FileName>Assets\Scripts\LoginScript\Login.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Left" Position="0.1" />
+  </Class>
+  <Class Name="LoginController">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAIABABAAAAAAJAAAIAAAAAAAAEAA=</HashCode>
+      <FileName>Assets\Scripts\LoginScript\LoginController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SwitchingScenes">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAQAAIABACACAAAAgABAAAAAABAAEAAIEABgBQBQYEE=</HashCode>
+      <FileName>Assets\Scripts\LoginScript\SwitchingScenes.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MainInfo">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EEVJDCCBSQQogBUihAAYAIAEACARIAkAgAIwABAAFQw=</HashCode>
+      <FileName>Assets\Scripts\LoginScript\MainInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DefaultGameInformation">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAEAAAhAAAAAIAAAAAACAQAgAAAAcAE=</HashCode>
+      <FileName>Assets\Scripts\LoginScript\DefaultGameInformation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ConfigureServer">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAABAAAAAAAAAAAAAAAAMCAIEAAAAAAgAAAAEAA=</HashCode>
+      <FileName>Assets\Scripts\LoginScript\ConfigureServer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

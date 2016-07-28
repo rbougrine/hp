@@ -5,6 +5,11 @@ using Assets.Scripts.LoginScript;
 
 public class SwitchingScenes : MonoBehaviour, ISwitchingScenes
 {
+    /// <summary>
+    /// Created by Randa Bougrine
+    /// Class that handles the scene switching
+    /// </summary>
+
     //public variables
     public AsyncOperation sceneLoading;
     public string sceneName;
@@ -20,8 +25,8 @@ public class SwitchingScenes : MonoBehaviour, ISwitchingScenes
     private float x,y,z;
 
     /// <summary>
-    /// Causes that attached GameObject Login
-    /// is still available when scene is changed
+    /// Causes that the attached GameObject Login
+    /// is available when scene is changed
     /// </summary>
 
     void Awake()

@@ -4,7 +4,7 @@ using System.Collections;
 public class DoneButton : MonoBehaviour
 {
     /// <summary>
-    /// Created by Randa & Anny Aidinian.
+    /// Created by Randa Bougrine & Anny Aidinian.
     /// Class that managing ending process of game 
     /// Triggerd when done button is pressed 
     /// </summary>
@@ -53,8 +53,8 @@ public class DoneButton : MonoBehaviour
 
         if (result == "GoodJob")
         {
-            mainInfo.Time.Donetime();
-            mainInfo.Points.Addpoints();
+            mainInfo.PlayedtimeModel.Donetime();
+            mainInfo.PointCounter.Addpoints();
             GoodJob.SetActive(true);
         }
         else

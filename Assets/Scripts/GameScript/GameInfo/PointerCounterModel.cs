@@ -3,9 +3,9 @@ using System.Collections;
 
 public class PointerCounterModel : MonoBehaviour
 {
-
     /// <summary>
-    ///  Class that sends the score back to the database
+    /// Created by Anny Aidinian
+    /// Class that sends the score back to the database
     /// </summary>
 
     public string username;
@@ -31,7 +31,7 @@ public class PointerCounterModel : MonoBehaviour
     public void SendInfo()
     {
         username = mainInfo.Login.Username;
-        score = mainInfo.Points.score;
+        score = mainInfo.PointCounter.score;
 
         WWWForm form = new WWWForm();
 
@@ -59,7 +59,7 @@ public class PointerCounterModel : MonoBehaviour
         }
         else
         {
-            Debug.Log(www.text + "saveInfo");
+            Debug.Log(www.text);
         }
 
     }

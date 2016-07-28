@@ -2,10 +2,12 @@
 
 public class InfoToggler : MonoBehaviour {
 
-	public GameObject info;
+    /// <summary>
+    /// Class that handles the clicked game object 
+    /// to show the desired images
+    /// </summary>
 
-
-    //Use this for initialization
+    public GameObject info;
 
     /// <summary>
     /// Used for initialization

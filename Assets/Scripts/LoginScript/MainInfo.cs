@@ -1,58 +1,70 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using LitJson;
-using System.IO;
-using System.Configuration;
-using System;
-using System.Collections;
-using System.Linq;
+
 
 public class MainInfo : MonoBehaviour
+{
+    /// <summary>
+    /// Created by Randa Bougrine & Anny Aidinian
+    /// Class initializes every game object of the game
+    /// other classes will use this to get the wanted classes
+    /// that are attached to the different GameObjects
+    /// </summary>
+
+    private string jsonstring;
+    private JsonData itemdata;
+    private GameObject loginScript, userScript, score, front_door, statusBar, exercise, GoodJob, start, Point, timer, done;
+    private LoginController loginController;
+    private SwitchingScenes switchingScenes;
+    private UserPosition userPosition;
+    private StatusBarModel statusBarModel;
+    private Login login;
+    private StartButton startButton;
+    private PointCounter pointCounter;
+    private PanelManager panelManager;
+    private Door door;
+    private DoneButton doneButton;
+    private ExerciseChanger exerciseChanger;
+    private PlayedTimeView garageGUI;
+    private StatusBarView gameUI;
+    private PointerCounterModel pointerCounterModel;
+    private PlayedtimeModel playedTimeModel;
+    private DefaultGameInformation defaultGameInformation;
+
+
+    /// <summary>
+    /// Constructor initialize the gameObjects of the first scene loaded
+    /// when it's another scene then it will call methode InitializeScene()
+    /// </summary>
+
+    public MainInfo()
     {
-        private GameObject loginScript, userScript, score, door, statusBar, manager, GoodJob, start, Point, timer, doneButton;
-        private LoginController controller;
-        private SwitchingScenes switchingScenes;
-        private UserPosition userPosition;
-        private StatusBarModel statusBarModel;
-        private Login login;
-        private StartButton startButton;
-        private PointCounter points;
-        private PlayedTimeView time;
-        private PanelMan panelManager;
-        private Door check;
-        private DoneButton done;
-        private ExerciseChanger changer;
-        private PlayedTimeView garageGUI;
-        private StatusBarView gameUI;
-        private PointerCounterModel pointerCounterModel;
-        private PlayedtimeModel playedTimeModel;
-        private DefaultGameInformation defaultGameInformation;
-        private string jsonstring;
-        private JsonData itemdata;
-        
+        loginScript = GameObject.Find("Login");
 
-        public MainInfo()
+        login = loginScript.GetComponent<Login>();
+        switchingScenes = loginScript.GetComponent<SwitchingScenes>();
+        loginController = loginScript.GetComponent<LoginController>();
+
+        if (SceneManager.GetActiveScene().name != "Login")
         {
-             loginScript = GameObject.Find("Login");
-             login = loginScript.GetComponent<Login>();
+            userScript = GameObject.Find("UserPosition");
+            statusBar = GameObject.Find("StatusBar");
+            userPosition = userScript.GetComponent<UserPosition>();
+            statusBarModel = statusBar.GetComponent<StatusBarModel>();
+            InitializeScene();
+        }
 
-             switchingScenes = loginScript.GetComponent<SwitchingScenes>();
-             controller = loginScript.GetComponent<LoginController>();
+    }
 
-            if (SceneManager.GetActiveScene().name != "Login")
-            {
-                userScript = GameObject.Find("UserPosition");
-                statusBar = GameObject.Find("StatusBar");
-                userPosition = userScript.GetComponent<UserPosition>();
-                statusBarModel = statusBar.GetComponent<StatusBarModel>();
-                InitializeScene();
-            }
-
-        }//End contructor
+    /// <summary>
+    /// Method that will decide which methode to call
+    /// depending on the scene that is active at the moment
+    /// </summary>
 
     void InitializeScene()
-      {
-         if (SceneManager.GetActiveScene().name == "Game")
+    {
+        if (SceneManager.GetActiveScene().name == "Game")
         {
             InitializeGame();
         }
@@ -64,190 +76,267 @@ public class MainInfo : MonoBehaviour
         {
             Login.Feedback = "World is not found.";
         }
-      }
+    }
 
+    /// <summary>
+    /// Method that initialize the GameObjects needed for the scene Game
+    /// </summary>
 
-        void InitializeGame()
+    void InitializeGame()
+    {
+        gameUI = statusBar.GetComponent<StatusBarView>();
+
+    }
+
+    /// <summary>
+    /// Method that initialize the GameObjects needed for the scene Game
+    /// </summary>
+    void ObjectsGame()
+    {
+    }
+
+    /// <summary>
+    /// Method that initialize the GameObjects components needed for the scene Garage
+    /// </summary>
+
+    void InitializeGarage()
+    {
+        ObjectsGarage();
+        startButton = start.GetComponent<StartButton>();
+        panelManager = exercise.GetComponent<PanelManager>();
+        door = front_door.GetComponent<Door>();
+        pointCounter = score.GetComponent<PointCounter>();
+        exerciseChanger = exercise.GetComponent<ExerciseChanger>();
+        doneButton = done.GetComponent<DoneButton>();
+        garageGUI = timer.GetComponent<PlayedTimeView>();
+        pointerCounterModel = score.GetComponent<PointerCounterModel>();
+        playedTimeModel = timer.GetComponent<PlayedtimeModel>();
+    }
+
+    /// <summary>
+    /// Method that initialize the GameObjects needed for the scene Garage
+    /// </summary>
+
+    void ObjectsGarage()
+    {
+        score = GameObject.Find("Score");
+        exercise = GameObject.Find("Exercise");
+        start = GameObject.Find("Start");
+        front_door = GameObject.Find("Front_door");
+        done = GameObject.Find("Done");
+        timer = GameObject.Find("Timer");
+
+    }
+
+    /// <summary>
+    /// Getter for LoginController
+    /// </summary>
+
+    public LoginController LoginController
+    {
+        get
         {
-            gameUI = GameObject.Find("StatusBar").GetComponent<StatusBarView>();
-
-        }
-
-        void InitializeGarage()
-        {
-            ObjectsGarage();
-            startButton = start.GetComponent<StartButton>();
-            panelManager = manager.GetComponent<PanelMan>();
-            check = door.GetComponent<Door>();
-            points = score.GetComponent<PointCounter>();
-            changer = manager.GetComponent<ExerciseChanger>();
-            done = doneButton.GetComponent<DoneButton>();
-            garageGUI = timer.GetComponent<PlayedTimeView>();
-            pointerCounterModel = score.GetComponent<PointerCounterModel>();
-            playedTimeModel = timer.GetComponent<PlayedtimeModel>();
-        }
-
-
-        void ObjectsGarage()
-        {
-            score = GameObject.Find("Score");
-            manager = GameObject.Find("Exercise");
-            start = GameObject.Find("Start");
-            door = GameObject.Find("Front_door");
-            doneButton = GameObject.Find("Done");
-            timer = GameObject.Find("Timer");
-
-        }
-
-        public LoginController Controller
-        {
-            get
-            {
-                return controller;
-            }
-        }
-
-        public StatusBarView GameUI
-        {
-            get
-            {
-                return gameUI;
-            }
-        }
-
-
-        public PlayedTimeView GarageGUI
-        {
-            get
-            {
-                return garageGUI;
-            }
-        }
-
-        public SwitchingScenes SwitchingScenes
-        {
-            get
-            {
-                return switchingScenes;
-
-            }
-        }
-
-        public StatusBarModel StatusBarModel
-        {
-            get
-            {
-                return statusBarModel;
-            }
-
-
-        }
-
-        public Login Login
-        {
-            get
-            {
-                return login;
-            }
-        }
-
-        public UserPosition UserPosition
-        {
-            get
-            {
-                return userPosition;
-            }
-
-        }
-
-
-        public PointCounter Points
-        {
-            get
-            {
-                return points;
-
-            }
-
-
-        }
-
-
-        public PlayedtimeModel Time
-        {
-            get
-            {
-                return playedTimeModel;
-
-            }
-        }
-
-
-        public Door Door
-        {
-            get
-            {
-                return check;
-
-            }
-
-
-        }
-        public StartButton StartButton
-        {
-            get
-            {
-                return startButton;
-
-            }
-
-
-        }
-        public PanelMan PanelManager
-        {
-            get
-            {
-                return panelManager;
-
-            }
-
-
-        }
-
-        public ExerciseChanger Changer
-        {
-            get
-            {
-                return changer;
-            }
-        }
-
-        public DoneButton Done
-        {
-            get
-            {
-                return done;
-            }
-        }
-
-
-
-
-        public PlayedtimeModel PlaytimeModel
-        {
-            get
-            {
-                return playedTimeModel;
-
-            }
-
-        }
-
-        public PointerCounterModel PointerCounterModel
-        {
-            get
-            {
-                return pointerCounterModel;
-            }
+            return loginController;
         }
     }
+
+    /// <summary>
+    /// Getter for StatusBarView
+    /// </summary>
+
+    public StatusBarView GameUI
+    {
+        get
+        {
+            return gameUI;
+        }
+    }
+
+    /// <summary>
+    /// Getter for PlayedTimeView
+    /// </summary>
+
+    public PlayedTimeView GarageGUI
+    {
+        get
+        {
+            return garageGUI;
+        }
+    }
+
+    /// <summary>
+    /// Getter for SwitchingScenes
+    /// </summary>
+
+
+    public SwitchingScenes SwitchingScenes
+    {
+        get
+        {
+            return switchingScenes;
+
+        }
+    }
+
+    /// <summary>
+    /// Getter for StatusBarModel
+    /// </summary>
+
+    public StatusBarModel StatusBarModel
+    {
+        get
+        {
+            return statusBarModel;
+        }
+
+
+    }
+
+    /// <summary>
+    /// Getter for Login
+    /// </summary>
+
+
+    public Login Login
+    {
+        get
+        {
+            return login;
+        }
+    }
+
+    /// <summary>
+    /// Getter for UserPosition
+    /// </summary>
+
+    public UserPosition UserPosition
+    {
+        get
+        {
+            return userPosition;
+        }
+
+    }
+
+    /// <summary>
+    /// Getter for PointCounter
+    /// </summary>
+
+    public PointCounter PointCounter
+    {
+        get
+        {
+            return pointCounter;
+
+        }
+
+
+    }
+
+    /// <summary>
+    /// Getter for PlayedtimeModel
+    /// </summary>
+
+    public PlayedtimeModel PlayedtimeModel
+    {
+        get
+        {
+            return playedTimeModel;
+
+        }
+    }
+
+    /// <summary>
+    /// Getter for Door
+    /// </summary>
+
+    public Door Door
+    {
+        get
+        {
+            return door;
+
+        }
+
+    }
+
+    /// <summary>
+    /// Getter for StartButton
+    /// </summary>
+
+    public StartButton StartButton
+    {
+        get
+        {
+            return startButton;
+
+        }
+
+
+    }
+
+    /// <summary>
+    /// Getter for PanelManager
+    /// </summary>
+
+    public PanelManager PanelManager
+    {
+        get
+        {
+            return panelManager;
+
+        }
+
+
+    }
+
+    /// <summary>
+    /// Getter for ExerciseChanger
+    /// </summary>
+
+    public ExerciseChanger ExerciseChanger
+    {
+        get
+        {
+            return exerciseChanger;
+        }
+    }
+
+    /// <summary>
+    /// Getter for DoneButton
+    /// </summary>
+
+    public DoneButton DoneButton
+    {
+        get
+        {
+            return doneButton;
+        }
+    }
+
+    /// <summary>
+    /// Getter for PlayedtimeModel
+    /// </summary>
+
+    public PlayedtimeModel PlaytimeModel
+    {
+        get
+        {
+            return playedTimeModel;
+
+        }
+
+    }
+
+    /// <summary>
+    /// Getter for PointerCounterModel
+    /// </summary>
+
+    public PointerCounterModel PointerCounterModel
+    {
+        get
+        {
+            return pointerCounterModel;
+        }
+    }
+}
