@@ -23,11 +23,20 @@ class ConfigureServer
 
     public ConfigureServer()
     {
+        login = new Login();
         ReadConfig();
 
         if (ReadConfig())
         {
-            url = itemData["IP"].ToString() + itemData["URL"].ToString();
+            try
+            {
+                url = itemData["IP"].ToString() + itemData["URL"].ToString();
+            }
+            catch(Exception e)
+            {              
+                login.Feedback = "Data not found.";
+                Debug.Log(e.Message);
+            }
         }
 
      }
@@ -46,7 +55,6 @@ class ConfigureServer
         }
         catch (FileNotFoundException e)
         {
-            login = new Login();
             login.Feedback = "Config file not found.";
             Debug.Log(e.Message);
             return false;
@@ -66,7 +74,7 @@ class ConfigureServer
         }
         catch (Exception e)
         {
-            login = new Login();
+
             login.Feedback = "Can't make connection with the server" + e.Message;
             Debug.LogError(e.Message);
         }

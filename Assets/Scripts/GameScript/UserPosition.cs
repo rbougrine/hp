@@ -46,9 +46,9 @@ public class UserPosition : MonoBehaviour
 
     public void collectInfo()
     {             
-        x = CameraPosition.x.ToString("0.00");
-        y = CameraPosition.y.ToString("0.00");
-        z = CameraPosition.z.ToString("0.00");
+        x = cameraPosition.x.ToString("0.00");
+        y = cameraPosition.y.ToString("0.00");
+        z = cameraPosition.z.ToString("0.00");
       
         sceneName = SceneManager.GetActiveScene().name;
         username = mainInfo.StatusBarModel.username;
@@ -143,19 +143,4 @@ public class UserPosition : MonoBehaviour
          }
     }
 
-    /// <summary>
-    /// Getter and Setter for the Vector3 CameraPosition
-    /// </summary>
-
-    public Vector3 CameraPosition
-    {
-        get
-        {
-            return cameraPosition;
-        }
-        set
-        {
-            cameraPosition = value;
-        }
-    }
-}
+ }
