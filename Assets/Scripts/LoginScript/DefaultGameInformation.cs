@@ -21,7 +21,7 @@ public class DefaultGameInformation
 
     public DefaultGameInformation()
     {
-        mainInfo = new MainInfo();
+        mainInfo = GameObject.Find("MainInfo").GetComponent<MainInfo>();
     }
 
     /// <summary>

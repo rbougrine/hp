@@ -27,7 +27,7 @@ public class PlayedtimeModel : MonoBehaviour
     
     void Start()
     {
-        mainInfo = new MainInfo();
+        mainInfo = GameObject.Find("MainInfo").GetComponent<MainInfo>();
         configureServer = new ConfigureServer();
         username = mainInfo.Login.Username;
     }

@@ -32,13 +32,12 @@ public class MainInfo : MonoBehaviour
     private PlayedtimeModel playedTimeModel;
     private DefaultGameInformation defaultGameInformation;
 
-
     /// <summary>
-    /// Constructor initialize the gameObjects of the first scene loaded
+    /// Initializes the gameObjects of the first scene loaded
     /// when it's another scene then it will call methode InitializeScene()
     /// </summary>
 
-    public MainInfo()
+    void Start()
     {
         loginScript = GameObject.Find("Login");
 
@@ -48,13 +47,13 @@ public class MainInfo : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name != "Login")
         {
+            Debug.Log("goes in");
             userScript = GameObject.Find("UserPosition");
             statusBar = GameObject.Find("StatusBar");
             userPosition = userScript.GetComponent<UserPosition>();
             statusBarModel = statusBar.GetComponent<StatusBarModel>();
             InitializeScene();
         }
-
     }
 
     /// <summary>

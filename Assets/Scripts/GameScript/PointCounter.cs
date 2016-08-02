@@ -18,7 +18,7 @@ public class PointCounter : MonoBehaviour
 
     void Start()
     {
-        mainInfo = new MainInfo();
+        mainInfo = GameObject.Find("MainInfo").GetComponent<MainInfo>();
     }
 
     /// <summary>

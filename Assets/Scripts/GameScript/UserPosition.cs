@@ -25,7 +25,7 @@ public class UserPosition : MonoBehaviour
 
     void Start()
     {
-        mainInfo = new MainInfo();
+        mainInfo = GameObject.Find("MainInfo").GetComponent<MainInfo>();
         configureServer = new ConfigureServer();
         mainInfo.SwitchingScenes.newScene = true;
     }

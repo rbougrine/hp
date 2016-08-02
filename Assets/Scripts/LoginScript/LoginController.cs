@@ -21,10 +21,8 @@ public class LoginController : MonoBehaviour
 
     void Start()
     {
-        login = new Login();
-        mainInfo = new MainInfo();
+        mainInfo = GameObject.Find("MainInfo").GetComponent<MainInfo>();
         configureServer = new ConfigureServer();
-
     }
 
     /// <summary>
@@ -32,12 +30,12 @@ public class LoginController : MonoBehaviour
     /// Checks with ServerConnection if a valid IP is used before starting the Coroutine.
     /// </summary>
 
-    public void Authorization()
+    public void Authorization(string username, string password)
     {
 
         WWWForm form = new WWWForm();
-        form.AddField("Username", mainInfo.Login.Username);
-        form.AddField("Password", mainInfo.Login.Password);
+        form.AddField("Username", username);
+        form.AddField("Password", password);
         form.AddField("Job", "LoginAccount");
 
         configureServer.ServerConnection(form);
@@ -51,11 +49,11 @@ public class LoginController : MonoBehaviour
     /// Checks with ServerConnection if a valid IP is used before starting the Coroutine.
     /// </summary>
 
-    public void Register()
+    public void Register(string username, string password)
     {
         WWWForm form = new WWWForm();
-        form.AddField("Username", mainInfo.Login.cUsername);
-        form.AddField("Password", mainInfo.Login.CPassword);
+        form.AddField("Username", username);
+        form.AddField("Password", password);
         form.AddField("Job", "RegisterAccount");
 
         configureServer.ServerConnection(form);
@@ -82,7 +80,8 @@ public class LoginController : MonoBehaviour
             if (www.text == "Login successful!")
             {
                 mainInfo.Login.logged = true;
-                login.CurrentMenu = null;
+                mainInfo.Login.CurrentMenu = null;
+                mainInfo.Login.Feedback = www.text;
 
                 mainInfo.SwitchingScenes.CheckPosition();
             }
@@ -111,7 +110,7 @@ public class LoginController : MonoBehaviour
             if (www.text == "Registratie successful")
             {
                 mainInfo.Login.Feedback = www.text;
-                login.CurrentMenu = "Login";
+                mainInfo.Login.CurrentMenu = "Login";
             }
             else
             {

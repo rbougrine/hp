@@ -7,7 +7,7 @@ public class SwitchingScenes : MonoBehaviour, ISwitchingScenes
 {
     /// <summary>
     /// Created by Randa Bougrine
-    /// Class that handles the scene switching
+    /// Class that handles the scene switching when user logged in
     /// </summary>
 
     //public variables
@@ -15,6 +15,7 @@ public class SwitchingScenes : MonoBehaviour, ISwitchingScenes
     public string sceneName;
     public bool newScene;
     private Vector3 cameraPosition;
+    public int test = 3;
 
     //private variables
     private MainInfo mainInfo;
@@ -40,48 +41,11 @@ public class SwitchingScenes : MonoBehaviour, ISwitchingScenes
 
     void Start()
     {
-        mainInfo = new MainInfo();
         configureServer = new ConfigureServer();
-
+        mainInfo = GameObject.Find("MainInfo").GetComponent<MainInfo>();
     }
 
-    /// <summary>
-    /// Get and set for the camera scoordinates
-    /// </summary>
 
-    public float X
-    {
-        get
-        {
-            return x;
-        }
-        set
-        {
-            x = value;
-        }
-    }
-    public float Y
-    {
-        get
-        {
-            return Y;
-        }
-        set
-        {
-            y = value;
-        }
-    }
-    public float Z
-    {
-        get
-        {
-            return z;
-        }
-        set
-        {
-            z = value;
-        }
-    }
     /// <summary>
     /// Called every frame, checks which position the camera is at
     /// </summary>
@@ -201,6 +165,44 @@ public class SwitchingScenes : MonoBehaviour, ISwitchingScenes
             sceneName = (position[3]);
 
             LoadingScenes(sceneName);                          
+        }
+    }
+
+    /// <summary>
+    /// Get and set for the camera scoordinates
+    /// </summary>
+
+    public float X
+    {
+        get
+        {
+            return x;
+        }
+        set
+        {
+            x = value;
+        }
+    }
+    public float Y
+    {
+        get
+        {
+            return Y;
+        }
+        set
+        {
+            y = value;
+        }
+    }
+    public float Z
+    {
+        get
+        {
+            return z;
+        }
+        set
+        {
+            z = value;
         }
     }
 

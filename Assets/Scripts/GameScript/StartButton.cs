@@ -23,7 +23,7 @@ public class StartButton : MonoBehaviour
 
     void Start()
     {
-        mainInfo = new MainInfo();
+        mainInfo = GameObject.Find("MainInfo").GetComponent<MainInfo>();
         exercise = new Texture[4];
 
         exercise[0] = begin;

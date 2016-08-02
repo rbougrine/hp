@@ -22,7 +22,7 @@ public class StatusBarModel : MonoBehaviour
 
     void Start()
     {
-        mainInfo = new MainInfo();
+        mainInfo = GameObject.Find("MainInfo").GetComponent<MainInfo>();
         configureServer = new ConfigureServer();
         Getinfo();
     }
@@ -61,8 +61,8 @@ public class StatusBarModel : MonoBehaviour
         {
             feedback = www.text;
             string[] position = feedback.Split(',');
-            infoStatusbar = (position[0]);
-            infoStatusbarScore = (position[1]);
+            infoStatusbar = position[0];
+            infoStatusbarScore = position[1];
 
             score = int.Parse(position[1]);
 

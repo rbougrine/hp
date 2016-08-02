@@ -21,8 +21,7 @@ public class StatusBarView : MonoBehaviour, IBar
 
     void Start()
     {
-        login = new Login();
-        mainInfo = new MainInfo(); 
+        mainInfo = GameObject.Find("MainInfo").GetComponent<MainInfo>();
     }
 
     /// <summary>
@@ -31,8 +30,8 @@ public class StatusBarView : MonoBehaviour, IBar
 
     void OnGUI()
     {      
-        var CurrentMenu = login.CurrentMenu;
-        if (CurrentMenu == null)
+        var currentMenu = mainInfo.Login.CurrentMenu;
+        if (currentMenu == null)
         {           
             Bar();       
         }
@@ -46,6 +45,7 @@ public class StatusBarView : MonoBehaviour, IBar
     public void Bar()
     {
         InfoStatusbar = mainInfo.StatusBarModel.infoStatusbar;
+
         GUI.Box(new Rect(250, 150, 260, 20), InfoStatusbar, labelStyle);
 
         if (SceneManager.GetActiveScene().name == "Game")

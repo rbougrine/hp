@@ -9,6 +9,13 @@
 
 public class Login : MonoBehaviour, ILogin
 {
+
+    /// <summary>
+    /// Created by Randa Bougrine
+    /// Makes sure that the attached GameObject Login 
+    /// is still available when scene is changed.
+    /// </summary>
+    
     #region variables
 
     //Public Variables
@@ -20,15 +27,15 @@ public class Login : MonoBehaviour, ILogin
     //Private Variables
     private string username = "";
     private string password = "";
-    private string cpassword = "";
+    private string cPassword = "";
     private string confirmPassword = "";
     private string currentMenu, feedback;
 
     #endregion variables
 
     /// <summary>
-    /// Makes sure that the attached GameObject Login 
-    /// is still available when scene is changed.
+    /// Causes the GameObject not to be removed 
+    /// when the scene changes in the game
     /// </summary>
 
     void Awake()
@@ -43,7 +50,7 @@ public class Login : MonoBehaviour, ILogin
     void Start()
     {
         CurrentMenu = "Login";
-        mainInfo = new MainInfo();
+        mainInfo = GameObject.Find("MainInfo").GetComponent<MainInfo>();
     }
 
     /// <summary>
@@ -80,7 +87,7 @@ public class Login : MonoBehaviour, ILogin
         password = GUI.PasswordField(new Rect(252, 151, 170, 23), password, "*"[0], 25);
         if (GUI.Button(new Rect(357, 223, 90, 25), "Log in"))
         {
-            mainInfo.LoginController.Authorization();
+            mainInfo.LoginController.Authorization(username,password);
         }
         if (GUI.Button(new Rect(242, 223, 111, 25), "Create Account"))
         {
@@ -98,14 +105,14 @@ public class Login : MonoBehaviour, ILogin
         GUI.Label(new Rect(253, 86, 170, 21), "Name:");
         cUsername = GUI.TextField(new Rect(253, 106, 170, 21), cUsername);
         GUI.Label(new Rect(252, 128, 170, 23), "Password:");
-        cpassword = GUI.PasswordField(new Rect(252, 151, 170, 23), cpassword, "*"[0], 25);
+        cPassword = GUI.PasswordField(new Rect(252, 151, 170, 23), cPassword, "*"[0], 25);
         GUI.Label(new Rect(252, 181, 170, 23), "Confirm Password:");
         confirmPassword = GUI.PasswordField(new Rect(252, 209, 170, 23), confirmPassword, "*"[0], 25);
         if (GUI.Button(new Rect(344, 243, 111, 25), "Create Account"))
         {
-            if (CPassword == confirmPassword)
+            if (cPassword == confirmPassword)
             {
-                mainInfo.LoginController.Authorization();
+                mainInfo.LoginController.Register(cUsername,cPassword);
             }
             else
             {
@@ -176,29 +183,4 @@ public class Login : MonoBehaviour, ILogin
             return username;
         }
     }
-
-    /// <summary>
-    /// Getter for the Password string.
-    /// </summary>
-
-    public string Password
-    {
-        get
-        {
-            return password;
-        }
-    }
-
-    /// <summary>
-    /// Getter for the CPassword string.
-    /// </summary>
-
-    public string CPassword
-    {
-        get
-        {
-            return cpassword;
-        }
-    }
-
 }

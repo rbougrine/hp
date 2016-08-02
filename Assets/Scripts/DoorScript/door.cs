@@ -25,21 +25,13 @@ public class Door : MonoBehaviour, IDoor
     private bool doorisClosed = true;
 
     /// <summary>
-    /// Initialize the animator
-    /// </summary>
-
-    void Awake()
-    {
-        animator = GetComponent<Animator>();
-    }
-
-    /// <summary>
     /// Used for initialization.
     /// </summary>
 
     void Start()
     {
-        mainInfo = new MainInfo();
+        animator = GetComponent<Animator>();
+        mainInfo = GameObject.Find("MainInfo").GetComponent<MainInfo>();
     }
 
     /// <summary>

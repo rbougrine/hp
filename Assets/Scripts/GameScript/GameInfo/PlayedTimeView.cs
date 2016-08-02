@@ -25,7 +25,7 @@ public class PlayedTimeView : MonoBehaviour, IBar
 
     void Start()
     {
-        mainInfo = new MainInfo();
+        mainInfo = GameObject.Find("MainInfo").GetComponent<MainInfo>();
     }
 
     /// <summary>
