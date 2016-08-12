@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
     <UnityVersion>5.3.4f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -108,8 +110,13 @@
     <Compile Include="Assets\Cardboard\Scripts\VRDevices\CardboardAndroidDevice.cs" />
     <Compile Include="Assets\Cardboard\Scripts\VRDevices\CardboardiOSDevice.cs" />
     <Compile Include="Assets\Cardboard\Scripts\VRDevices\UnityEditorDevice.cs" />
+    <Compile Include="Assets\Scripts\ButtonTexture.cs" />
+    <Compile Include="Assets\Scripts\ButtonType.cs" />
+    <Compile Include="Assets\Scripts\CheatButton.cs" />
+    <Compile Include="Assets\Scripts\DoneButton.cs" />
+    <Compile Include="Assets\Scripts\Factory.cs" />
+    <Compile Include="Assets\Scripts\IButton.cs" />
     <Compile Include="Assets\Scripts\DoorScript\Door.cs" />
-    <Compile Include="Assets\Scripts\GameScript\DoneButton.cs" />
     <Compile Include="Assets\Scripts\GameScript\ExerciseChanger.cs" />
     <Compile Include="Assets\Scripts\GameScript\GameInfo\PlayedTimeView.cs" />
     <Compile Include="Assets\Scripts\GameScript\GameInfo\PlayedtimeModel.cs" />
@@ -119,7 +126,7 @@
     <Compile Include="Assets\Scripts\GameScript\PanelManager.cs" />
     <Compile Include="Assets\Scripts\GameScript\PipePanelChanger.cs" />
     <Compile Include="Assets\Scripts\GameScript\PointCounter.cs" />
-    <Compile Include="Assets\Scripts\GameScript\StartButton.cs" />
+    <Compile Include="Assets\Scripts\GameScript\Exercise.cs" />
     <Compile Include="Assets\Scripts\GameScript\StatusBarView.cs" />
     <Compile Include="Assets\Scripts\GameScript\UserPosition.cs" />
     <Compile Include="Assets\Scripts\GameScript\Walk.cs" />
@@ -133,7 +140,13 @@
     <Compile Include="Assets\Scripts\LoginScript\LoginController.cs" />
     <Compile Include="Assets\Scripts\LoginScript\MainInfo.cs" />
     <Compile Include="Assets\Scripts\LoginScript\SwitchingScenes.cs" />
+    <Compile Include="Assets\Scripts\NextButton.cs" />
+    <Compile Include="Assets\Scripts\NoButton.cs" />
     <Compile Include="Assets\Scripts\SplashScript\SplashScript.cs" />
+    <Compile Include="Assets\Scripts\StartButton.cs" />
+    <Compile Include="Assets\Scripts\StopButton.cs" />
+    <Compile Include="Assets\Scripts\ButtonManager.cs" />
+    <Compile Include="Assets\Scripts\YesButton.cs" />
     <Compile Include="Assets\UnityTestTools\Assertions\AssertionComponent.cs" />
     <Compile Include="Assets\UnityTestTools\Assertions\AssertionException.cs" />
     <Compile Include="Assets\UnityTestTools\Assertions\Assertions.cs" />

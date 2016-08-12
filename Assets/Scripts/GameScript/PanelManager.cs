@@ -11,6 +11,7 @@ public class PanelManager : MonoBehaviour
 
     public Texture[] texture;
     public int[] userInput;
+    public GameObject GoodJob;
     int countWrong, countGood;
     private string result;
 
@@ -58,23 +59,6 @@ public class PanelManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Resolves the puzzel when triggered  
-    /// </summary>
-
-    public void CheatState(int[] exercise)
-    {
-        Transform[] allChildren = GetComponentsInChildren<Transform>();
-
-        userInput = new int[allChildren.Length - 1];
-
-        userInput = exercise;
-        for (int i = 1; i < allChildren.Length; i++)
-        {
-            allChildren[i].GetComponent<PipePanelChanger>().currentStatus = userInput[i - 1];
-        }
-    }
-
-    /// <summary>
     /// Fetch currentstatus state  of user input.
     /// </summary>
 
@@ -87,6 +71,25 @@ public class PanelManager : MonoBehaviour
         for (int i = 1; i < allChildren.Length; i++)
         {
             userInput[i - 1] = allChildren[i].GetComponent<PipePanelChanger>().currentStatus;
+        }
+    }
+
+
+    /// <summary>
+    /// Resolves the puzzel when triggered  
+    /// </summary>
+
+    public void CheatState(int[] exercise)
+    {
+        Transform[] allChildren = GetComponentsInChildren<Transform>();
+
+        userInput = new int[allChildren.Length - 1];
+
+        userInput = exercise;
+
+        for (int i = 1; i < allChildren.Length; i++)
+        {
+            allChildren[i].GetComponent<PipePanelChanger>().currentStatus = userInput[i - 1];
         }
     }
 

@@ -17,7 +17,7 @@ public class ExerciseChanger : MonoBehaviour
 
     void Update()
     {
-        Texture texture = manager.GetComponent<StartButton>().GiveTexture(currentExercise);
+        Texture texture = manager.GetComponent<Exercise>().GiveTexture(currentExercise);
         GetComponent<Renderer>().material.mainTexture = texture;
     }
 

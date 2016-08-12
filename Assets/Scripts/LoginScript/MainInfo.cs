@@ -14,23 +14,23 @@ public class MainInfo : MonoBehaviour
 
     private string jsonstring;
     private JsonData itemdata;
-    private GameObject loginScript, userScript, score, front_door, statusBar, exercise, GoodJob, start, Point, timer, done;
+    private GameObject loginScript, userScript, score, front_door, statusBar, question, GoodJob, gameInfo, Point, timer, done, puzzle;
     private LoginController loginController;
     private SwitchingScenes switchingScenes;
     private UserPosition userPosition;
     private StatusBarModel statusBarModel;
     private Login login;
-    private StartButton startButton;
+    private Exercise exercise;
     private PointCounter pointCounter;
     private PanelManager panelManager;
     private Door door;
-    private DoneButton doneButton;
     private ExerciseChanger exerciseChanger;
     private PlayedTimeView garageGUI;
     private StatusBarView gameUI;
     private PointerCounterModel pointerCounterModel;
     private PlayedtimeModel playedTimeModel;
     private DefaultGameInformation defaultGameInformation;
+    
 
     /// <summary>
     /// Initializes the gameObjects of the first scene loaded
@@ -47,7 +47,6 @@ public class MainInfo : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name != "Login")
         {
-            Debug.Log("goes in");
             userScript = GameObject.Find("UserPosition");
             statusBar = GameObject.Find("StatusBar");
             userPosition = userScript.GetComponent<UserPosition>();
@@ -101,12 +100,11 @@ public class MainInfo : MonoBehaviour
     void InitializeGarage()
     {
         ObjectsGarage();
-        startButton = start.GetComponent<StartButton>();
-        panelManager = exercise.GetComponent<PanelManager>();
+        exercise = gameInfo.GetComponent<Exercise>();
+        panelManager = puzzle.GetComponent<PanelManager>();
         door = front_door.GetComponent<Door>();
         pointCounter = score.GetComponent<PointCounter>();
-        exerciseChanger = exercise.GetComponent<ExerciseChanger>();
-        doneButton = done.GetComponent<DoneButton>();
+        exerciseChanger = question.GetComponent<ExerciseChanger>();
         garageGUI = timer.GetComponent<PlayedTimeView>();
         pointerCounterModel = score.GetComponent<PointerCounterModel>();
         playedTimeModel = timer.GetComponent<PlayedtimeModel>();
@@ -119,11 +117,11 @@ public class MainInfo : MonoBehaviour
     void ObjectsGarage()
     {
         score = GameObject.Find("Score");
-        exercise = GameObject.Find("Exercise");
-        start = GameObject.Find("Start");
+        question = GameObject.Find("Question");
+        gameInfo = GameObject.Find("GameInfo");
         front_door = GameObject.Find("Front_door");
-        done = GameObject.Find("Done");
         timer = GameObject.Find("Timer");
+        puzzle = GameObject.Find("PuzzelScreen");
 
     }
 
@@ -263,11 +261,11 @@ public class MainInfo : MonoBehaviour
     /// Getter for StartButton
     /// </summary>
 
-    public StartButton StartButton
+    public Exercise Exercise
     {
         get
         {
-            return startButton;
+            return exercise;
 
         }
 
@@ -298,18 +296,6 @@ public class MainInfo : MonoBehaviour
         get
         {
             return exerciseChanger;
-        }
-    }
-
-    /// <summary>
-    /// Getter for DoneButton
-    /// </summary>
-
-    public DoneButton DoneButton
-    {
-        get
-        {
-            return doneButton;
         }
     }
 

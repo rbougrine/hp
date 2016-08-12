@@ -1,21 +1,13 @@
 ﻿using UnityEngine;
 
-
-/// <summary>
-/// Created by Randa Bougrine
-/// Class that handles logging into the game.
-/// Implements the interface ILogin.
-/// </summary>
-
 public class Login : MonoBehaviour, ILogin
 {
-
     /// <summary>
     /// Created by Randa Bougrine
-    /// Makes sure that the attached GameObject Login 
-    /// is still available when scene is changed.
+    /// Class that handles logging into the game.
+    /// Implements the interface ILogin.
     /// </summary>
-    
+
     #region variables
 
     //Public Variables

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 
-public class StartButton : MonoBehaviour
+public class Exercise : MonoBehaviour
 {
 
     /// <summary>
@@ -11,21 +11,25 @@ public class StartButton : MonoBehaviour
 
     public Texture[] exercise;
     public int[] currentExercise;
+    public Texture begin, one, two, three;
 
-    public Texture begin;
-    public Texture one, two, three;
-    private int randomnumber;
     private MainInfo mainInfo;
+    private int[] exerciseOne;
+    private int[] exerciseTwo;
+    private int[] exerciseThree;
 
     /// <summary>
     /// Used for initialization
     /// </summary>
 
-    void Start()
+    void Awake()
     {
         mainInfo = GameObject.Find("MainInfo").GetComponent<MainInfo>();
-        exercise = new Texture[4];
+        exerciseOne = new int[] { 7, 11, 4, 11, 5, 16, 0, 0, 0, 16, 2, 0, 0, 0, 16, 8, 11, 14, 11, 6, 0, 0, 0, 0, 0 };
+        exerciseTwo = new int[] { 7, 11, 4, 11, 5, 16, 0, 0, 0, 1, 15, 0, 0, 0, 16, 16, 0, 0, 0, 2, 8, 11, 11, 14, 11, 6 };
+        exerciseThree = new int[] { 7, 11, 4, 11, 5, 16, 0, 0, 0, 16, 12, 11, 14, 17, 13, 16, 0, 0, 0, 16, 8, 11, 14, 11, 6 };
 
+        exercise = new Texture[4];
         exercise[0] = begin;
         exercise[1] = one;
         exercise[2] = two;
@@ -42,41 +46,21 @@ public class StartButton : MonoBehaviour
     }
 
     /// <summary>
-    /// Starts the timer
-    /// </summary>
-
-    public void Starttijd()
-    {
-        mainInfo.PlaytimeModel.StartTimer();
-    }
-
-    /// <summary>
-    /// Randomizing the excercises that will be shown
-    /// </summary>
-
-    public void BeginState()
-    {
-        randomnumber = Random.Range(1, 4);
-        ExerciseChooser();
-        mainInfo.ExerciseChanger.currentExercise = randomnumber;
-    }
-
-    /// <summary>
     /// Manages which exercise is assigned to the random number 
     /// </summary>
 
-    public void ExerciseChooser()
+    public void ExerciseChooser(int randomNumber)
     {
-        switch (randomnumber)
+        switch (randomNumber)
         {
             case 1:
-                currentExercise = mainInfo.DoneButton.exerciseOne;
+                currentExercise = exerciseOne;
                 break;
             case 2:
-                currentExercise = mainInfo.DoneButton.exerciseTwo;
+                currentExercise = exerciseTwo;
                 break;
             case 3:
-                currentExercise = mainInfo.DoneButton.exerciseThree;
+                currentExercise = exerciseThree;
                 break;
         } 
     }
