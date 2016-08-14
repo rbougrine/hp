@@ -1,4 +1,5 @@
-﻿/// <summary>
+﻿
+/// <summary>
 /// Interface that represents the status bar.
 /// </summary>
 

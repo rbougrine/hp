@@ -11,13 +11,11 @@ public class PlayedTimeView : MonoBehaviour, IBar
     /// </summary>
 
     public bool timerBool;
-    private int playtime;
     private int seconds;
     private int minutes ;
     private int hours;
     private MainInfo mainInfo;
     public GUIStyle timetyle;
-    private PlayedtimeModel playedtimeModel;
 
     /// <summary>
     /// Used for initialization

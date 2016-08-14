@@ -114,8 +114,8 @@
     <Compile Include="Assets\Scripts\ButtonType.cs" />
     <Compile Include="Assets\Scripts\CheatButton.cs" />
     <Compile Include="Assets\Scripts\DoneButton.cs" />
-    <Compile Include="Assets\Scripts\Factory.cs" />
-    <Compile Include="Assets\Scripts\IButton.cs" />
+    <Compile Include="Assets\Scripts\ButtonFactory.cs" />
+    <Compile Include="Assets\Scripts\Interfaces\IButton.cs" />
     <Compile Include="Assets\Scripts\DoorScript\Door.cs" />
     <Compile Include="Assets\Scripts\GameScript\ExerciseChanger.cs" />
     <Compile Include="Assets\Scripts\GameScript\GameInfo\PlayedTimeView.cs" />
@@ -195,6 +195,7 @@
     <None Include="Assets\Cardboard\Resources\SolidColor.shader" />
     <None Include="Assets\Cardboard\Resources\UI\CardboardReticleShader.shader" />
     <None Include="Assets\Cardboard\Resources\UnlitTexture.shader" />
+    <None Include="Assets\config.json" />
     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
     <None Include="Assets\Plugins\NatureStarterKit2\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
     <None Include="Assets\Plugins\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\CameraMotionBlur.shader" />

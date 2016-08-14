@@ -13,7 +13,6 @@ public class StatusBarView : MonoBehaviour, IBar
     private int score;
     public GUIStyle labelStyle, scorestyle;
     private MainInfo mainInfo;
-    private Login login;
 
     /// <summary>
     /// Used for initialization

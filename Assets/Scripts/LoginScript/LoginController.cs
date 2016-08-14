@@ -13,7 +13,6 @@ public class LoginController : MonoBehaviour
     //private variables
     private MainInfo mainInfo;
     private ConfigureServer configureServer;
-    private Login login;
 
     /// <summary>
     /// Used for initialization
@@ -73,7 +72,8 @@ public class LoginController : MonoBehaviour
 
         if (www.error != null)
         {
-            mainInfo.Login.Feedback = www.error;
+            Debug.Log(www.error);
+            mainInfo.Login.Feedback = "Please try again later";
         }
         else
         {

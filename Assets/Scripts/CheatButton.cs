@@ -10,7 +10,6 @@ class CheatButton : MonoBehaviour, IButton
     /// manages the cheat button
     /// </summary>
 
-    public int[] userInput;
     private int[] exercise;
     private MainInfo mainInfo;
 

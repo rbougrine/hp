@@ -15,7 +15,6 @@ class ConfigureServer
     private JsonData itemData;
     private WWW www;
     private Login login;
-    private DefaultGameInformation defaultGameInformation;
 
     /// <summary>
     /// Constructor initializes the url when bool is true
@@ -74,8 +73,7 @@ class ConfigureServer
         }
         catch (Exception e)
         {
-
-            login.Feedback = "Can't make connection with the server" + e.Message;
+            login.Feedback = "Can't make connection with the server";
             Debug.LogError(e.Message);
         }
     }

@@ -1,18 +1,17 @@
 ﻿
-
-namespace Assets.Scripts.LoginScript
+/// <summary>
+/// Created by Randa Bougrine
+/// Interface that represents the switching scenes.
+/// </summary>
+interface ISwitchingScenes
 {
-    interface ISwitchingScenes
-    {
-        void CheckPosition();
+    void CheckPosition();
 
-        void LoadingScenes(string levelName);
+    void LoadingScenes(string levelName);
 
-        void ChangeCameraPosition();
+    void ChangeCameraPosition();
 
-        void ChangePosition();
+    void ChangePosition();
 
 
-
-    }
 }

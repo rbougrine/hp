@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
-using Assets.Scripts.LoginScript;
 
 public class SwitchingScenes : MonoBehaviour, ISwitchingScenes
 {

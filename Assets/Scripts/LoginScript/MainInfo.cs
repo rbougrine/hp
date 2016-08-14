@@ -12,9 +12,8 @@ public class MainInfo : MonoBehaviour
     /// that are attached to the different GameObjects
     /// </summary>
 
-    private string jsonstring;
-    private JsonData itemdata;
-    private GameObject loginScript, userScript, score, front_door, statusBar, question, GoodJob, gameInfo, Point, timer, done, puzzle;
+  
+    private GameObject loginScript, userScript, score, front_door, statusBar, question, gameInfo, timer, puzzle;
     private LoginController loginController;
     private SwitchingScenes switchingScenes;
     private UserPosition userPosition;
@@ -29,7 +28,6 @@ public class MainInfo : MonoBehaviour
     private StatusBarView gameUI;
     private PointerCounterModel pointerCounterModel;
     private PlayedtimeModel playedTimeModel;
-    private DefaultGameInformation defaultGameInformation;
     
 
     /// <summary>

@@ -9,11 +9,8 @@ public class DefaultGameInformation
     /// Class that initializes the default information from the config file
     /// </summary>
 
-    private string jsonString;
     private JsonData itemData;
-    private Login login;
     private MainInfo mainInfo;
-    private float X, Y, Z;
 
     /// <summary>
     /// Contructor to start reading config file 
@@ -42,7 +39,7 @@ public class DefaultGameInformation
         }
         catch (NullReferenceException ex)
         {
-            login.Feedback = "Data not found";
+            mainInfo.Login.Feedback = "Data not found";
             Debug.Log(ex);
         }
     }
