@@ -1,7 +1,7 @@
 ﻿{
-  
-  "IP": "http://245.24.222.160",
-  "URL": "/Unity_apply/controller.php",
+  //Server information
+  "IP": "https://145.24.222.160",
+  "Directory": "/Unity_apply/controller.php",
 
   //DefaultCoordinatesGameScene
   "Game":

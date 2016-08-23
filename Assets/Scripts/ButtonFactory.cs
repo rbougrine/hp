@@ -10,26 +10,26 @@ public class ButtonFactory
     /// <summary>
     /// Used to create objects
     /// </summary>
-    public IButton GetButton(ButtonType type)
+    public IButton GetButton(string buttonType)
     {
-        switch (type)
+        switch (buttonType)
         {
-            case ButtonType.Start:
+            case "Start":
                 return new StartButton();
-            case ButtonType.Done:
+            case "Done":
                 return new DoneButton();
-            case ButtonType.Cheat:
+            case "Cheat":
                 return new CheatButton();
-            case ButtonType.Yes:
+            case "Yes":
                 return new YesButton();
-            case ButtonType.No:
+            case "No":
                 return new NoButton();
-            case ButtonType.Stop:
+            case "Stop":
                 return new StopButton();
-            case ButtonType.Next:
+            case "Next":
                 return new NextButton();
             default:
-                throw new NotSupportedException();
+                throw new NotSupportedException(string.Format("Button '{0}' cannot be created", buttonType));
         }
     }
 }

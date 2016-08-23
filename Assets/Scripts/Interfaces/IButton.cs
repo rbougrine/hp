@@ -6,7 +6,7 @@
 /// </summary>
 /// 
 public interface IButton
-    {
-        void ClickedOn();
+{
+    void ClickedOn();
 }
 

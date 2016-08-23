@@ -24,56 +24,19 @@ class ButtonManager : MonoBehaviour
     {
         factory = new ButtonFactory();
         buttonName = transform.name;
-        ChosenButton(buttonName);
-        GiveTexture("GameInfo");
+        chosenButton = factory.GetButton(buttonName);
+        usedObject = GameObject.Find("GameInfo");
+        GiveTexture();
     }
-
-    /// <summary>
-    /// Handles which button to be made
-    /// </summary>
-    /// <param name="name">Given the Name of the button</param>
-
-    void ChosenButton(string name)
-    {
-        switch (name)
-        {
-            case "Start":
-                chosenButton = factory.GetButton(ButtonType.Start);
-                break;
-            case "Done":
-                chosenButton = factory.GetButton(ButtonType.Done);
-                break;
-            case "Cheat":
-                chosenButton = factory.GetButton(ButtonType.Cheat);
-                break;
-            case "Yes":
-                chosenButton = factory.GetButton(ButtonType.Yes);
-                break;
-            case "No":
-                chosenButton = factory.GetButton(ButtonType.No);
-                break;
-            case "Stop":
-                chosenButton = factory.GetButton(ButtonType.Stop);
-                break;
-            case "Next":
-                chosenButton = factory.GetButton(ButtonType.Next);
-                break;
-            default:
-                throw new NotSupportedException();
-        }
-    }
-
 
     /// <summary>
     /// Give GameObject wanted Texture
     /// </summary>
 
-    void GiveTexture(string objectName)
+    void GiveTexture()
     {
-        usedObject = GameObject.Find(objectName);
-        ButtonTexture buttonTexture = usedObject.GetComponent<ButtonTexture>();
-        Texture texture = buttonTexture.GetTexture(buttonName);
-        GameObject.Find(buttonName).GetComponent<Renderer>().material.mainTexture = texture;
+        Texture buttonTexture = usedObject.GetComponent<ButtonTexture>().GetTexture(buttonName);
+        GameObject.Find(buttonName).GetComponent<Renderer>().material.mainTexture = buttonTexture;
     }
 
     /// <summary>

@@ -13,13 +13,11 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
     <UnityVersion>5.3.4f1</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -110,13 +108,13 @@
     <Compile Include="Assets\Cardboard\Scripts\VRDevices\CardboardAndroidDevice.cs" />
     <Compile Include="Assets\Cardboard\Scripts\VRDevices\CardboardiOSDevice.cs" />
     <Compile Include="Assets\Cardboard\Scripts\VRDevices\UnityEditorDevice.cs" />
+    <Compile Include="Assets\Scripts\ButtonFactory.cs" />
+    <Compile Include="Assets\Scripts\ButtonManager.cs" />
     <Compile Include="Assets\Scripts\ButtonTexture.cs" />
-    <Compile Include="Assets\Scripts\ButtonType.cs" />
     <Compile Include="Assets\Scripts\CheatButton.cs" />
     <Compile Include="Assets\Scripts\DoneButton.cs" />
-    <Compile Include="Assets\Scripts\ButtonFactory.cs" />
-    <Compile Include="Assets\Scripts\Interfaces\IButton.cs" />
     <Compile Include="Assets\Scripts\DoorScript\Door.cs" />
+    <Compile Include="Assets\Scripts\GameScript\Exercise.cs" />
     <Compile Include="Assets\Scripts\GameScript\ExerciseChanger.cs" />
     <Compile Include="Assets\Scripts\GameScript\GameInfo\PlayedTimeView.cs" />
     <Compile Include="Assets\Scripts\GameScript\GameInfo\PlayedtimeModel.cs" />
@@ -126,11 +124,11 @@
     <Compile Include="Assets\Scripts\GameScript\PanelManager.cs" />
     <Compile Include="Assets\Scripts\GameScript\PipePanelChanger.cs" />
     <Compile Include="Assets\Scripts\GameScript\PointCounter.cs" />
-    <Compile Include="Assets\Scripts\GameScript\Exercise.cs" />
     <Compile Include="Assets\Scripts\GameScript\StatusBarView.cs" />
     <Compile Include="Assets\Scripts\GameScript\UserPosition.cs" />
     <Compile Include="Assets\Scripts\GameScript\Walk.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IBar.cs" />
+    <Compile Include="Assets\Scripts\Interfaces\IButton.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IDoor.cs" />
     <Compile Include="Assets\Scripts\Interfaces\ILogin.cs" />
     <Compile Include="Assets\Scripts\LoginScript\ConfigureServer.cs" />
@@ -145,7 +143,6 @@
     <Compile Include="Assets\Scripts\SplashScript\SplashScript.cs" />
     <Compile Include="Assets\Scripts\StartButton.cs" />
     <Compile Include="Assets\Scripts\StopButton.cs" />
-    <Compile Include="Assets\Scripts\ButtonManager.cs" />
     <Compile Include="Assets\Scripts\YesButton.cs" />
     <Compile Include="Assets\UnityTestTools\Assertions\AssertionComponent.cs" />
     <Compile Include="Assets\UnityTestTools\Assertions\AssertionException.cs" />
@@ -195,7 +192,6 @@
     <None Include="Assets\Cardboard\Resources\SolidColor.shader" />
     <None Include="Assets\Cardboard\Resources\UI\CardboardReticleShader.shader" />
     <None Include="Assets\Cardboard\Resources\UnlitTexture.shader" />
-    <None Include="Assets\config.json" />
     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
     <None Include="Assets\Plugins\NatureStarterKit2\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
     <None Include="Assets\Plugins\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\CameraMotionBlur.shader" />

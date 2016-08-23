@@ -29,7 +29,7 @@ class ConfigureServer
         {
             try
             {
-                url = itemData["IP"].ToString() + itemData["URL"].ToString();
+                url = itemData["IP"].ToString() + itemData["Directory"].ToString();
             }
             catch(Exception e)
             {              

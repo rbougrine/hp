@@ -11,12 +11,12 @@ public class Login : MonoBehaviour, ILogin
     #region variables
 
     //Public Variables
-    public MainInfo mainInfo;
     public Texture2D messageBox;
     public string cUsername;
     public bool logged;
 
     //Private Variables
+    private MainInfo mainInfo;
     private string username = "";
     private string password = "";
     private string cPassword = "";
