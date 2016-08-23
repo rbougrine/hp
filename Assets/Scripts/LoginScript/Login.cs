@@ -1,195 +1,178 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System;
-using UnityEngine.SceneManagement;
 
-
-public class Login : MonoBehaviour
+public class Login : MonoBehaviour, ILogin
 {
+    /// <summary>
+    /// Created by Randa Bougrine
+    /// Class that handles logging into the game.
+    /// Implements the interface ILogin.
+    /// </summary>
 
     #region variables
 
-     //Public Variables
-    public string CurrentMenu = "Login";
-    public Texture2D MessageBox = null;
-	public  string Username = "";
-	public string Password = "";
-
+    //Public Variables
+    public Texture2D messageBox;
+    public string cUsername;
+    public bool logged;
 
     //Private Variables
-     private string CUsername = "";
-     private string CPassword = "";
-     private string ConfirmPassword = "";
-     private string Feedback = null;
-     
+    private MainInfo mainInfo;
+    private string username = "";
+    private string password = "";
+    private string cPassword = "";
+    private string confirmPassword = "";
+    private string currentMenu, feedback;
 
-    //GUI test section
-    public float X;
-    public float Y;
-    public float Width;
-    public float Height;
-   
     #endregion variables
 
-	void Awake()
-	{
-		DontDestroyOnLoad (this);
-	}
-  
+    /// <summary>
+    /// Causes the GameObject not to be removed 
+    /// when the scene changes in the game
+    /// </summary>
 
-	// Use this for initialization
+    void Awake()
+    {
+        DontDestroyOnLoad(this);
+    }
+
+    /// <summary>
+    /// Used for initialization.
+    /// </summary>
+
     void Start()
     {
+        CurrentMenu = "Login";
+        mainInfo = GameObject.Find("MainInfo").GetComponent<MainInfo>();
+    }
 
-		
-    }//End Start method
+    /// <summary>
+    /// Calls the needed GUI method only if CurrentMenu and/or Feedback isn't null.
+    /// </summary>
 
     void OnGUI()
     {
-        GUI.skin.box.normal.background = MessageBox;
-
-        if (CurrentMenu == "Login")
+        GUI.skin.box.normal.background = messageBox;
+        if (CurrentMenu == "Login" && logged != true)
         {
             LoginGUI();
         }
         else if (CurrentMenu == "CreateAccount")
         {
-            CreateAccountGUI();     
+            CreateAccountGUI();
         }
-    //Feedback messages for the login system
-     if (Feedback != null)
+        if (Feedback != null)
         {
-            GUI.skin.box.normal.background = MessageBox;
-            GUI.Box(new Rect(235, 103, 225, 111), Feedback);
-
-           if (GUI.Button(new Rect(287, 164, 111, 25), "Okay"))
-             {
-                Feedback = null;
-             }
-
+            FeedbackGUI();
         }
-     
-    }//End OnGUI method
+    }
 
+    /// <summary>
+    /// Draws the login screen.
+    /// </summary>
 
-
-
-    void LoginGUI()
+    public void LoginGUI()
     {
         GUI.Box(new Rect(235, 55, 225, 222), "Login");
-
         GUI.Label(new Rect(253, 86, 170, 21), "Username:");
-        Username = GUI.TextField(new Rect(253, 106, 170, 21), Username);
-
+        username = GUI.TextField(new Rect(253, 106, 170, 21), username);
         GUI.Label(new Rect(252, 128, 170, 23), "Password:");
-        Password = GUI.PasswordField(new Rect(252, 151, 170, 23), Password, "*"[0], 25);
-        
+        password = GUI.PasswordField(new Rect(252, 151, 170, 23), password, "*"[0], 25);
         if (GUI.Button(new Rect(357, 223, 90, 25), "Log in"))
         {
-            string url = "http://145.24.222.160/LoginAccountT.php";
-
-            WWWForm form = new WWWForm();
-            form.AddField("Username", Username);
-            form.AddField("Password", Password);
-            WWW www = new WWW(url, form);
-
-            StartCoroutine(LoginAccount(www));
-
+            mainInfo.LoginController.Authorization(username,password);
         }
-
         if (GUI.Button(new Rect(242, 223, 111, 25), "Create Account"))
         {
-           CurrentMenu = "CreateAccount";
+            CurrentMenu = "CreateAccount";
         }
-    }//End LoginGUI method
+    }
 
-     void CreateAccountGUI()
+    /// <summary>
+    /// Draws the Register screen.
+    /// </summary>
+
+    public void CreateAccountGUI()
     {
-
         GUI.Box(new Rect(235, 75, 225, 222), "Create Account");
-
         GUI.Label(new Rect(253, 86, 170, 21), "Name:");
-        CUsername = GUI.TextField(new Rect(253, 106, 170, 21), CUsername);
-
+        cUsername = GUI.TextField(new Rect(253, 106, 170, 21), cUsername);
         GUI.Label(new Rect(252, 128, 170, 23), "Password:");
-        CPassword = GUI.PasswordField(new Rect(252, 151, 170, 23), CPassword,"*"[0], 25);
-
+        cPassword = GUI.PasswordField(new Rect(252, 151, 170, 23), cPassword, "*"[0], 25);
         GUI.Label(new Rect(252, 181, 170, 23), "Confirm Password:");
-        ConfirmPassword = GUI.PasswordField(new Rect(252, 209, 170, 23), ConfirmPassword, "*"[0], 25);
-   
-
-        if (GUI.Button(new Rect(242, 243, 111, 25),"Create Account"))
+        confirmPassword = GUI.PasswordField(new Rect(252, 209, 170, 23), confirmPassword, "*"[0], 25);
+        if (GUI.Button(new Rect(344, 243, 111, 25), "Create Account"))
         {
-            if (CPassword == ConfirmPassword)
+            if (cPassword == confirmPassword)
             {
-                string url = "http://145.24.222.160/CreateAccountT.php";
-
-                WWWForm form = new WWWForm();
-                form.AddField("Username", CUsername);
-                form.AddField("Password", CPassword);
-                WWW www = new WWW(url, form);
-
-                StartCoroutine(CreateAccount(www));
-               
+                mainInfo.LoginController.Register(cUsername,cPassword);
             }
             else
             {
-                Debug.Log("The password is not correctly entered");
+                Feedback = "The password is not the same";
             }
         }
-
-
-        if (GUI.Button(new Rect(357, 243, 90, 25), "Back"))
+        if (GUI.Button(new Rect(245, 243, 90, 25), "Back"))
         {
             CurrentMenu = "Login";
-
         }
+    }
 
+    /// <summary>
+    /// Draws the Feedback screen.
+    /// </summary>
 
-    }//End CreateAccountGUI method
-
-
-
-    IEnumerator CreateAccount(WWW www)
+    public void FeedbackGUI()
     {
-        yield return www;
-
-         // check for errors
-        if (www.error == null)
+        GUI.Box(new Rect(235, 103, 225, 111), Feedback);
+        if (GUI.Button(new Rect(287, 164, 111, 25), "Okay"))
         {
-            
-           Feedback = www.text;
-
-         
+            Feedback = null;
         }
-        else
-        {
-            Feedback = www.error;
-        }
-    }//End CreateAccount
+    }
 
-    IEnumerator LoginAccount(WWW www)
+    /// <summary>
+    /// Getter and setter for the CurrentMenu string.
+    /// </summary>
+
+    public string CurrentMenu
     {
-        yield return www;
-
-        // check for errors
-        if (www.error == null)
+        get
         {
-            Feedback = www.text;
-
-			SceneManager.LoadScene ("Game");
-			StatusBar StatusBar = GameObject.Find("InfoScreen").GetComponent<StatusBar>();
-			StatusBar.setUsername (Username);
-           
-        }
-        else
-        {
-            Feedback = www.error;
-            
+            return currentMenu;
         }
 
-    }//End LoginAccount
+        set
+        {
+            currentMenu = value;
+        }
+    }
 
-}//End Class
+    /// <summary>
+    /// Getter and setter for the Feedback string.
+    /// </summary>
 
+    public string Feedback
+    {
+        get
+        {
+            return feedback;
+        }
 
+        set
+        {
+            feedback = value;
+        }
+    }
+
+    /// <summary>
+    /// Getter for the Username string.
+    /// </summary>
+
+    public string Username
+    {
+        get
+        {
+            return username;
+        }
+    }
+}

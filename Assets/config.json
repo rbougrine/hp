@@ -1,0 +1,22 @@
+﻿{
+  //Server information
+  "IP": "https://145.24.222.160",
+  "Directory": "/Unity_apply/controller.php",
+
+  //DefaultCoordinatesGameScene
+  "Game":
+    {
+      "x": 536.1,
+      "y": 12,
+      "z": 578
+     },
+
+  //DefaultCoordinatesGarageScene
+ "Garage":
+    {   
+      "x": -237,
+      "y": -38,
+      "z": -102
+    } 
+  
+}
